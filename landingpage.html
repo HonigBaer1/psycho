@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Vital Works - Training & Seminare für Arbeitsgestaltung, Mitarbeitermotivation & Führung">
+    <meta name="description"
+        content="Vital Works - Training & Seminare für Arbeitsgestaltung, Mitarbeitermotivation & Führung">
     <title>Vital Works - Trainingsdienstleister</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Here is the main and only style section in this page -->
     <style>
         :root {
             --royal-blue: #4169E1;
@@ -15,6 +16,10 @@
         }
     </style>
 </head>
+
+
+<!-- Main content -->
+<!-- From here there is only the page content until the footer -->
 
 <body class="bg-white">
 
@@ -25,29 +30,26 @@
                 Vital Works
             </a>
         </div>
-        <div class="navbar-center hidden lg:flex">
+        <div class="navbar-center hidden lg:flex justify-center flex-1">
             <ul class="menu menu-horizontal gap-2">
                 <li>
-                    <a href="landingpage.html" class="font-medium hover:text-white" 
-                       style="color: var(--royal-blue);"
-                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                    <a href="landingpage.html" class="font-medium hover:text-white" style="color: var(--royal-blue);"
+                        onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                        onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
                         Landingpage
                     </a>
                 </li>
                 <li>
-                    <a href="onboarding.html" class="font-medium hover:text-white"
-                       style="color: var(--royal-blue);"
-                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                    <a href="onboarding.html" class="font-medium hover:text-white" style="color: var(--royal-blue);"
+                        onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                        onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
                         Onboarding
                     </a>
                 </li>
                 <li>
-                    <a href="infopage.html" class="font-medium hover:text-white"
-                       style="color: var(--royal-blue);"
-                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                    <a href="infopage.html" class="font-medium hover:text-white" style="color: var(--royal-blue);"
+                        onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                        onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
                         Kursinfo
                     </a>
                 </li>
@@ -56,8 +58,10 @@
         <div class="navbar-end lg:hidden">
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </div>
                 <ul tabindex="0" class="menu menu-sm dropdown-content bg-white rounded-box z-10 mt-3 w-52 p-2 shadow">
@@ -69,6 +73,8 @@
         </div>
     </header>
 
+
+
     <!-- Hero Section -->
     <section class="hero min-h-[80vh]" style="background: linear-gradient(135deg, var(--royal-blue) 0%, #5a7de8 100%);">
         <div class="hero-content text-center text-white py-20">
@@ -77,25 +83,26 @@
                     Willkommen bei Vital Works
                 </h1>
                 <p class="text-lg md:text-xl mb-8 opacity-90">
-                    Ihr professioneller Trainingsdienstleister für Arbeitsgestaltung, 
-                    Mitarbeitermotivation und erfolgreiche Führung. Entwickeln Sie Ihre Teams 
+                    Ihr professioneller Trainingsdienstleister für Arbeitsgestaltung,
+                    Mitarbeitermotivation und erfolgreiche Führung. Entwickeln Sie Ihre Teams
                     und steigern Sie nachhaltig die Leistung Ihrer Organisation.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <a href="onboarding.html" class="btn btn-lg bg-white hover:bg-gray-100 border-none"
-                       style="color: var(--royal-blue);">
+                        style="color: var(--royal-blue);">
                         Jetzt Onboarding starten
                     </a>
-                    <a href="#pakete" class="btn btn-lg btn-outline border-white text-white hover:bg-white hover:border-white"
-                       style="--tw-text-opacity: 1;"
-                       onmouseover="this.style.color='var(--royal-blue)'"
-                       onmouseout="this.style.color='white'">
+                    <a href="#pakete"
+                        class="btn btn-lg btn-outline border-white text-white hover:bg-white hover:border-white"
+                        style="--tw-text-opacity: 1;" onmouseover="this.style.color='var(--royal-blue)'"
+                        onmouseout="this.style.color='white'">
                         Direkt zur Produktauswahl
                     </a>
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- Was sind unsere Kurse Section -->
     <section class="py-20 px-4 bg-white">
@@ -104,17 +111,19 @@
                 Was sind unsere Seminare?
             </h2>
             <p class="text-gray-600 text-center max-w-3xl mx-auto mb-12 text-lg">
-                Unsere Seminare wurden von Experten entwickelt, um Ihre Führungskräfte und Teams 
-                nachhaltig weiterzuentwickeln. Wir bieten praxisnahe Lösungen für moderne 
+                Unsere Seminare wurden von Experten entwickelt, um Ihre Führungskräfte und Teams
+                nachhaltig weiterzuentwickeln. Wir bieten praxisnahe Lösungen für moderne
                 Arbeitsgestaltung und erfolgreiche Mitarbeiterführung.
             </p>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="card bg-base-100 shadow-lg border border-gray-100">
                     <div class="card-body items-center text-center">
-                        <div class="w-16 h-16 rounded-full flex items-center justify-center mb-4" 
-                             style="background-color: var(--royal-blue);">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center mb-4"
+                            style="background-color: var(--royal-blue);">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                             </svg>
                         </div>
                         <h3 class="card-title" style="color: var(--royal-blue);">Praxisorientiert</h3>
@@ -126,9 +135,11 @@
                 <div class="card bg-base-100 shadow-lg border border-gray-100">
                     <div class="card-body items-center text-center">
                         <div class="w-16 h-16 rounded-full flex items-center justify-center mb-4"
-                             style="background-color: var(--royal-blue);">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            style="background-color: var(--royal-blue);">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                             </svg>
                         </div>
                         <h3 class="card-title" style="color: var(--royal-blue);">Expertenwissen</h3>
@@ -140,9 +151,11 @@
                 <div class="card bg-base-100 shadow-lg border border-gray-100">
                     <div class="card-body items-center text-center">
                         <div class="w-16 h-16 rounded-full flex items-center justify-center mb-4"
-                             style="background-color: var(--royal-blue);">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            style="background-color: var(--royal-blue);">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z" />
                             </svg>
                         </div>
                         <h3 class="card-title" style="color: var(--royal-blue);">Maßgeschneidert</h3>
@@ -155,6 +168,7 @@
         </div>
     </section>
 
+
     <!-- Benefits Section -->
     <section class="py-20 px-4" style="background-color: #f8fafc;">
         <div class="max-w-6xl mx-auto">
@@ -162,62 +176,83 @@
                 Ihre Vorteile
             </h2>
             <p class="text-gray-600 text-center max-w-3xl mx-auto mb-12 text-lg">
-                Mit Vital Works investieren Sie in die Entwicklung Ihrer Mitarbeiter und 
+                Mit Vital Works investieren Sie in die Entwicklung Ihrer Mitarbeiter und
                 profitieren von messbaren Verbesserungen.
             </p>
             <div class="grid md:grid-cols-2 gap-6">
                 <div class="flex items-start gap-4 p-6 bg-white rounded-xl shadow-sm">
                     <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
-                         style="background-color: var(--royal-blue);">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        style="background-color: var(--royal-blue);">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd" />
                         </svg>
                     </div>
                     <div>
-                        <h4 class="font-semibold text-lg mb-1" style="color: var(--royal-blue);">Höhere Produktivität</h4>
-                        <p class="text-gray-600">Effizientere Arbeitsabläufe und motivierte Teams steigern die Leistung.</p>
+                        <h4 class="font-semibold text-lg mb-1" style="color: var(--royal-blue);">Höhere Produktivität
+                        </h4>
+                        <p class="text-gray-600">Effizientere Arbeitsabläufe und motivierte Teams steigern die Leistung.
+                        </p>
                     </div>
                 </div>
                 <div class="flex items-start gap-4 p-6 bg-white rounded-xl shadow-sm">
                     <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
-                         style="background-color: var(--royal-blue);">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        style="background-color: var(--royal-blue);">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd" />
                         </svg>
                     </div>
                     <div>
-                        <h4 class="font-semibold text-lg mb-1" style="color: var(--royal-blue);">Bessere Mitarbeiterbindung</h4>
-                        <p class="text-gray-600">Zufriedene und motivierte Mitarbeiter bleiben Ihrem Unternehmen länger treu.</p>
+                        <h4 class="font-semibold text-lg mb-1" style="color: var(--royal-blue);">Bessere
+                            Mitarbeiterbindung</h4>
+                        <p class="text-gray-600">Zufriedene und motivierte Mitarbeiter bleiben Ihrem Unternehmen länger
+                            treu.</p>
                     </div>
                 </div>
                 <div class="flex items-start gap-4 p-6 bg-white rounded-xl shadow-sm">
                     <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
-                         style="background-color: var(--royal-blue);">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        style="background-color: var(--royal-blue);">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd" />
                         </svg>
                     </div>
                     <div>
-                        <h4 class="font-semibold text-lg mb-1" style="color: var(--royal-blue);">Stärkere Führungskompetenzen</h4>
-                        <p class="text-gray-600">Entwickeln Sie moderne Führungsskills für die Arbeitswelt von morgen.</p>
+                        <h4 class="font-semibold text-lg mb-1" style="color: var(--royal-blue);">Stärkere
+                            Führungskompetenzen</h4>
+                        <p class="text-gray-600">Entwickeln Sie moderne Führungsskills für die Arbeitswelt von morgen.
+                        </p>
                     </div>
                 </div>
                 <div class="flex items-start gap-4 p-6 bg-white rounded-xl shadow-sm">
                     <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
-                         style="background-color: var(--royal-blue);">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        style="background-color: var(--royal-blue);">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd" />
                         </svg>
                     </div>
                     <div>
-                        <h4 class="font-semibold text-lg mb-1" style="color: var(--royal-blue);">Positive Unternehmenskultur</h4>
-                        <p class="text-gray-600">Schaffen Sie ein Arbeitsumfeld, in dem sich alle wohlfühlen und entfalten können.</p>
+                        <h4 class="font-semibold text-lg mb-1" style="color: var(--royal-blue);">Positive
+                            Unternehmenskultur</h4>
+                        <p class="text-gray-600">Schaffen Sie ein Arbeitsumfeld, in dem sich alle wohlfühlen und
+                            entfalten können.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    
     <!-- Pakete / Pricing Section (Anchoring Bias) -->
     <section id="pakete" class="py-20 px-4 bg-white">
         <div class="max-w-6xl mx-auto">
@@ -225,7 +260,7 @@
                 Unsere Seminarpakete
             </h2>
             <p class="text-gray-600 text-center max-w-3xl mx-auto mb-12 text-lg">
-                Wählen Sie das passende Seminarpaket für Ihr Unternehmen. Alle Seminare beinhalten 
+                Wählen Sie das passende Seminarpaket für Ihr Unternehmen. Alle Seminare beinhalten
                 umfangreiche Unterlagen und persönlichen Support.
             </p>
             <div class="grid md:grid-cols-3 gap-8">
@@ -233,41 +268,54 @@
                 <div class="card bg-base-100 shadow-xl border border-gray-200">
                     <div class="card-body">
                         <h3 class="text-xl font-semibold text-center text-gray-600">Seminar 1</h3>
-                        <h2 class="text-2xl font-bold text-center" style="color: var(--royal-blue);">Arbeitsgestaltung</h2>
+                        <h2 class="text-2xl font-bold text-center" style="color: var(--royal-blue);">Arbeitsgestaltung
+                        </h2>
                         <div class="text-center my-6">
                             <span class="text-4xl font-bold" style="color: var(--royal-blue);">€890</span>
                             <span class="text-gray-500">/Tag</span>
                         </div>
                         <ul class="space-y-3 mb-6">
                             <li class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" style="color: var(--royal-blue);" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                    style="color: var(--royal-blue);" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd" />
                                 </svg>
                                 <span>1 Tag (8 Stunden)</span>
                             </li>
                             <li class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" style="color: var(--royal-blue);" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                    style="color: var(--royal-blue);" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd" />
                                 </svg>
                                 <span>Bis zu 15 Teilnehmer</span>
                             </li>
                             <li class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" style="color: var(--royal-blue);" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                    style="color: var(--royal-blue);" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd" />
                                 </svg>
                                 <span>Seminarunterlagen</span>
                             </li>
                             <li class="flex items-center gap-2 text-gray-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                                 <span>Kein Follow-up</span>
                             </li>
                         </ul>
                         <div class="card-actions justify-center">
-                            <button class="btn btn-outline w-full" style="color: var(--royal-blue); border-color: var(--royal-blue);"
-                                    onmouseover="this.style.backgroundColor='var(--royal-blue)'; this.style.color='white'"
-                                    onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                            <button class="btn btn-outline w-full"
+                                style="color: var(--royal-blue); border-color: var(--royal-blue);"
+                                onmouseover="this.style.backgroundColor='var(--royal-blue)'; this.style.color='white'"
+                                onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
                                 Auswählen
                             </button>
                         </div>
@@ -275,7 +323,8 @@
                 </div>
 
                 <!-- Kurs 2 - Premium (Empfohlen - Anchor) -->
-                <div class="card shadow-2xl border-2 relative" style="border-color: var(--royal-blue); background-color: var(--royal-blue);">
+                <div class="card shadow-2xl border-2 relative"
+                    style="border-color: var(--royal-blue); background-color: var(--royal-blue);">
                     <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
                         <span class="badge bg-white px-4 py-3 font-semibold" style="color: var(--royal-blue);">
                             Empfohlen
@@ -290,32 +339,45 @@
                         </div>
                         <ul class="space-y-3 mb-6">
                             <li class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd" />
                                 </svg>
                                 <span>2 Tage (16 Stunden)</span>
                             </li>
                             <li class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd" />
                                 </svg>
                                 <span>Bis zu 12 Teilnehmer</span>
                             </li>
                             <li class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd" />
                                 </svg>
                                 <span>4 Wochen Follow-up</span>
                             </li>
                             <li class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd" />
                                 </svg>
                                 <span>Praxisübungen & Tools</span>
                             </li>
                         </ul>
                         <div class="card-actions justify-center">
-                            <button class="btn bg-white hover:bg-gray-100 border-none w-full" style="color: var(--royal-blue);">
+                            <button class="btn bg-white hover:bg-gray-100 border-none w-full"
+                                style="color: var(--royal-blue);">
                                 Jetzt starten
                             </button>
                         </div>
@@ -326,41 +388,55 @@
                 <div class="card bg-base-100 shadow-xl border border-gray-200">
                     <div class="card-body">
                         <h3 class="text-xl font-semibold text-center text-gray-600">Seminar 3</h3>
-                        <h2 class="text-2xl font-bold text-center" style="color: var(--royal-blue);">Mitarbeiterführung</h2>
+                        <h2 class="text-2xl font-bold text-center" style="color: var(--royal-blue);">Mitarbeiterführung
+                        </h2>
                         <div class="text-center my-6">
                             <span class="text-4xl font-bold" style="color: var(--royal-blue);">€2.490</span>
                             <span class="text-gray-500">/3 Tage</span>
                         </div>
                         <ul class="space-y-3 mb-6">
                             <li class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" style="color: var(--royal-blue);" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                    style="color: var(--royal-blue);" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd" />
                                 </svg>
                                 <span>3 Tage (24 Stunden)</span>
                             </li>
                             <li class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" style="color: var(--royal-blue);" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                    style="color: var(--royal-blue);" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd" />
                                 </svg>
                                 <span>Bis zu 10 Teilnehmer</span>
                             </li>
                             <li class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" style="color: var(--royal-blue);" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                    style="color: var(--royal-blue);" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd" />
                                 </svg>
                                 <span>12 Wochen Coaching</span>
                             </li>
                             <li class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" style="color: var(--royal-blue);" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                    style="color: var(--royal-blue);" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd" />
                                 </svg>
                                 <span>Individuelle Betreuung</span>
                             </li>
                         </ul>
                         <div class="card-actions justify-center">
-                            <button class="btn btn-outline w-full" style="color: var(--royal-blue); border-color: var(--royal-blue);"
-                                    onmouseover="this.style.backgroundColor='var(--royal-blue)'; this.style.color='white'"
-                                    onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                            <button class="btn btn-outline w-full"
+                                style="color: var(--royal-blue); border-color: var(--royal-blue);"
+                                onmouseover="this.style.backgroundColor='var(--royal-blue)'; this.style.color='white'"
+                                onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
                                 Kontaktieren
                             </button>
                         </div>
@@ -371,6 +447,7 @@
     </section>
 
     <!-- Footer -->
+    <!-- From here there is no other content than the footer -->
     <footer class="footer sm:footer-horizontal p-10 text-white" style="background-color: var(--royal-blue);">
         <nav>
             <h6 class="footer-title opacity-100">Services</h6>
@@ -397,18 +474,27 @@
             <h6 class="footer-title opacity-100">Social Media</h6>
             <div class="grid grid-flow-col gap-4">
                 <a href="#" class="hover:opacity-80">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current">
-                        <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        class="fill-current">
+                        <path
+                            d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z">
+                        </path>
                     </svg>
                 </a>
                 <a href="#" class="hover:opacity-80">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current">
-                        <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        class="fill-current">
+                        <path
+                            d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z">
+                        </path>
                     </svg>
                 </a>
                 <a href="#" class="hover:opacity-80">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current">
-                        <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        class="fill-current">
+                        <path
+                            d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z">
+                        </path>
                     </svg>
                 </a>
             </div>
