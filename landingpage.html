@@ -14,6 +14,166 @@
             --royal-blue: #4169E1;
             --royal-blue-dark: #3457b8;
         }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar blending transition */
+        .navbar {
+            transition: background-color 0.4s ease, box-shadow 0.4s ease;
+            background-color: transparent !important;
+        }
+
+        .navbar.navbar-blended {
+            background-color: transparent !important;
+            box-shadow: none !important;
+        }
+
+        .navbar.navbar-scrolled {
+            background-color: white !important;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+        }
+
+        /* Position helpers */
+        .navbar-start {
+            position: relative;
+        }
+
+        .navbar-end {
+            position: relative;
+        }
+
+        /* Testimonial Marquee Styles */
+        @keyframes scroll-marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        #testimonial-marquee {
+            will-change: transform;
+        }
+
+        .testimonial-card {
+            flex-shrink: 0;
+            width: 300px;
+        }
+
+        .testimonial-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 48px;
+        }
+
+        .testimonial-stars {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            margin: 12px 0;
+        }
+
+        .star {
+            width: 18px;
+            height: 18px;
+            color: #fbbf24;
+        }
+
+        .star.empty {
+            color: #d1d5db;
+        }
+
+        /* 3D Hero Animation Styles */
+        .hero-animation-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .animated-blob {
+            position: absolute;
+            border-radius: 50%;
+            opacity: var(--blob-opacity);
+            will-change: transform;
+        }
+
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+            top: -100px;
+            left: 5%;
+        }
+
+        .blob-2 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+            top: 20%;
+            right: 10%;
+        }
+
+        .blob-3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+            bottom: 10%;
+            left: 50%;
+        }
+
+        .hero-content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Logo and nav link badges */
+        .navbar-logo-badge {
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 160px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .navbar-links-badge {
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 340px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .navbar.navbar-blended .navbar-logo-badge,
+        .navbar.navbar-blended .navbar-links-badge {
+            opacity: 1;
+        }
     </style>
 </head>
 
@@ -24,32 +184,28 @@
 <body class="bg-white">
 
     <!-- Header / Navbar -->
-    <header class="navbar bg-white shadow-sm sticky top-0 z-50 px-4 lg:px-8">
+    <header class="navbar shadow-sm fixed top-0 left-0 right-0 z-50 px-4 lg:px-8">
         <div class="navbar-start">
+            <div class="navbar-logo-badge"></div>
             <a href="landingpage.html" class="text-2xl font-bold" style="color: var(--royal-blue);">
                 Vital Works
             </a>
         </div>
-        <div class="navbar-center hidden lg:flex justify-center flex-1">
+        <div class="navbar-end hidden lg:flex">
+            <div class="navbar-links-badge"></div>
             <ul class="menu menu-horizontal gap-2">
                 <li>
-                    <a href="landingpage.html" class="font-medium hover:text-white" style="color: var(--royal-blue);"
-                        onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                        onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                    <a href="landingpage.html" class="link link-hover font-medium" style="color: var(--royal-blue);">
                         Landingpage
                     </a>
                 </li>
                 <li>
-                    <a href="onboarding.html" class="font-medium hover:text-white" style="color: var(--royal-blue);"
-                        onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                        onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                    <a href="onboarding.html" class="link link-hover font-medium" style="color: var(--royal-blue);">
                         Onboarding
                     </a>
                 </li>
                 <li>
-                    <a href="infopage.html" class="font-medium hover:text-white" style="color: var(--royal-blue);"
-                        onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                        onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                    <a href="infopage.html" class="link link-hover font-medium" style="color: var(--royal-blue);">
                         Kursinfo
                     </a>
                 </li>
@@ -76,8 +232,9 @@
 
 
     <!-- Hero Section -->
-    <section class="hero min-h-[80vh]" style="background: linear-gradient(135deg, var(--royal-blue) 0%, #5a7de8 100%);">
-        <div class="hero-content text-center text-white py-20">
+    <section class="hero min-h-[100vh] relative" style="background: linear-gradient(135deg, var(--royal-blue) 0%, #5a7de8 100%);">
+        <div class="hero-animation-bg" id="hero-animation-bg"></div>
+        <div class="hero-content text-center text-white py-20 hero-content-wrapper">
             <div class="max-w-3xl">
                 <h1 class="text-4xl md:text-6xl font-bold mb-6">
                     Willkommen bei Vital Works
@@ -88,14 +245,10 @@
                     und steigern Sie nachhaltig die Leistung Ihrer Organisation.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="onboarding.html" class="btn btn-lg bg-white hover:bg-gray-100 border-none"
-                        style="color: var(--royal-blue);">
+                    <a href="onboarding.html" class="btn btn-lg" style="background-color: white; color: var(--royal-blue); border: none;">
                         Jetzt Onboarding starten
                     </a>
-                    <a href="#pakete"
-                        class="btn btn-lg btn-outline border-white text-white hover:bg-white hover:border-white"
-                        style="--tw-text-opacity: 1;" onmouseover="this.style.color='var(--royal-blue)'"
-                        onmouseout="this.style.color='white'">
+                    <a href="#pakete" class="btn btn-lg btn-outline border-white text-white">
                         Direkt zur Produktauswahl
                     </a>
                 </div>
@@ -252,8 +405,7 @@
         </div>
     </section>
 
-    
-    <!-- Pakete / Pricing Section (Anchoring Bias) -->
+        <!-- Pakete / Pricing Section -->
     <section id="pakete" class="py-20 px-4 bg-white">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-4" style="color: var(--royal-blue);">
@@ -312,10 +464,7 @@
                             </li>
                         </ul>
                         <div class="card-actions justify-center">
-                            <button class="btn btn-outline w-full"
-                                style="color: var(--royal-blue); border-color: var(--royal-blue);"
-                                onmouseover="this.style.backgroundColor='var(--royal-blue)'; this.style.color='white'"
-                                onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                            <button class="btn btn-outline w-full" style="color: var(--royal-blue); border-color: var(--royal-blue);">
                                 Auswählen
                             </button>
                         </div>
@@ -376,8 +525,7 @@
                             </li>
                         </ul>
                         <div class="card-actions justify-center">
-                            <button class="btn bg-white hover:bg-gray-100 border-none w-full"
-                                style="color: var(--royal-blue);">
+                            <button class="btn w-full" style="background-color: white; color: var(--royal-blue); border: none;">
                                 Jetzt starten
                             </button>
                         </div>
@@ -433,13 +581,40 @@
                             </li>
                         </ul>
                         <div class="card-actions justify-center">
-                            <button class="btn btn-outline w-full"
-                                style="color: var(--royal-blue); border-color: var(--royal-blue);"
-                                onmouseover="this.style.backgroundColor='var(--royal-blue)'; this.style.color='white'"
-                                onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                            <button class="btn btn-outline w-full" style="color: var(--royal-blue); border-color: var(--royal-blue);">
                                 Kontaktieren
                             </button>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section with Infinite Marquee -->
+    <section class="py-20 px-4" style="background-color: #f8fafc;">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4" style="color: var(--royal-blue);">
+                Was unsere Kunden sagen
+            </h2>
+            <p class="text-gray-600 text-center max-w-3xl mx-auto mb-12 text-lg">
+                Erfahren Sie, wie unsere Seminare Unternehmen und ihre Teams transformiert haben.
+            </p>
+
+            <!-- Marquee Container with Blur Fade -->
+            <div class="relative mx-auto" style="width: 80%; max-width: 1000px;">
+                <!-- Left Blur Fade -->
+                <div class="absolute left-0 top-0 bottom-0 w-12 z-10"
+                    style="background: linear-gradient(to right, #f8fafc, transparent); pointer-events: none;"></div>
+                
+                <!-- Right Blur Fade -->
+                <div class="absolute right-0 top-0 bottom-0 w-12 z-10"
+                    style="background: linear-gradient(to left, #f8fafc, transparent); pointer-events: none;"></div>
+
+                <!-- Marquee Scroll Container -->
+                <div class="overflow-hidden" style="mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);">
+                    <div id="testimonial-marquee" class="flex gap-6" style="animation: scroll-marquee linear infinite;">
+                        <!-- Testimonials will be cloned here by JavaScript -->
                     </div>
                 </div>
             </div>
@@ -505,6 +680,215 @@
             <p>© 2025 Vital Works. Alle Rechte vorbehalten.</p>
         </aside>
     </footer>
+
+    <script>
+        // ===== MARQUEE CONFIGURATION =====
+        const MARQUEE_SPEED = 20; // Speed in seconds (lower = faster)
+        // ================================
+
+        // ===== 3D HERO ANIMATION CONFIGURATION =====
+        const HERO_ANIMATION_ENABLED = true;
+        const ANIMATION_ROTATION_SPEED = 8;      // seconds per rotation
+        const ANIMATION_FLOAT_HEIGHT = 30;       // px of floating motion
+        const ANIMATION_FLOAT_DURATION = 6;      // seconds for float cycle
+        const ANIMATION_BLOB_BLUR = 60;          // px blur amount
+        const ANIMATION_BLOB_OPACITY = 0.35;     // 0-1 opacity
+        // =========================================
+
+        // Testimonials Data
+        const testimonials = [
+            {
+                name: "Maria Schmidt",
+                rating: 5,
+                text: "Das Seminar zur Mitarbeitermotivation hat unser Team komplett verändert. Die praktischen Methoden lassen sich sofort umsetzen und wir sehen bereits erste Erfolge."
+            },
+            {
+                name: "Thomas Müller",
+                rating: 4,
+                text: "Sehr informativ und gut strukturiert. Der Trainer hatte viel Erfahrung und konnte auf unsere spezifischen Fragen eingehen. Wirklich empfehlenswert!"
+            },
+            {
+                name: "Sarah Weber",
+                rating: 5,
+                text: "Ausgezeichnete Schulung! Meine Führungskompetenzen haben sich deutlich verbessert. Das 12-Wochen-Coaching war besonders wertvoll für die Umsetzung."
+            },
+            {
+                name: "Klaus Fischer",
+                rating: 5,
+                text: "Die Arbeitsgestaltungs-Seminare haben unsere Produktivität um 30% gesteigert. Absolut professionell und praxisnah durchgeführt. Danke Vital Works!"
+            },
+            {
+                name: "Anna Bergmann",
+                rating: 4,
+                text: "Toller Inhalt und engagierte Trainer. Das Follow-up Coaching hat uns geholfen, das Gelernte nachhaltig in unsere Prozesse zu integrieren."
+            },
+            {
+                name: "Michael König",
+                rating: 5,
+                text: "Ein absolutes Muss für jedes Managementteam! Die Seminare sind durchdacht, interaktiv und liefern echte Mehrwerte. Wir buchen sofort wieder!"
+            }
+        ];
+
+        // Function to render stars
+        function renderStars(rating) {
+            let starsHTML = '';
+            for (let i = 0; i < 5; i++) {
+                if (i < rating) {
+                    starsHTML += '<svg class="star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2l-2.81 6.63L2 9.24l5.46 4.73L5.82 21z"/></svg>';
+                } else {
+                    starsHTML += '<svg class="star empty" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2l-2.81 6.63L2 9.24l5.46 4.73L5.82 21z"/></svg>';
+                }
+            }
+            return starsHTML;
+        }
+
+        // Function to create testimonial card HTML
+        function createTestimonialCard(testimonial) {
+            const initials = testimonial.name.split(' ').map(n => n[0]).join('');
+            return `
+                <div class="testimonial-card">
+                    <div class="card bg-white shadow-lg border border-gray-100 h-full">
+                        <div class="card-body text-center">
+                            <div class="testimonial-avatar" style="background: linear-gradient(135deg, var(--royal-blue) 0%, #5a7de8 100%); color: white;">
+                                ${initials}
+                            </div>
+                            <h3 class="font-semibold text-lg" style="color: var(--royal-blue);">${testimonial.name}</h3>
+                            <div class="testimonial-stars">
+                                ${renderStars(testimonial.rating)}
+                            </div>
+                            <p class="text-gray-600 text-sm flex-grow">${testimonial.text}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize testimonial marquee
+        function initializeTestimonialMarquee() {
+            const marquee = document.getElementById('testimonial-marquee');
+            
+            // Create initial cards
+            testimonials.forEach(testimonial => {
+                marquee.innerHTML += createTestimonialCard(testimonial);
+            });
+            
+            // Clone testimonials for seamless infinite scroll
+            testimonials.forEach(testimonial => {
+                marquee.innerHTML += createTestimonialCard(testimonial);
+            });
+
+            // Apply dynamic animation speed
+            marquee.style.animationDuration = `${MARQUEE_SPEED}s`;
+        }
+
+        // Initialize hero animation
+        function initializeHeroAnimation() {
+            const heroAnimationBg = document.getElementById('hero-animation-bg');
+            const heroSection = heroAnimationBg.closest('section');
+
+            // Set CSS variables for opacity
+            heroSection.style.setProperty('--blob-opacity', `${ANIMATION_BLOB_OPACITY}`);
+
+            // Create style tag for dynamic keyframes
+            const style = document.createElement('style');
+            const floatHeight = ANIMATION_FLOAT_HEIGHT;
+            const rotationSpeed = ANIMATION_ROTATION_SPEED;
+            const floatDuration = ANIMATION_FLOAT_DURATION;
+            const blurAmount = ANIMATION_BLOB_BLUR;
+
+            style.textContent = `
+                @keyframes float-blob-1 {
+                    0%, 100% { transform: translateY(0px) translateX(0px); }
+                    50% { transform: translateY(${floatHeight}px) translateX(10px); }
+                }
+                @keyframes float-blob-2 {
+                    0%, 100% { transform: translateY(0px) translateX(0px); }
+                    50% { transform: translateY(${-floatHeight}px) translateX(-10px); }
+                }
+                @keyframes float-blob-3 {
+                    0%, 100% { transform: translateX(0px) translateY(0px); }
+                    50% { transform: translateX(${floatHeight}px) translateY(${-floatHeight}px); }
+                }
+                @keyframes rotate-blob {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+                @keyframes rotate-blob-reverse {
+                    0% { transform: rotate(360deg); }
+                    100% { transform: rotate(0deg); }
+                }
+                #hero-animation-bg .blob-1 {
+                    filter: blur(${blurAmount}px) !important;
+                    animation: float-blob-1 ${floatDuration}s ease-in-out infinite, rotate-blob ${rotationSpeed}s linear infinite !important;
+                }
+                #hero-animation-bg .blob-2 {
+                    filter: blur(${blurAmount}px) !important;
+                    animation: float-blob-2 ${floatDuration}s ease-in-out infinite, rotate-blob-reverse ${rotationSpeed}s linear infinite !important;
+                }
+                #hero-animation-bg .blob-3 {
+                    filter: blur(${blurAmount}px) !important;
+                    animation: float-blob-3 ${floatDuration}s ease-in-out infinite, rotate-blob ${rotationSpeed}s linear infinite !important;
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Create animated blobs
+            const blobHTML = `
+                <div class="animated-blob blob-1"></div>
+                <div class="animated-blob blob-2"></div>
+                <div class="animated-blob blob-3"></div>
+            `;
+            heroAnimationBg.innerHTML = blobHTML;
+
+            console.log('Hero animation initialized with:', {
+                rotationSpeed,
+                floatDuration,
+                floatHeight,
+                blurAmount,
+                opacity: ANIMATION_BLOB_OPACITY
+            });
+        }
+
+        // Initialize navbar blending effect
+        function initializeNavbarBlending() {
+            const navbar = document.querySelector('.navbar');
+            const heroSection = document.querySelector('.hero');
+
+            if (!navbar || !heroSection) return;
+
+            // Set initial state - navbar should be blended at page load since hero is visible
+            navbar.classList.add('navbar-blended');
+            navbar.classList.remove('navbar-scrolled');
+
+            // Use Intersection Observer to detect hero visibility
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Hero is in view - blend navbar
+                        navbar.classList.add('navbar-blended');
+                        navbar.classList.remove('navbar-scrolled');
+                    } else {
+                        // Hero is out of view - make navbar white
+                        navbar.classList.remove('navbar-blended');
+                        navbar.classList.add('navbar-scrolled');
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of hero is visible
+            });
+
+            observer.observe(heroSection);
+        }
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTestimonialMarquee();
+            initializeNavbarBlending();
+            if (HERO_ANIMATION_ENABLED) {
+                initializeHeroAnimation();
+            }
+        });
+    </script>
 
 </body>
 
