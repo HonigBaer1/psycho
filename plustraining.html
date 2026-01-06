@@ -1,0 +1,812 @@
+<!doctype html>
+<html lang="de" data-theme="corporate">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kursinfo – Mitarbeiterführung | Vital Works</title>
+  <meta name="description" content="Detailseite für das Training Mitarbeiterführung inkl. Inhalte, Ablauf, Nutzen und Buchungs-CTA." />
+
+  <!-- daisyUI + Tailwind (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root{
+      --vw-blue: #0b3bbf;
+      --vw-blue-dark: #0830a0;
+      --vw-blue-soft: rgba(11,59,191,.16);
+      --soft-gray: #f6f7f9;
+      --text-gray: #5f6b7a;
+    }
+
+    .btn-vw-primary{ background: var(--vw-blue); border-color: var(--vw-blue); color: #fff; }
+    .btn-vw-primary:hover{ background: var(--vw-blue-dark); border-color: var(--vw-blue-dark); }
+    .btn-vw-outline{ border-color: var(--vw-blue); color: var(--vw-blue); }
+    .btn-vw-outline:hover{ background: rgba(11, 59, 191, .08); border-color: var(--vw-blue); }
+
+    .vw-title{ color: var(--vw-blue); }
+    .vw-muted{ color: var(--text-gray); }
+
+    .vw-card{
+      border: 1px solid rgba(0,0,0,.06);
+      box-shadow: 0 10px 25px rgba(0,0,0,.06);
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    /* Weitere Trainings: gleiche Höhe + Buttons unten aligned */
+    .vw-training-card{ display:flex; flex-direction:column; height:100%; }
+    .vw-training-content{ flex:1; }
+
+    /* Ablauf: linke “1/2/3”-Schiene + eingerückter Text */
+    .vw-step{ display:flex; gap: 14px; position: relative; padding-left: 6px; }
+    .vw-step + .vw-step{ margin-top: 16px; }
+    .vw-step-rail{
+      width: 46px; position: relative; display:flex; justify-content:center; flex: 0 0 46px;
+    }
+    .vw-step-line{
+      position:absolute; top: 0; bottom: 0; width: 6px; border-radius: 999px; background: var(--vw-blue-soft);
+    }
+    .vw-step-badge{
+      position: relative; z-index: 2; width: 32px; height: 32px; border-radius: 999px;
+      background: var(--vw-blue); color: #fff; font-weight: 700; display:grid; place-items:center;
+      margin-top: 2px; box-shadow: 0 10px 18px rgba(11,59,191,.18);
+    }
+    .vw-step-content{ flex: 1; padding-left: 4px; }
+
+    /* Reviews slider */
+    .vw-review-wrap{ position: relative; }
+    .vw-review-arrows{ opacity: 0; pointer-events: none; transition: opacity .15s ease; }
+    @media (hover:hover) and (pointer:fine){
+      .vw-review-wrap:hover .vw-review-arrows{ opacity: 1; pointer-events: auto; }
+    }
+    .vw-arrow-btn{
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(6px);
+      border-radius: 999px;
+      width: 36px; height: 36px;
+      display: grid; place-items: center;
+    }
+    .vw-arrow-btn:hover{ background: #fff; }
+
+    .vw-scroll::-webkit-scrollbar{ display: none; }
+    .vw-scroll{ -ms-overflow-style: none; scrollbar-width: none; }
+
+    .vw-review-card{ display:flex; flex-direction:column; height:100%; }
+    .vw-quote{ line-height: 1.5; }
+
+    /* === SMALLER TITLES + STARS (requested) === */
+    .vw-page-title{ font-size: clamp(1.75rem, 2.6vw, 2.3rem); line-height: 1.15; }
+    .vw-section-title{ font-size: 1.1rem; } /* previously ~text-xl */
+    .vw-card-title{ font-size: 1.05rem; }
+    .vw-badge-title{ font-size: .75rem; }
+
+    /* Smaller rating stars everywhere */
+    .vw-rating-sm .mask-star-2{ width: 0.9rem; height: 0.9rem; }
+    .vw-rating-xs .mask-star-2{ width: 0.78rem; height: 0.78rem; }
+  </style>
+</head>
+
+<body class="min-h-screen bg-white">
+  <!-- HEADER -->
+  <header class="border-b border-base-200 bg-white sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="navbar px-0">
+        <div class="navbar-start">
+          <a class="text-lg font-bold vw-title" href="#">Vital Works</a>
+        </div>
+        <div class="navbar-end">
+          <ul class="menu menu-horizontal px-1 text-sm">
+            <li><a href="#">Landingpage</a></li>
+            <li><a href="#">Onboarding</a></li>
+            <li><a class="font-semibold vw-title" href="#">Kursinfo</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="max-w-6xl mx-auto px-4 py-10">
+    <!-- Titel -->
+    <div class="text-center mb-10">
+      <h1 class="font-bold vw-title vw-page-title">Mitarbeiterführung</h1>
+      <p class="mt-2 vw-muted max-w-2xl mx-auto">
+        Ein praxisnahes Training für Führungskräfte: Klar führen, Motivation erhöhen, Leistung stabilisieren.
+      </p>
+
+      <div class="mt-4 inline-flex items-center gap-3 px-4 py-2 rounded-full" style="background: rgba(11,59,191,.06);">
+        <div class="flex items-center gap-2">
+          <div class="rating vw-rating-sm">
+            <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+            <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+            <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+            <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+            <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+          </div>
+          <span class="font-semibold" style="color: var(--vw-blue);">4,9/5</span>
+        </div>
+        <span class="vw-muted text-sm">aus 365 Bewertungen</span>
+      </div>
+    </div>
+
+    <!-- 2-Spalten-Layout -->
+    <div class="grid lg:grid-cols-3 gap-8">
+      <!-- LEFT -->
+      <section class="lg:col-span-2 space-y-6">
+        <!-- Worum geht’s? -->
+        <div class="vw-card p-6">
+          <div class="flex items-start justify-between gap-4">
+            <h2 class="font-semibold vw-section-title">Worum geht’s?</h2>
+            <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+              Praxisfokus
+            </span>
+          </div>
+
+          <p class="mt-3 text-base font-semibold" style="color: var(--vw-blue);">
+            Führung, die Verhalten sichtbar verändert.
+          </p>
+
+          <p class="vw-muted leading-relaxed mt-2">
+            Sie lernen, Erwartungen klar zu formulieren, Motivation gezielt zu fördern und Feedback so zu geben,
+            dass sich Verhalten nachhaltig verändert – ohne Druck und ohne Mikromanagement.
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-3 mt-5">
+            <div class="flex gap-2 items-start">
+              <i data-lucide="target" class="mt-0.5"></i>
+              <div>
+                <div class="font-semibold vw-card-title">Kernfokus</div>
+                <div class="vw-muted text-sm">Wirksame Führung in typischen Alltagssituationen.</div>
+              </div>
+            </div>
+
+            <div class="flex gap-2 items-start">
+              <i data-lucide="briefcase" class="mt-0.5"></i>
+              <div>
+                <div class="font-semibold vw-card-title">Ihr Kontext</div>
+                <div class="vw-muted text-sm">Leistungsschwankungen, Widerstand, Konflikte, fehlende Initiative.</div>
+              </div>
+            </div>
+
+            <div class="flex gap-2 items-start">
+              <i data-lucide="wrench" class="mt-0.5"></i>
+              <div>
+                <div class="font-semibold vw-card-title">Konkrete Tools</div>
+                <div class="vw-muted text-sm">Leitfäden, Checklisten & Formulierungen für schwierige Gespräche.</div>
+              </div>
+            </div>
+
+            <div class="flex gap-2 items-start">
+              <i data-lucide="calendar-check" class="mt-0.5"></i>
+              <div>
+                <div class="font-semibold vw-card-title">Direkter Transfer</div>
+                <div class="vw-muted text-sm">Individueller Maßnahmenplan für die nächsten 30 Tage.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Was Teilnehmende danach können -->
+        <div class="vw-card p-6">
+          <div class="flex items-start justify-between gap-4">
+            <h2 class="font-semibold vw-section-title">Was Teilnehmende danach können</h2>
+            <span class="badge badge-ghost vw-badge-title">Sofort anwendbar</span>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-3 mt-4">
+            <div class="flex gap-2 items-start">
+              <i data-lucide="sparkles" class="mt-0.5"></i>
+              <div>
+                <div class="font-semibold vw-card-title">Motivation gezielt steigern</div>
+                <div class="vw-muted text-sm">Treiber identifizieren & Demotivationsfaktoren früh vermeiden.</div>
+              </div>
+            </div>
+
+            <div class="flex gap-2 items-start">
+              <i data-lucide="messages-square" class="mt-0.5"></i>
+              <div>
+                <div class="font-semibold vw-card-title">Feedback, das wirkt</div>
+                <div class="vw-muted text-sm">Struktur + Formulierungen für echte Verhaltensänderung.</div>
+              </div>
+            </div>
+
+            <div class="flex gap-2 items-start">
+              <i data-lucide="flag" class="mt-0.5"></i>
+              <div>
+                <div class="font-semibold vw-card-title">Ownership statt Kontrolle</div>
+                <div class="vw-muted text-sm">Ziele so setzen, dass Eigeninitiative entsteht.</div>
+              </div>
+            </div>
+
+            <div class="flex gap-2 items-start">
+              <i data-lucide="shield" class="mt-0.5"></i>
+              <div>
+                <div class="font-semibold vw-card-title">Widerstände konstruktiv lösen</div>
+                <div class="vw-muted text-sm">Früh erkennen und in Mitarbeit umwandeln.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5 rounded-xl p-4" style="background: rgba(11,59,191,.06);">
+            <div class="flex items-start gap-2">
+              <i data-lucide="package" class="mt-0.5"></i>
+              <div>
+                <div class="font-semibold vw-card-title">Konkrete Takeaways</div>
+                <div class="vw-muted text-sm">
+                  Feedback-Leitfaden • Zielsetzungs-Template • 30-Tage-Transferplan (3 Maßnahmen + Wenn-Dann-Plan)
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ablauf -->
+        <div class="vw-card p-6">
+          <h2 class="font-semibold vw-section-title mb-5">Ablauf (3 Tage)</h2>
+
+          <div class="vw-step">
+            <div class="vw-step-rail">
+              <div class="vw-step-line"></div>
+              <div class="vw-step-badge">1</div>
+            </div>
+            <div class="vw-step-content">
+              <div class="font-semibold vw-card-title">Tag 1 – Führungsfundament & Motivation</div>
+              <div class="vw-muted text-sm mt-1">
+                Was Menschen antreibt, was Leistung bremst – plus gemeinsames Führungsverständnis.
+              </div>
+              <div class="vw-muted text-sm mt-2">
+                <span class="font-semibold">Outcome:</span> Klare Führungsprinzipien + gemeinsame Sprache im Team.
+              </div>
+            </div>
+          </div>
+
+          <div class="vw-step">
+            <div class="vw-step-rail">
+              <div class="vw-step-line"></div>
+              <div class="vw-step-badge">2</div>
+            </div>
+            <div class="vw-step-content">
+              <div class="font-semibold vw-card-title">Tag 2 – Praxis-Tools für den Führungsalltag</div>
+              <div class="vw-muted text-sm mt-1">
+                Feedback, Anerkennung, Zielsetzung, schwierige Gespräche – mit Leitfäden und Formulierungen.
+              </div>
+              <div class="vw-muted text-sm mt-2">
+                <span class="font-semibold">Outcome:</span> Werkzeugkasten, der sofort im Alltag funktioniert.
+              </div>
+            </div>
+          </div>
+
+          <div class="vw-step">
+            <div class="vw-step-rail">
+              <div class="vw-step-line"></div>
+              <div class="vw-step-badge">3</div>
+            </div>
+            <div class="vw-step-content">
+              <div class="font-semibold vw-card-title">Tag 3 – Fallarbeit & Transferdesign</div>
+              <div class="vw-muted text-sm mt-1">
+                Ihre Fälle aus dem Unternehmen, Rollenspiele, Priorisierung – Umsetzung wird direkt vorbereitet.
+              </div>
+              <div class="vw-muted text-sm mt-2">
+                <span class="font-semibold">Outcome:</span> 30-Tage-Maßnahmenplan + nächste Schritte pro Person.
+              </div>
+            </div>
+          </div>
+
+          <div class="alert mt-6">
+            <i data-lucide="info"></i>
+            <div class="text-sm">
+              Kein „Theorie-Overload“: Modelle nur dort, wo sie Entscheidungen vereinfachen – Fokus auf Anwendung.
+            </div>
+          </div>
+        </div>
+
+        <!-- Rezensionen -->
+        <div class="rounded-2xl p-8 vw-review-wrap" style="background: var(--soft-gray);" id="reviews">
+          <div class="text-center">
+            <h2 class="font-bold vw-title" style="font-size:1.35rem;">Was unsere Kunden sagen</h2>
+            <div class="mt-3 flex flex-col sm:flex-row items-center justify-center gap-2">
+              <div class="flex items-center gap-2">
+                <div class="rating vw-rating-sm">
+                  <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                  <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                  <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                  <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                  <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                </div>
+                <span class="font-semibold" style="color: var(--vw-blue);">4,9/5</span>
+              </div>
+              <span class="vw-muted text-sm">aus 365 Bewertungen</span>
+            </div>
+          </div>
+
+          <div class="mt-6 relative">
+            <div class="vw-review-arrows absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2 z-10">
+              <button class="vw-arrow-btn" id="reviewsPrev" aria-label="Vorherige Rezensionen">
+                <span style="color: var(--vw-blue);">❮</span>
+              </button>
+              <button class="vw-arrow-btn" id="reviewsNext" aria-label="Nächste Rezensionen">
+                <span style="color: var(--vw-blue);">❯</span>
+              </button>
+            </div>
+
+            <div id="reviewsTrack" class="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory vw-scroll pb-2">
+              <!-- PAGE 1 -->
+              <div class="snap-start shrink-0 w-full">
+                <div class="grid md:grid-cols-2 gap-4">
+                  <div class="vw-card p-5 vw-review-card">
+                    <div class="flex items-start justify-between gap-3">
+                      <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+                        Prof. Dr. • Arbeitspsychologie
+                      </span>
+                      <div class="text-right">
+                        <div class="rating vw-rating-xs">
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                        </div>
+                        <div class="vw-muted text-xs mt-1">4,9/5</div>
+                      </div>
+                    </div>
+                    <div class="mt-3 flex gap-2">
+                      <i data-lucide="quote" class="mt-0.5"></i>
+                      <p class="text-sm text-base-content vw-quote">
+                        „Sehr strukturiert, sehr praxisnah. Die Leitfäden reduzieren Reibung sofort.“
+                      </p>
+                    </div>
+                    <div class="mt-4 text-sm font-semibold">CHRO (Konzern)</div>
+                    <div class="vw-muted text-sm">Mehr Klarheit in Gesprächen – weniger Eskalation.</div>
+                  </div>
+
+                  <div class="vw-card p-5 vw-review-card">
+                    <div class="flex items-start justify-between gap-3">
+                      <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+                        Dr. • Organisationsentwicklung
+                      </span>
+                      <div class="text-right">
+                        <div class="rating vw-rating-xs">
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                        </div>
+                        <div class="vw-muted text-xs mt-1">5,0/5</div>
+                      </div>
+                    </div>
+                    <div class="mt-3 flex gap-2">
+                      <i data-lucide="quote" class="mt-0.5"></i>
+                      <p class="text-sm text-base-content vw-quote">
+                        „Kein Blabla: Transferplan, Umsetzung, Ergebnis. Widerstände sinken spürbar.“
+                      </p>
+                    </div>
+                    <div class="mt-4 text-sm font-semibold">VP People & Culture</div>
+                    <div class="vw-muted text-sm">Hohe Akzeptanz im Leadership-Team.</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PAGE 2 -->
+              <div class="snap-start shrink-0 w-full">
+                <div class="grid md:grid-cols-2 gap-4">
+                  <div class="vw-card p-5 vw-review-card">
+                    <div class="flex items-start justify-between gap-3">
+                      <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+                        Prof. • Leadership & Change
+                      </span>
+                      <div class="text-right">
+                        <div class="rating vw-rating-xs">
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                        </div>
+                        <div class="vw-muted text-xs mt-1">4,8/5</div>
+                      </div>
+                    </div>
+                    <div class="mt-3 flex gap-2">
+                      <i data-lucide="quote" class="mt-0.5"></i>
+                      <p class="text-sm text-base-content vw-quote">
+                        „Erwartungen, Ziele, Feedback – alles greift ineinander. Genau diese Klarheit braucht es.“
+                      </p>
+                    </div>
+                    <div class="mt-4 text-sm font-semibold">Head of Operations</div>
+                    <div class="vw-muted text-sm">Schneller entscheiden, sauberer führen.</div>
+                  </div>
+
+                  <div class="vw-card p-5 vw-review-card">
+                    <div class="flex items-start justify-between gap-3">
+                      <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+                        Dr. • Wirtschaftspsychologie
+                      </span>
+                      <div class="text-right">
+                        <div class="rating vw-rating-xs">
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                        </div>
+                        <div class="vw-muted text-xs mt-1">4,9/5</div>
+                      </div>
+                    </div>
+                    <div class="mt-3 flex gap-2">
+                      <i data-lucide="quote" class="mt-0.5"></i>
+                      <p class="text-sm text-base-content vw-quote">
+                        „Hilft sofort bei Entscheidungen: Ziel, Feedback, Anerkennung oder Rahmenbedingung?“
+                      </p>
+                    </div>
+                    <div class="mt-4 text-sm font-semibold">Director HR Strategy</div>
+                    <div class="vw-muted text-sm">Sehr gute Tools für schwierige Gespräche.</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PAGE 3 -->
+              <div class="snap-start shrink-0 w-full">
+                <div class="grid md:grid-cols-2 gap-4">
+                  <div class="vw-card p-5 vw-review-card">
+                    <div class="flex items-start justify-between gap-3">
+                      <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+                        Prof. Dr. • Management
+                      </span>
+                      <div class="text-right">
+                        <div class="rating vw-rating-xs">
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                        </div>
+                        <div class="vw-muted text-xs mt-1">4,8/5</div>
+                      </div>
+                    </div>
+                    <div class="mt-3 flex gap-2">
+                      <i data-lucide="quote" class="mt-0.5"></i>
+                      <p class="text-sm text-base-content vw-quote">
+                        „Konsequent anwendbar. Nach Tag 2 waren die ersten Gesprächsänderungen sichtbar.“
+                      </p>
+                    </div>
+                    <div class="mt-4 text-sm font-semibold">CEO (Mittelstand)</div>
+                    <div class="vw-muted text-sm">Mehr Ownership, weniger Nachfassen.</div>
+                  </div>
+
+                  <div class="vw-card p-5 vw-review-card">
+                    <div class="flex items-start justify-between gap-3">
+                      <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+                        Dr. • Leadership Coaching
+                      </span>
+                      <div class="text-right">
+                        <div class="rating vw-rating-xs">
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                        </div>
+                        <div class="vw-muted text-xs mt-1">4,9/5</div>
+                      </div>
+                    </div>
+                    <div class="mt-3 flex gap-2">
+                      <i data-lucide="quote" class="mt-0.5"></i>
+                      <p class="text-sm text-base-content vw-quote">
+                        „Die Struktur verhindert typische Denkfehler im Alltag. Führung wird leichter – und fairer.“
+                      </p>
+                    </div>
+                    <div class="mt-4 text-sm font-semibold">Head of Leadership Development</div>
+                    <div class="vw-muted text-sm">Sehr gute Lernkurve bei allen Levels.</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PAGE 4 -->
+              <div class="snap-start shrink-0 w-full">
+                <div class="grid md:grid-cols-2 gap-4">
+                  <div class="vw-card p-5 vw-review-card">
+                    <div class="flex items-start justify-between gap-3">
+                      <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+                        Prof. • Organisationspsychologie
+                      </span>
+                      <div class="text-right">
+                        <div class="rating vw-rating-xs">
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                        </div>
+                        <div class="vw-muted text-xs mt-1">5,0/5</div>
+                      </div>
+                    </div>
+                    <div class="mt-3 flex gap-2">
+                      <i data-lucide="quote" class="mt-0.5"></i>
+                      <p class="text-sm text-base-content vw-quote">
+                        „Gute Balance: genug Theorie zur Orientierung – aber konsequent auf Umsetzung getrimmt.“
+                      </p>
+                    </div>
+                    <div class="mt-4 text-sm font-semibold">HR Director</div>
+                    <div class="vw-muted text-sm">Passt perfekt zu Busy Führungskräften.</div>
+                  </div>
+
+                  <div class="vw-card p-5 vw-review-card">
+                    <div class="flex items-start justify-between gap-3">
+                      <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+                        Dr. • Change Management
+                      </span>
+                      <div class="text-right">
+                        <div class="rating vw-rating-xs">
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                          <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                        </div>
+                        <div class="vw-muted text-xs mt-1">4,8/5</div>
+                      </div>
+                    </div>
+                    <div class="mt-3 flex gap-2">
+                      <i data-lucide="quote" class="mt-0.5"></i>
+                      <p class="text-sm text-base-content vw-quote">
+                        „Widerstände wurden nicht weggedrückt, sondern sauber bearbeitet. Sehr professionell.“
+                      </p>
+                    </div>
+                    <div class="mt-4 text-sm font-semibold">SVP Operations</div>
+                    <div class="vw-muted text-sm">Konflikte früh klären statt teuer eskalieren.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-6 border-t border-gray-200 text-center">
+            <div class="text-4xl font-bold mb-2" style="color: var(--vw-blue);">90% Erfolgsquote</div>
+            <div class="text-sm vw-muted">9 von 10 Kunden empfehlen unsere Seminare</div>
+          </div>
+        </div>
+
+        <!-- Weitere Trainings -->
+        <section class="mt-6">
+          <div class="text-center mb-6">
+            <h2 class="font-bold vw-title" style="font-size:1.65rem;">Weitere Trainings</h2>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <!-- Arbeitsgestaltung -->
+            <div class="vw-card p-6 vw-training-card">
+              <div class="vw-training-content">
+                <div class="mb-2">
+                  <span class="badge opacity-0 vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+                    Empfohlen
+                  </span>
+                </div>
+
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <div class="text-sm vw-muted">Seminar</div>
+                    <h3 class="font-semibold" style="font-size:1.15rem;">Arbeitsgestaltung</h3>
+                    <p class="vw-muted mt-1">
+                      Produktivität & Wohlbefinden steigern – durch klare Arbeitsstrukturen und sinnvolle Rahmenbedingungen.
+                    </p>
+                  </div>
+                  <div class="text-right whitespace-nowrap">
+                    <div class="text-2xl font-bold" style="color: var(--vw-blue);">€890</div>
+                    <div class="text-sm vw-muted">/ Tag</div>
+                  </div>
+                </div>
+
+                <ul class="mt-4 space-y-2 text-sm vw-muted">
+                  <li class="flex gap-2 items-start"><i data-lucide="check" class="mt-0.5"></i> 1 Tag (8 Stunden)</li>
+                  <li class="flex gap-2 items-start"><i data-lucide="check" class="mt-0.5"></i> Bis zu 15 Teilnehmende</li>
+                  <li class="flex gap-2 items-start"><i data-lucide="check" class="mt-0.5"></i> Seminarunterlagen</li>
+                </ul>
+              </div>
+
+              <div class="mt-6 flex flex-col sm:flex-row gap-3">
+                <a class="btn btn-vw-outline flex-1" href="#"><i data-lucide="info" class="mr-1"></i>Kurzinfo</a>
+                <a class="btn btn-vw-primary flex-1" href="#"><i data-lucide="arrow-right" class="mr-1"></i>Auswählen</a>
+              </div>
+            </div>
+
+            <!-- Mitarbeitermotivation -->
+            <div class="vw-card p-6 vw-training-card">
+              <div class="vw-training-content">
+                <div class="mb-2">
+                  <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+                    Empfohlen
+                  </span>
+                </div>
+
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <div class="text-sm vw-muted">Seminar</div>
+                    <h3 class="font-semibold" style="font-size:1.15rem;">Mitarbeitermotivation</h3>
+                    <p class="vw-muted mt-1">
+                      Motivation gezielt erhöhen – mit praktikablen Tools für Anerkennung, Ziele und Team-Energie.
+                    </p>
+                  </div>
+                  <div class="text-right whitespace-nowrap">
+                    <div class="text-2xl font-bold" style="color: var(--vw-blue);">€1.490</div>
+                    <div class="text-sm vw-muted">/ 2 Tage</div>
+                  </div>
+                </div>
+
+                <ul class="mt-4 space-y-2 text-sm vw-muted">
+                  <li class="flex gap-2 items-start"><i data-lucide="check" class="mt-0.5"></i> 2 Tage (16 Stunden)</li>
+                  <li class="flex gap-2 items-start"><i data-lucide="check" class="mt-0.5"></i> Bis zu 12 Teilnehmende</li>
+                  <li class="flex gap-2 items-start"><i data-lucide="check" class="mt-0.5"></i> Praxisübungen & Tools</li>
+                </ul>
+              </div>
+
+              <div class="mt-6 flex flex-col sm:flex-row gap-3">
+                <a class="btn btn-vw-outline flex-1" href="#"><i data-lucide="info" class="mr-1"></i>Kurzinfo</a>
+                <a class="btn btn-vw-primary flex-1" href="#"><i data-lucide="arrow-right" class="mr-1"></i>Auswählen</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- RIGHT: Sticky Booking Card -->
+      <aside class="lg:col-span-1">
+        <div class="vw-card p-6 sticky top-24">
+          <div class="text-center mb-3">
+            <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+              Empfohlen
+            </span>
+          </div>
+
+          <div class="text-center">
+            <div class="text-sm vw-muted">Seminar</div>
+            <div class="font-semibold" style="font-size:1.1rem;">Mitarbeiterführung</div>
+
+            <div class="mt-4">
+              <div class="text-3xl font-bold" style="color: var(--vw-blue);">€2.490</div>
+              <div class="text-sm vw-muted">/ 3 Tage</div>
+            </div>
+
+            <div class="mt-4 flex flex-col items-center gap-1">
+              <div class="rating vw-rating-sm">
+                <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+                <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
+              </div>
+              <div class="text-sm">
+                <span class="font-semibold" style="color: var(--vw-blue);">4,9/5</span>
+                <span class="vw-muted">• 365 Bewertungen</span>
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-5 opacity-20" />
+
+          <ul class="space-y-2 text-sm vw-muted">
+            <li class="flex gap-2 items-start"><i data-lucide="check" class="mt-0.5"></i> 3 Tage (24 Stunden)</li>
+            <li class="flex gap-2 items-start"><i data-lucide="check" class="mt-0.5"></i> Bis zu 10 Teilnehmende</li>
+            <li class="flex gap-2 items-start"><i data-lucide="check" class="mt-0.5"></i> 12 Wochen Coaching</li>
+            <li class="flex gap-2 items-start"><i data-lucide="check" class="mt-0.5"></i> Individuelle Betreuung</li>
+          </ul>
+
+          <div class="mt-6 space-y-3">
+            <button class="btn w-full btn-vw-primary">Kontaktieren</button>
+            <button class="btn w-full btn-vw-outline">Rückruf anfordern</button>
+
+            <p class="text-xs vw-muted text-center mt-2">
+              Antwort in der Regel innerhalb von 24h
+            </p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    lucide.createIcons();
+
+    const track = document.getElementById("reviewsTrack");
+    const prevBtn = document.getElementById("reviewsPrev");
+    const nextBtn = document.getElementById("reviewsNext");
+
+    function pageWidth() {
+      return track ? track.getBoundingClientRect().width : 0;
+    }
+
+    prevBtn?.addEventListener("click", () => {
+      track.scrollBy({ left: -pageWidth(), behavior: "smooth" });
+    });
+
+    nextBtn?.addEventListener("click", () => {
+      track.scrollBy({ left: pageWidth(), behavior: "smooth" });
+    });
+  </script>
+
+  <!-- Footer -->
+  <footer
+    class="footer sm:footer-horizontal p-10 text-white"
+    style="background-color: var(--vw-blue)"
+  >
+    <nav>
+      <h6 class="footer-title opacity-100">Services</h6>
+      <a class="link link-hover">Seminare</a>
+      <a class="link link-hover">Coaching</a>
+      <a class="link link-hover">Beratung</a>
+      <a class="link link-hover">Workshops</a>
+    </nav>
+    <nav>
+      <h6 class="footer-title opacity-100">Unternehmen</h6>
+      <a class="link link-hover">Über uns</a>
+      <a class="link link-hover">Kontakt</a>
+      <a class="link link-hover">Karriere</a>
+      <a class="link link-hover">Blog</a>
+    </nav>
+    <nav>
+      <h6 class="footer-title opacity-100">Rechtliches</h6>
+      <a class="link link-hover">Impressum</a>
+      <a class="link link-hover">Datenschutz</a>
+      <a class="link link-hover">AGB</a>
+      <a class="link link-hover">Widerruf</a>
+    </nav>
+    <nav>
+      <h6 class="footer-title opacity-100">Social Media</h6>
+      <div class="grid grid-flow-col gap-4">
+        <a href="#" class="hover:opacity-80">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            class="fill-current size-5 text-white"
+          >
+            <path
+              d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+            ></path>
+          </svg>
+        </a>
+        <a href="#" class="hover:opacity-80">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            class="fill-current"
+          >
+            <path
+              d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"
+            ></path>
+          </svg>
+        </a>
+        <a href="#" class="hover:opacity-80">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            class="fill-current"
+          >
+            <path
+              d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"
+            ></path>
+          </svg>
+        </a>
+      </div>
+    </nav>
+  </footer>
+  <footer
+    class="footer footer-center p-4 text-white"
+    style="background-color: var(--vw-blue-dark)"
+  >
+    <aside>
+      <p>© 2025 Vital Works. Alle Rechte vorbehalten.</p>
+    </aside>
+  </footer>
+</body>
+</html>
