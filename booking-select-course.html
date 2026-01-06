@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vital Works - Kursauswahl">
+    <title>Vital Works - Kurs auswählen</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --royal-blue: #4169E1;
+            --royal-blue-dark: #3457b8;
+        }
+
+        .course-card {
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .course-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .course-card.selected {
+            border: 3px solid var(--royal-blue);
+            background-color: #f0f5ff;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <!-- Header / Navbar -->
+    <header class="navbar bg-white shadow-sm sticky top-0 z-50 px-4 lg:px-8">
+        <div class="navbar-start">
+            <a href="landingpage.html" class="text-2xl font-bold" style="color: var(--royal-blue);">
+                Vital Works
+            </a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal gap-2">
+                <li>
+                    <a href="landingpage.html" class="font-medium hover:text-white" 
+                       style="color: var(--royal-blue);"
+                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                        Landingpage
+                    </a>
+                </li>
+                <li>
+                    <a href="onboarding.html" class="font-medium hover:text-white"
+                       style="color: var(--royal-blue);"
+                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                        Onboarding
+                    </a>
+                </li>
+                <li>
+                    <a href="infopage.html" class="font-medium hover:text-white"
+                       style="color: var(--royal-blue);"
+                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                        Kursinfo
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-end lg:hidden">
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </div>
+                <ul tabindex="0" class="menu menu-sm dropdown-content bg-white rounded-box z-10 mt-3 w-52 p-2 shadow">
+                    <li><a href="landingpage.html" style="color: var(--royal-blue);">Landingpage</a></li>
+                    <li><a href="onboarding.html" style="color: var(--royal-blue);">Onboarding</a></li>
+                    <li><a href="infopage.html" style="color: var(--royal-blue);">Kursinfo</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="w-full bg-gray-100 py-6 px-4">
+        <div class="max-w-4xl mx-auto">
+            <ul class="steps steps-horizontal w-full">
+                <li class="step step-primary" style="--step-color: var(--royal-blue);">
+                    <span class="hidden sm:inline">Teilnehmer</span>
+                </li>
+                <li class="step step-primary" style="--step-color: var(--royal-blue);">
+                    <span class="hidden sm:inline">Termin</span>
+                </li>
+                <li class="step step-primary" style="--step-color: var(--royal-blue);">
+                    <span class="hidden sm:inline">Kursauswahl</span>
+                </li>
+                <li class="step">
+                    <span class="hidden sm:inline">Kontakt</span>
+                </li>
+                <li class="step">
+                    <span class="hidden sm:inline">Zahlung</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="py-12 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold mb-4" style="color: var(--royal-blue);">
+                    Verfügbare Kursangebote
+                </h1>
+                <p class="text-gray-600 text-lg">
+                    Wählen Sie das für Sie passende Kursangebot aus.
+                </p>
+            </div>
+
+            <!-- Booking Summary -->
+            <div class="alert mb-8" style="background-color: #f0f5ff; border-color: var(--royal-blue);">
+                <i data-lucide="clipboard-list" style="color: var(--royal-blue); width: 24px; height: 24px;"></i>
+                <div>
+                    <div class="font-semibold" style="color: var(--royal-blue);" id="bookingSummary"></div>
+                </div>
+            </div>
+
+            <!-- Course Cards -->
+            <div class="grid md:grid-cols-2 gap-6 mb-8" id="courseContainer">
+                <!-- Course cards will be dynamically inserted here -->
+            </div>
+
+            <!-- Info Box -->
+            <div class="alert mb-8" style="background-color: #f0f5ff; border-color: var(--royal-blue);">
+                <i data-lucide="info" style="color: var(--royal-blue); width: 24px; height: 24px;"></i>
+                <div>
+                    <p class="text-sm" style="color: var(--royal-blue);">
+                        Keines der Angebote passt? Nehmen Sie gerne über unser 
+                        <a href="contact-form.html" class="font-bold underline" id="contactLink">Formular</a> 
+                        Kontakt zu uns auf. Wir prüfen anschließend Ihre Anfrage und checken, ob wir für Sie einen zusätzlichen Termin anbieten können.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex justify-between">
+                <button id="backBtn" class="btn btn-outline" style="border-color: var(--royal-blue); color: var(--royal-blue);">
+                    <i data-lucide="arrow-left" style="width: 20px; height: 20px;"></i>
+                    Zurück
+                </button>
+                <button id="continueBtn" class="btn disabled:opacity-50 disabled:cursor-not-allowed" style="background-color: var(--royal-blue); color: white;" disabled>
+                    Weiter zu Kontaktdaten
+                    <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Get booking data from sessionStorage
+        const bookingData = JSON.parse(sessionStorage.getItem('bookingData') || '{}');
+        
+        if (!bookingData.seminar || !bookingData.participants || !bookingData.selectedDate) {
+            window.location.href = 'booking-participants.html';
+        }
+
+        // Seminar names mapping
+        const seminarNames = {
+            'arbeitsgestaltung': 'Arbeitsgestaltung',
+            'mitarbeitermotivation': 'Mitarbeitermotivation',
+            'mitarbeiterfuehrung': 'Mitarbeiterführung'
+        };
+
+        // Mock course data
+        const allCourses = {
+            'mitarbeitermotivation': [
+                { 
+                    id: 1, 
+                    date: '2026-01-15', 
+                    slots: 20, 
+                    price: 745,
+                    time: '09:00 - 17:00',
+                    location: 'München, Trainingsraum A',
+                    trainer: 'Dr. Schmidt',
+                    features: ['2 Tage Intensivtraining', '4 Wochen Follow-up', 'Seminarunterlagen', 'Zertifikat']
+                },
+                { 
+                    id: 2, 
+                    date: '2026-01-22', 
+                    slots: 15, 
+                    price: 745,
+                    time: '09:00 - 17:00',
+                    location: 'Berlin, Konferenzraum B',
+                    trainer: 'Prof. Müller',
+                    features: ['2 Tage Intensivtraining', '4 Wochen Follow-up', 'Seminarunterlagen', 'Zertifikat']
+                },
+            ],
+            'arbeitsgestaltung': [
+                { 
+                    id: 3, 
+                    date: '2026-01-18', 
+                    slots: 18, 
+                    price: 890,
+                    time: '09:00 - 17:00',
+                    location: 'Frankfurt, Schulungsraum C',
+                    trainer: 'Dr. Weber',
+                    features: ['1 Tag Workshop', 'Seminarunterlagen', 'Praktische Übungen']
+                },
+                { 
+                    id: 4, 
+                    date: '2026-01-25', 
+                    slots: 22, 
+                    price: 890,
+                    time: '09:00 - 17:00',
+                    location: 'Hamburg, Trainingsraum D',
+                    trainer: 'M.A. Fischer',
+                    features: ['1 Tag Workshop', 'Seminarunterlagen', 'Praktische Übungen']
+                },
+            ],
+            'mitarbeiterfuehrung': [
+                { 
+                    id: 5, 
+                    date: '2026-01-20', 
+                    slots: 16, 
+                    price: 830,
+                    time: '09:00 - 17:00',
+                    location: 'Köln, Schulungszentrum E',
+                    trainer: 'Dr. Wagner',
+                    features: ['3 Tage Intensivtraining', '8 Wochen Follow-up', 'Coaching-Sessions', 'Zertifikat']
+                },
+                { 
+                    id: 6, 
+                    date: '2026-01-27', 
+                    slots: 20, 
+                    price: 830,
+                    time: '09:00 - 17:00',
+                    location: 'Stuttgart, Trainingsraum F',
+                    trainer: 'Prof. Becker',
+                    features: ['3 Tage Intensivtraining', '8 Wochen Follow-up', 'Coaching-Sessions', 'Zertifikat']
+                },
+            ]
+        };
+
+        // Get matching courses
+        const participantCount = parseInt(bookingData.participants);
+        const matchingCourses = (allCourses[bookingData.seminar] || [])
+            .filter(course => 
+                course.date === bookingData.selectedDate && 
+                course.slots >= participantCount
+            );
+
+        // Format date
+        const formatDate = (dateStr) => {
+            const date = new Date(dateStr);
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('de-DE', options);
+        };
+
+        // Update booking summary
+        document.getElementById('bookingSummary').textContent = 
+            `${seminarNames[bookingData.seminar]} - ${bookingData.participants} Teilnehmer - ${formatDate(bookingData.selectedDate)}`;
+
+        // Render course cards
+        const courseContainer = document.getElementById('courseContainer');
+        let selectedCourseId = null;
+
+        if (matchingCourses.length === 0) {
+            // Should not happen if logic is correct, but as fallback
+            window.location.href = 'booking-no-availability.html';
+        }
+
+        matchingCourses.forEach(course => {
+            const totalPrice = course.price * participantCount;
+            
+            const card = document.createElement('div');
+            card.className = 'card bg-base-100 shadow-xl course-card border-2 border-gray-200';
+            card.dataset.courseId = course.id;
+            
+            card.innerHTML = `
+                <div class="card-body">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold" style="color: var(--royal-blue);">
+                                ${formatDate(course.date)}
+                            </h3>
+                            <p class="text-gray-500">${course.time}</p>
+                        </div>
+                        <div class="badge py-3 px-3" style="background-color: var(--royal-blue); color: white; height: auto; min-height: 2.5rem;">
+                            ${course.slots} Plätze frei
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 mb-4">
+                        <div class="flex items-center gap-2 text-gray-600">
+                            <i data-lucide="map-pin" style="width: 18px; height: 18px; color: var(--royal-blue);"></i>
+                            <span>${course.location}</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-gray-600">
+                            <i data-lucide="user" style="width: 18px; height: 18px; color: var(--royal-blue);"></i>
+                            <span>Trainer: ${course.trainer}</span>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="mb-4">
+                        <h4 class="font-semibold mb-2" style="color: var(--royal-blue);">Leistungen:</h4>
+                        <ul class="space-y-1">
+                            ${course.features.map(feature => `
+                                <li class="flex items-center gap-2 text-sm text-gray-600">
+                                    <i data-lucide="check" style="width: 16px; height: 16px; color: var(--royal-blue);"></i>
+                                    ${feature}
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <div class="text-sm text-gray-500">Gesamtpreis</div>
+                            <div class="text-3xl font-bold" style="color: var(--royal-blue);">
+                                €${totalPrice.toLocaleString('de-DE')}
+                            </div>
+                            <div class="text-xs text-gray-500">€${course.price} pro Teilnehmer</div>
+                        </div>
+                        <button class="btn select-course-btn" style="background-color: var(--royal-blue); color: white;">
+                            Auswählen
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            courseContainer.appendChild(card);
+            
+            // Add click handler
+            const selectBtn = card.querySelector('.select-course-btn');
+            selectBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                selectCourse(course.id, card);
+            });
+
+            card.addEventListener('click', () => {
+                selectCourse(course.id, card);
+            });
+        });
+
+        function selectCourse(courseId, cardElement) {
+            // Toggle: if clicking on already selected course, deselect it
+            if (selectedCourseId === courseId) {
+                cardElement.classList.remove('selected');
+                selectedCourseId = null;
+                document.getElementById('continueBtn').disabled = true;
+            } else {
+                // Remove previous selection
+                document.querySelectorAll('.course-card').forEach(c => {
+                    c.classList.remove('selected');
+                });
+                
+                // Add selection to clicked card
+                cardElement.classList.add('selected');
+                selectedCourseId = courseId;
+                
+                // Enable continue button
+                document.getElementById('continueBtn').disabled = false;
+            }
+        }
+
+        // Initialize icons after dynamic content
+        lucide.createIcons();
+
+        // Back button
+        document.getElementById('backBtn').addEventListener('click', () => {
+            window.location.href = 'booking-date.html';
+        });
+
+        // Continue button
+        document.getElementById('continueBtn').addEventListener('click', () => {
+            if (selectedCourseId) {
+                const selectedCourse = matchingCourses.find(c => c.id === selectedCourseId);
+                bookingData.selectedCourse = selectedCourse;
+                sessionStorage.setItem('bookingData', JSON.stringify(bookingData));
+                window.location.href = 'booking-contact.html';
+            }
+        });
+
+        // Update contact form link
+        const contactLink = document.getElementById('contactLink');
+        const urlParams = new URLSearchParams({
+            seminar: bookingData.seminar,
+            participants: bookingData.participants,
+            date: bookingData.selectedDate
+        });
+        contactLink.href = `contact-form.html?${urlParams.toString()}`;
+    </script>
+
+</body>
+</html>

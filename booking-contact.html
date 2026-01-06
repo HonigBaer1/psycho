@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vital Works - Kontaktdaten">
+    <title>Vital Works - Kontaktdaten</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --royal-blue: #4169E1;
+            --royal-blue-dark: #3457b8;
+        }
+        .form-field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    width: 100%;
+  }
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <!-- Header / Navbar -->
+    <header class="navbar bg-white shadow-sm sticky top-0 z-50 px-4 lg:px-8">
+        <div class="navbar-start">
+            <a href="landingpage.html" class="text-2xl font-bold" style="color: var(--royal-blue);">
+                Vital Works
+            </a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal gap-2">
+                <li>
+                    <a href="landingpage.html" class="font-medium hover:text-white" 
+                       style="color: var(--royal-blue);"
+                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                        Landingpage
+                    </a>
+                </li>
+                <li>
+                    <a href="onboarding.html" class="font-medium hover:text-white"
+                       style="color: var(--royal-blue);"
+                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                        Onboarding
+                    </a>
+                </li>
+                <li>
+                    <a href="infopage.html" class="font-medium hover:text-white"
+                       style="color: var(--royal-blue);"
+                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                        Kursinfo
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-end lg:hidden">
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </div>
+                <ul tabindex="0" class="menu menu-sm dropdown-content bg-white rounded-box z-10 mt-3 w-52 p-2 shadow">
+                    <li><a href="landingpage.html" style="color: var(--royal-blue);">Landingpage</a></li>
+                    <li><a href="onboarding.html" style="color: var(--royal-blue);">Onboarding</a></li>
+                    <li><a href="infopage.html" style="color: var(--royal-blue);">Kursinfo</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="w-full bg-gray-100 py-6 px-4">
+        <div class="max-w-4xl mx-auto">
+            <ul class="steps steps-horizontal w-full">
+                <li class="step step-primary" style="--step-color: var(--royal-blue);">
+                    <span class="hidden sm:inline">Teilnehmer</span>
+                </li>
+                <li class="step step-primary" style="--step-color: var(--royal-blue);">
+                    <span class="hidden sm:inline">Termin</span>
+                </li>
+                <li class="step step-primary" style="--step-color: var(--royal-blue);">
+                    <span class="hidden sm:inline">Kursauswahl</span>
+                </li>
+                <li class="step step-primary" style="--step-color: var(--royal-blue);">
+                    <span class="hidden sm:inline">Kontakt</span>
+                </li>
+                <li class="step">
+                    <span class="hidden sm:inline">Zahlung</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="py-12 px-4">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold mb-4" style="color: var(--royal-blue);">
+                    Ihre Kontaktdaten
+                </h1>
+                <p class="text-gray-600 text-lg">
+                    Bitte geben Sie Ihre Kontaktinformationen ein, damit wir Sie erreichen können.
+                </p>
+            </div>
+            
+            <div class="card bg-base-100 shadow-xl">
+            <div class="card-body">
+                <form id="contactForm" class="space-y-10">
+
+                <!-- Unternehmensdaten -->
+                <section>
+                    <h3 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--royal-blue);">
+                    <i data-lucide="building-2"></i>
+                    Unternehmensdaten
+                    </h3>
+
+                    <div class="form-field">
+                    <label class="form-label">
+                        Firma <span class="text-red-500">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        name="company"
+                        placeholder="Firmenname"
+                        class="input input-bordered form-input"
+                        required
+                    />
+                    </div>
+                </section>
+
+                <!-- Persönliche Daten -->
+                <section>
+                    <h3 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--royal-blue);">
+                    <i data-lucide="user"></i>
+                    Persönliche Daten
+                    </h3>
+
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="form-field">
+                        <label class="form-label">
+                        Anrede <span class="text-red-500">*</span>
+                        </label>
+                        <select name="salutation" class="select select-bordered form-select" required>
+                        <option value="">Bitte wählen</option>
+                        <option>Herr</option>
+                        <option>Frau</option>
+                        <option>Divers</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label class="form-label">Titel</label>
+                        <input
+                        type="text"
+                        name="title"
+                        placeholder="z. B. Dr., Prof."
+                        class="input input-bordered form-input"
+                        />
+                    </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                    <div class="form-field">
+                        <label class="form-label">
+                        Vorname <span class="text-red-500">*</span>
+                        </label>
+                        <input
+                        type="text"
+                        name="firstName"
+                        class="input input-bordered form-input"
+                        pattern="[A-Za-zÄÖÜäöüß\s\-]+"
+                        title="Bitte nur Buchstaben eingeben"
+                        required
+                        />
+                    </div>
+
+                    <div class="form-field">
+                        <label class="form-label">
+                        Nachname <span class="text-red-500">*</span>
+                        </label>
+                        <input
+                        type="text"
+                        name="lastName"
+                        class="input input-bordered form-input"
+                        pattern="[A-Za-zÄÖÜäöüß\s\-]+"
+                        title="Bitte nur Buchstaben eingeben"
+                        required
+                        />
+                    </div>
+                    </div>
+                </section>
+
+                <!-- Kontakt -->
+                <section>
+                    <h3 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--royal-blue);">
+                    <i data-lucide="mail"></i>
+                    Kontaktinformationen
+                    </h3>
+
+                    <div class="space-y-6">
+                    <div class="form-field">
+                        <label class="form-label">
+                        E-Mail <span class="text-red-500">*</span>
+                        </label>
+                        <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        class="input input-bordered form-input"
+                        required
+                        />
+                    </div>
+
+                    <div class="form-field">
+                        <label class="form-label">
+                        E-Mail-Adresse bestätigen <span class="text-red-500">*</span>
+                        </label>
+                        <input
+                        type="email"
+                        name="emailConfirm"
+                        id="emailConfirm"
+                        class="input input-bordered form-input"
+                        required
+                        />
+                    </div>
+
+                    <div class="form-field">
+                        <label class="form-label">
+                        Telefon <span class="text-red-500">*</span>
+                        </label>
+                        <input
+                        type="tel"
+                        name="phone"
+                        class="input input-bordered form-input"
+                        pattern="[0-9\+\/\s\-]+"
+                        title="Bitte nur Ziffern, +, / oder - eingeben"
+                        required
+                        />
+                    </div>
+                    </div>
+                </section>
+
+                <!-- Adresse -->
+                <section>
+                    <h3 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--royal-blue);">
+                    <i data-lucide="map-pin"></i>
+                    Adresse
+                    </h3>
+
+                    <div class="form-field mb-6">
+                    <label class="form-label">
+                        Straße & Hausnummer <span class="text-red-500">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        name="street"
+                        class="input input-bordered form-input"
+                        required
+                    />
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-6">
+                    <div class="form-field">
+                        <label class="form-label">
+                        PLZ <span class="text-red-500">*</span>
+                        </label>
+                        <input
+                        type="text"
+                        name="zipCode"
+                        class="input input-bordered form-input"
+                        pattern="[0-9]{5}"
+                        maxlength="5"
+                        title="Bitte genau 5 Ziffern eingeben"
+                        required
+                        />
+                    </div>
+
+                    <div class="form-field md:col-span-2">
+                        <label class="form-label">
+                        Stadt <span class="text-red-500">*</span>
+                        </label>
+                        <input
+                        type="text"
+                        name="city"
+                        class="input input-bordered form-input"
+                        pattern="[A-Za-zÄÖÜäöüß\s\-]+"
+                        title="Bitte nur Buchstaben eingeben"
+                        required
+                        />
+                    </div>
+                    </div>
+                </section>
+
+                <!-- Anmerkungen -->
+                <section>
+                    <h3 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--royal-blue);">
+                    <i data-lucide="message-square"></i>
+                    Anmerkungen
+                    </h3>
+
+                    <div class="form-field">
+                    <label class="form-label">Besondere Wünsche</label>
+                    <textarea
+                        name="notes"
+                        class="textarea textarea-bordered form-textarea h-28"
+                    ></textarea>
+                    </div>
+                </section>
+
+                <!-- Datenschutz -->
+                <div class="flex items-start gap-3">
+                    <input type="checkbox" required class="checkbox mt-1" />
+                    <span>
+                    Ich akzeptiere die
+                    <a href="#" class="link" style="color: var(--royal-blue);">Datenschutzerklärung</a>
+                    <span class="text-red-500">*</span>
+                    </span>
+                </div>
+
+                <!-- Buttons -->
+                <div class="flex flex-col sm:flex-row justify-between gap-4 pt-4">
+                    <button type="button" id="backBtn" class="btn btn-outline">
+                    Zurück
+                    </button>
+
+                    <button type="submit" id="submitBtn" class="btn text-white" style="background-color: var(--royal-blue);">
+                    Weiter zur Zahlung
+                    </button>
+                </div>
+
+                </form>
+            </div>
+            </div>
+        
+        </div>
+    </main>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Get booking data from sessionStorage
+        const bookingData = JSON.parse(sessionStorage.getItem('bookingData') || '{}');
+        
+        if (!bookingData.selectedCourse) {
+            window.location.href = 'booking-participants.html';
+        }
+
+        // Form validation
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const emailInput = document.getElementById('email');
+        const emailConfirmInput = document.getElementById('emailConfirm');
+        
+        // Custom validation for email confirmation
+        function validateEmailConfirm() {
+            if (emailConfirmInput.value === '') {
+                emailConfirmInput.setCustomValidity('');
+            } else if (emailInput.value !== emailConfirmInput.value) {
+                emailConfirmInput.setCustomValidity('Die E-Mail-Adressen stimmen nicht überein.');
+            } else {
+                emailConfirmInput.setCustomValidity('');
+            }
+        }
+        
+        // Check email confirmation on input
+        emailInput.addEventListener('input', validateEmailConfirm);
+        emailConfirmInput.addEventListener('input', validateEmailConfirm);
+        
+        // Form submission
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Validate email confirmation
+            validateEmailConfirm();
+            
+            // Check if form is valid (including custom validation)
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            
+            const formData = new FormData(e.target);
+            const contactData = {
+                company: formData.get('company'),
+                salutation: formData.get('salutation'),
+                title: formData.get('title'),
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                street: formData.get('street'),
+                zipCode: formData.get('zipCode'),
+                city: formData.get('city'),
+                notes: formData.get('notes')
+            };
+
+            // Save to booking data
+            bookingData.contactData = contactData;
+            sessionStorage.setItem('bookingData', JSON.stringify(bookingData));
+
+            // Navigate to payment page
+            window.location.href = 'booking-payment.html';
+        });
+
+        // Back button
+        const backBtn = document.getElementById('backBtn');
+        if (backBtn) {
+            backBtn.addEventListener('click', () => {
+                window.location.href = 'booking-select-course.html';
+            });
+        }
+    </script>
+
+</body>
+</html>

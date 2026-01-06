@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vital Works - Zahlung">
+    <title>Vital Works - Zahlung</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --royal-blue: #4169E1;
+            --royal-blue-dark: #3457b8;
+        }
+
+        .payment-option {
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .payment-option:hover {
+            transform: translateY(-2px);
+        }
+
+        .payment-option.selected {
+            border: 3px solid var(--royal-blue);
+            background-color: #f0f5ff;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <!-- Header / Navbar -->
+    <header class="navbar bg-white shadow-sm sticky top-0 z-50 px-4 lg:px-8">
+        <div class="navbar-start">
+            <a href="landingpage.html" class="text-2xl font-bold" style="color: var(--royal-blue);">
+                Vital Works
+            </a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal gap-2">
+                <li>
+                    <a href="landingpage.html" class="font-medium hover:text-white" 
+                       style="color: var(--royal-blue);"
+                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                        Landingpage
+                    </a>
+                </li>
+                <li>
+                    <a href="onboarding.html" class="font-medium hover:text-white"
+                       style="color: var(--royal-blue);"
+                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                        Onboarding
+                    </a>
+                </li>
+                <li>
+                    <a href="infopage.html" class="font-medium hover:text-white"
+                       style="color: var(--royal-blue);"
+                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                        Kursinfo
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-end lg:hidden">
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </div>
+                <ul tabindex="0" class="menu menu-sm dropdown-content bg-white rounded-box z-10 mt-3 w-52 p-2 shadow">
+                    <li><a href="landingpage.html" style="color: var(--royal-blue);">Landingpage</a></li>
+                    <li><a href="onboarding.html" style="color: var(--royal-blue);">Onboarding</a></li>
+                    <li><a href="infopage.html" style="color: var(--royal-blue);">Kursinfo</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="w-full bg-gray-100 py-6 px-4">
+        <div class="max-w-4xl mx-auto">
+            <ul class="steps steps-horizontal w-full">
+                <li class="step step-primary" style="--step-color: var(--royal-blue);">
+                    <span class="hidden sm:inline">Teilnehmer</span>
+                </li>
+                <li class="step step-primary" style="--step-color: var(--royal-blue);">
+                    <span class="hidden sm:inline">Termin</span>
+                </li>
+                <li class="step step-primary" style="--step-color: var(--royal-blue);">
+                    <span class="hidden sm:inline">Kursauswahl</span>
+                </li>
+                <li class="step step-primary" style="--step-color: var(--royal-blue);">
+                    <span class="hidden sm:inline">Kontakt</span>
+                </li>
+                <li class="step step-primary" style="--step-color: var(--royal-blue);">
+                    <span class="hidden sm:inline">Zahlung</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="py-12 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold mb-4" style="color: var(--royal-blue);">
+                    Zahlungsmethode wählen
+                </h1>
+                <p class="text-gray-600 text-lg">
+                    Wählen Sie Ihre bevorzugte Zahlungsmethode und schließen Sie die Buchung ab.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Left Column - Payment Options -->
+                <div class="lg:col-span-2">
+                    <!-- Payment Options -->
+                    <div class="card bg-base-100 shadow-xl mb-6">
+                        <div class="card-body">
+                            <h2 class="text-2xl font-bold mb-6" style="color: var(--royal-blue);">Zahlungsmethode</h2>
+                            
+                            <div class="space-y-4">
+                                <!-- Credit Card -->
+                                <div class="payment-option card border-2 border-gray-200" data-method="credit-card">
+                                    <div class="card-body p-4">
+                                        <div class="flex items-center gap-4">
+                                            <i data-lucide="credit-card" style="color: var(--royal-blue); width: 32px; height: 32px;"></i>
+                                            <div class="flex-1">
+                                                <h3 class="font-bold text-lg">Kreditkarte</h3>
+                                                <p class="text-sm text-gray-500">Visa, Mastercard, American Express</p>
+                                            </div>
+                                            <input type="radio" name="payment" class="radio" style="border-color: var(--royal-blue);" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Bank Transfer -->
+                                <div class="payment-option card border-2 border-gray-200" data-method="bank-transfer">
+                                    <div class="card-body p-4">
+                                        <div class="flex items-center gap-4">
+                                            <i data-lucide="building-2" style="color: var(--royal-blue); width: 32px; height: 32px;"></i>
+                                            <div class="flex-1">
+                                                <h3 class="font-bold text-lg">Überweisung</h3>
+                                                <p class="text-sm text-gray-500">Rechnung per E-Mail</p>
+                                            </div>
+                                            <input type="radio" name="payment" class="radio" style="border-color: var(--royal-blue);" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- PayPal -->
+                                <div class="payment-option card border-2 border-gray-200" data-method="paypal">
+                                    <div class="card-body p-4">
+                                        <div class="flex items-center gap-4">
+                                            <i data-lucide="wallet" style="color: var(--royal-blue); width: 32px; height: 32px;"></i>
+                                            <div class="flex-1">
+                                                <h3 class="font-bold text-lg">PayPal</h3>
+                                                <p class="text-sm text-gray-500">Schnell und sicher</p>
+                                            </div>
+                                            <input type="radio" name="payment" class="radio" style="border-color: var(--royal-blue);" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- SEPA Direct Debit -->
+                                <div class="payment-option card border-2 border-gray-200" data-method="sepa">
+                                    <div class="card-body p-4">
+                                        <div class="flex items-center gap-4">
+                                            <i data-lucide="landmark" style="color: var(--royal-blue); width: 32px; height: 32px;"></i>
+                                            <div class="flex-1">
+                                                <h3 class="font-bold text-lg">SEPA-Lastschrift</h3>
+                                                <p class="text-sm text-gray-500">Abbuchung vom Konto</p>
+                                            </div>
+                                            <input type="radio" name="payment" class="radio" style="border-color: var(--royal-blue);" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Form (conditionally shown) -->
+                    <div id="paymentForm" class="card bg-base-100 shadow-xl hidden">
+                        <div class="card-body">
+                            <h3 class="text-xl font-bold mb-4" style="color: var(--royal-blue);">Zahlungsinformationen</h3>
+                            
+                            <!-- Credit Card Form -->
+                            <div id="creditCardForm" class="hidden">
+                                <form id="creditCardFormElement">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="form-control col-span-2">
+                                            <label class="label">
+                                                <span class="label-text font-medium">Karteninhaber <span class="text-red-500">*</span></span>
+                                            </label>
+                                            <input 
+                                                type="text"
+                                                id="cardHolder"
+                                                name="cardHolder"
+                                                placeholder="Max Mustermann" 
+                                                class="input input-bordered w-full" 
+                                                style="border-color: var(--royal-blue);"
+                                                pattern="[A-Za-zÄÖÜäöüß\s\-]+"
+                                                title="Bitte nur Buchstaben eingeben"
+                                                required
+                                            />
+                                        </div>
+                                        <div class="form-control">
+                                            <label class="label">
+                                                <span class="label-text font-medium">Kartennummer <span class="text-red-500">*</span></span>
+                                            </label>
+                                            <input 
+                                                type="text"
+                                                id="cardNumber"
+                                                name="cardNumber"
+                                                placeholder="1234 5678 9012 3456" 
+                                                class="input input-bordered w-full" 
+                                                style="border-color: var(--royal-blue);"
+                                                pattern="[0-9\s]{19}"
+                                                maxlength="19"
+                                                title="Bitte 16 Ziffern eingeben"
+                                                required
+                                            />
+                                        </div>
+                                        <div class="form-control">
+                                            <label class="label">
+                                                <span class="label-text font-medium">Ablaufdatum <span class="text-red-500">*</span></span>
+                                            </label>
+                                            <input 
+                                                type="text"
+                                                id="expiryDate"
+                                                name="expiryDate"
+                                                placeholder="MM/JJ" 
+                                                class="input input-bordered w-full" 
+                                                style="border-color: var(--royal-blue);"
+                                                pattern="(0[1-9]|1[0-2])\/[0-9]{2}"
+                                                maxlength="5"
+                                                title="Bitte Format MM/JJ eingeben (z.B. 12/25)"
+                                                required
+                                            />
+                                        </div>
+                                        <div class="form-control">
+                                            <label class="label">
+                                                <span class="label-text font-medium">CVV <span class="text-red-500">*</span></span>
+                                            </label>
+                                            <input 
+                                                type="text"
+                                                id="cvv"
+                                                name="cvv"
+                                                placeholder="123" 
+                                                class="input input-bordered w-full" 
+                                                style="border-color: var(--royal-blue);"
+                                                pattern="[0-9]{3}"
+                                                maxlength="3"
+                                                title="Bitte 3 Ziffern eingeben"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- SEPA Form -->
+                            <div id="sepaForm" class="hidden">
+                                <form id="sepaFormElement">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="form-control col-span-2">
+                                            <label class="label">
+                                                <span class="label-text font-medium">Kontoinhaber <span class="text-red-500">*</span></span>
+                                            </label>
+                                            <input 
+                                                type="text"
+                                                id="accountHolder"
+                                                name="accountHolder"
+                                                placeholder="Max Mustermann" 
+                                                class="input input-bordered w-full" 
+                                                style="border-color: var(--royal-blue);"
+                                                pattern="[A-Za-zÄÖÜäöüß\s\-]+"
+                                                title="Bitte nur Buchstaben eingeben"
+                                                required
+                                            />
+                                        </div>
+                                        <div class="form-control">
+                                            <label class="label">
+                                                <span class="label-text font-medium">IBAN <span class="text-red-500">*</span></span>
+                                            </label>
+                                            <input 
+                                                type="text"
+                                                id="iban"
+                                                name="iban"
+                                                placeholder="DE89370400440532013000" 
+                                                class="input input-bordered w-full" 
+                                                style="border-color: var(--royal-blue);"
+                                                pattern="[A-Z]{2}[0-9]{13,32}"
+                                                maxlength="34"
+                                                title="IBAN muss mit 2 Buchstaben beginnen, gefolgt von 13-32 Ziffern"
+                                                required
+                                            />
+                                        </div>
+                                        <div class="form-control">
+                                            <label class="label">
+                                                <span class="label-text font-medium">BIC <span class="text-red-500">*</span></span>
+                                            </label>
+                                            <input 
+                                                type="text"
+                                                id="bic"
+                                                name="bic"
+                                                placeholder="COBADEFFXXX" 
+                                                class="input input-bordered w-full" 
+                                                style="border-color: var(--royal-blue);"
+                                                pattern="[A-Z0-9]{8,11}"
+                                                minlength="8"
+                                                maxlength="11"
+                                                title="BIC muss 8-11 Zeichen enthalten"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Bank Transfer Info -->
+                            <div id="bankTransferInfo" class="hidden">
+                                <div class="alert" style="background-color: #f0f5ff; border-color: var(--royal-blue);">
+                                    <i data-lucide="info" style="color: var(--royal-blue); width: 24px; height: 24px;"></i>
+                                    <div>
+                                        <p class="text-sm" style="color: var(--royal-blue);">
+                                            Sie erhalten nach Abschluss der Buchung eine Rechnung per E-Mail mit unseren Bankverbindungen. 
+                                            Bitte überweisen Sie den Betrag innerhalb von 14 Tagen.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PayPal Info -->
+                            <div id="paypalInfo" class="hidden">
+                                <div class="alert" style="background-color: #f0f5ff; border-color: var(--royal-blue);">
+                                    <i data-lucide="info" style="color: var(--royal-blue); width: 24px; height: 24px;"></i>
+                                    <div>
+                                        <p class="text-sm" style="color: var(--royal-blue);">
+                                            Sie werden nach Abschluss der Buchung zu PayPal weitergeleitet, 
+                                            um die Zahlung abzuschließen.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Booking Summary -->
+                <div class="lg:col-span-1">
+                    <div class="card bg-base-100 shadow-xl sticky top-24">
+                        <div class="card-body">
+                            <h2 class="text-xl font-bold mb-4" style="color: var(--royal-blue);">Buchungsübersicht</h2>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="text-sm text-gray-500">Seminar</p>
+                                    <p class="font-semibold" id="summaryTitle"></p>
+                                </div>
+
+                                <div>
+                                    <p class="text-sm text-gray-500">Termin</p>
+                                    <p class="font-semibold" id="summaryDate"></p>
+                                </div>
+
+                                <div>
+                                    <p class="text-sm text-gray-500">Ort</p>
+                                    <p class="font-semibold" id="summaryLocation"></p>
+                                </div>
+
+                                <div>
+                                    <p class="text-sm text-gray-500">Teilnehmer</p>
+                                    <p class="font-semibold" id="summaryParticipants"></p>
+                                </div>
+
+                                <div class="divider"></div>
+
+                                <div>
+                                    <p class="text-sm text-gray-500">Preis pro Teilnehmer</p>
+                                    <p class="font-semibold" id="summaryPricePerPerson"></p>
+                                </div>
+
+                                <div class="divider"></div>
+
+                                <div>
+                                    <p class="text-lg font-semibold" style="color: var(--royal-blue);">Gesamtpreis</p>
+                                    <p class="text-3xl font-bold" style="color: var(--royal-blue);" id="summaryTotal"></p>
+                                    <p class="text-xs text-gray-500">inkl. MwSt.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex justify-between mt-8">
+                <button id="backBtn" class="btn btn-outline" style="border-color: var(--royal-blue); color: var(--royal-blue);">
+                    <i data-lucide="arrow-left" style="width: 20px; height: 20px;"></i>
+                    Zurück
+                </button>
+                <button id="payBtn" class="btn btn-lg" style="background-color: var(--royal-blue); color: white;" disabled>
+                    <i data-lucide="lock" style="width: 20px; height: 20px;"></i>
+                    Zahlungspflichtig buchen
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Confirmation Modal -->
+    <dialog id="confirmationModal" class="modal">
+        <div class="modal-box">
+            <h3 class="font-bold text-lg" style="color: var(--royal-blue);">
+                <i data-lucide="alert-circle" style="width: 24px; height: 24px; display: inline-block; vertical-align: middle; margin-right: 8px;"></i>
+                Buchung bestätigen
+            </h3>
+            <p class="py-4">Möchten Sie diesen Kurs wirklich zahlungspflichtig buchen?</p>
+            <div class="space-y-2 mb-4">
+                <p class="text-sm"><strong>Seminar:</strong> <span id="modalSeminarTitle"></span></p>
+                <p class="text-sm"><strong>Termin:</strong> <span id="modalDate"></span></p>
+                <p class="text-sm"><strong>Teilnehmer:</strong> <span id="modalParticipants"></span></p>
+                <p class="text-lg font-bold mt-2" style="color: var(--royal-blue);"><strong>Gesamtpreis:</strong> <span id="modalTotal"></span></p>
+            </div>
+            <div class="modal-action">
+                <form method="dialog">
+                    <button class="btn btn-outline" style="border-color: var(--royal-blue); color: var(--royal-blue); margin-right: 8px;">Abbrechen</button>
+                    <button id="confirmBookingBtn" class="btn" style="background-color: var(--royal-blue); color: white;">Bestätigen und buchen</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Get booking data from sessionStorage
+        const bookingData = JSON.parse(sessionStorage.getItem('bookingData') || '{}');
+        
+        if (!bookingData.contactData || !bookingData.selectedCourse) {
+            window.location.href = 'booking-participants.html';
+        }
+
+        // Seminar names mapping
+        const seminarNames = {
+            'arbeitsgestaltung': 'Arbeitsgestaltung',
+            'mitarbeitermotivation': 'Mitarbeitermotivation',
+            'mitarbeiterfuehrung': 'Mitarbeiterführung'
+        };
+
+        // Format date
+        const formatDate = (dateStr) => {
+            const date = new Date(dateStr);
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('de-DE', options);
+        };
+
+        // Update booking summary
+        const course = bookingData.selectedCourse;
+        const participants = parseInt(bookingData.participants);
+        const totalPrice = course.price * participants;
+
+        document.getElementById('summaryTitle').textContent = seminarNames[bookingData.seminar];
+        document.getElementById('summaryDate').textContent = formatDate(course.date);
+        document.getElementById('summaryLocation').textContent = course.location;
+        document.getElementById('summaryParticipants').textContent = `${participants} Person${participants > 1 ? 'en' : ''}`;
+        document.getElementById('summaryPricePerPerson').textContent = `€${course.price.toLocaleString('de-DE')}`;
+        document.getElementById('summaryTotal').textContent = `€${totalPrice.toLocaleString('de-DE')}`;
+
+        // Payment method selection
+        let selectedPaymentMethod = null;
+        const paymentOptions = document.querySelectorAll('.payment-option');
+        const paymentForm = document.getElementById('paymentForm');
+
+        paymentOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove previous selection
+                paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                
+                // Add selection to clicked option
+                this.classList.add('selected');
+                this.querySelector('input[type="radio"]').checked = true;
+                
+                selectedPaymentMethod = this.dataset.method;
+                
+                // Show payment form
+                paymentForm.classList.remove('hidden');
+                
+                // Hide all payment forms
+                document.getElementById('creditCardForm').classList.add('hidden');
+                document.getElementById('sepaForm').classList.add('hidden');
+                document.getElementById('bankTransferInfo').classList.add('hidden');
+                document.getElementById('paypalInfo').classList.add('hidden');
+                
+                // Show relevant form
+                if (selectedPaymentMethod === 'credit-card') {
+                    document.getElementById('creditCardForm').classList.remove('hidden');
+                } else if (selectedPaymentMethod === 'sepa') {
+                    document.getElementById('sepaForm').classList.remove('hidden');
+                } else if (selectedPaymentMethod === 'bank-transfer') {
+                    document.getElementById('bankTransferInfo').classList.remove('hidden');
+                } else if (selectedPaymentMethod === 'paypal') {
+                    document.getElementById('paypalInfo').classList.remove('hidden');
+                }
+                
+                // Enable pay button
+                document.getElementById('payBtn').disabled = false;
+                
+                lucide.createIcons();
+            });
+        });
+
+        // Back button
+        document.getElementById('backBtn').addEventListener('click', () => {
+            window.location.href = 'booking-contact.html';
+        });
+
+        // Credit card formatting and validation
+        const cardNumberInput = document.getElementById('cardNumber');
+        const expiryDateInput = document.getElementById('expiryDate');
+        const ibanInput = document.getElementById('iban');
+        const bicInput = document.getElementById('bic');
+        
+        // Format card number with spaces
+        if (cardNumberInput) {
+            cardNumberInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\s/g, '');
+                let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+                e.target.value = formattedValue;
+            });
+        }
+        
+        // Format expiry date with slash
+        if (expiryDateInput) {
+            expiryDateInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length >= 2) {
+                    value = value.slice(0, 2) + '/' + value.slice(2, 4);
+                }
+                e.target.value = value;
+            });
+        }
+        
+        // Format IBAN - remove spaces and convert to uppercase
+        if (ibanInput) {
+            ibanInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\s/g, '').toUpperCase();
+                e.target.value = value;
+            });
+        }
+        
+        // Format BIC - convert to uppercase
+        if (bicInput) {
+            bicInput.addEventListener('input', function(e) {
+                e.target.value = e.target.value.toUpperCase();
+            });
+        }
+        
+        // Modal elements
+        const confirmationModal = document.getElementById('confirmationModal');
+        const confirmBookingBtn = document.getElementById('confirmBookingBtn');
+        
+        // Pay button - opens confirmation modal
+        document.getElementById('payBtn').addEventListener('click', () => {
+            if (selectedPaymentMethod) {
+                // Validate credit card form if selected
+                if (selectedPaymentMethod === 'credit-card') {
+                    const creditCardForm = document.getElementById('creditCardFormElement');
+                    if (!creditCardForm.checkValidity()) {
+                        creditCardForm.reportValidity();
+                        return;
+                    }
+                }
+                
+                // Validate SEPA form if selected
+                if (selectedPaymentMethod === 'sepa') {
+                    const sepaForm = document.getElementById('sepaFormElement');
+                    if (!sepaForm.checkValidity()) {
+                        sepaForm.reportValidity();
+                        return;
+                    }
+                }
+                
+                // Populate modal with booking details
+                document.getElementById('modalSeminarTitle').textContent = seminarNames[bookingData.seminar];
+                document.getElementById('modalDate').textContent = formatDate(course.date);
+                document.getElementById('modalParticipants').textContent = `${participants} Person${participants > 1 ? 'en' : ''}`;
+                document.getElementById('modalTotal').textContent = `€${totalPrice.toLocaleString('de-DE')}`;
+                
+                // Show modal
+                confirmationModal.showModal();
+                lucide.createIcons();
+            }
+        });
+        
+        // Confirm booking button in modal
+        confirmBookingBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Save booking data
+            bookingData.paymentMethod = selectedPaymentMethod;
+            bookingData.totalPrice = totalPrice;
+            sessionStorage.setItem('bookingData', JSON.stringify(bookingData));
+            
+            // Close modal and navigate to confirmation page
+            confirmationModal.close();
+            window.location.href = 'booking-confirmation.html';
+        });
+    </script>
+
+</body>
+</html>

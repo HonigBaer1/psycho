@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vital Works - Keine Verfügbarkeit">
+    <title>Vital Works - Keine Verfügbarkeit</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --royal-blue: #4169E1;
+            --royal-blue-dark: #3457b8;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <!-- Header / Navbar -->
+    <header class="navbar bg-white shadow-sm sticky top-0 z-50 px-4 lg:px-8">
+        <div class="navbar-start">
+            <a href="landingpage.html" class="text-2xl font-bold" style="color: var(--royal-blue);">
+                Vital Works
+            </a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal gap-2">
+                <li>
+                    <a href="landingpage.html" class="font-medium hover:text-white" 
+                       style="color: var(--royal-blue);"
+                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                        Landingpage
+                    </a>
+                </li>
+                <li>
+                    <a href="onboarding.html" class="font-medium hover:text-white"
+                       style="color: var(--royal-blue);"
+                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                        Onboarding
+                    </a>
+                </li>
+                <li>
+                    <a href="infopage.html" class="font-medium hover:text-white"
+                       style="color: var(--royal-blue);"
+                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                        Kursinfo
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-end lg:hidden">
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </div>
+                <ul tabindex="0" class="menu menu-sm dropdown-content bg-white rounded-box z-10 mt-3 w-52 p-2 shadow">
+                    <li><a href="landingpage.html" style="color: var(--royal-blue);">Landingpage</a></li>
+                    <li><a href="onboarding.html" style="color: var(--royal-blue);">Onboarding</a></li>
+                    <li><a href="infopage.html" style="color: var(--royal-blue);">Kursinfo</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-12 px-4 min-h-[80vh] flex items-center justify-center">
+        <div class="max-w-2xl mx-auto">
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body items-center text-center">
+                    <!-- Icon -->
+                    <div class="w-24 h-24 rounded-full flex items-center justify-center mb-6" 
+                         style="background-color: #f0f5ff;">
+                        <i data-lucide="calendar-x" style="color: var(--royal-blue); width: 48px; height: 48px;"></i>
+                    </div>
+
+                    <!-- Title -->
+                    <h1 class="text-3xl md:text-4xl font-bold mb-4" style="color: var(--royal-blue);">
+                        Keine verfügbaren Seminare
+                    </h1>
+
+                    <!-- Description -->
+                    <p class="text-gray-600 text-lg mb-6">
+                        Leider gibt es gemäß dem aktuellen Kursplan keine verfügbaren Seminare, 
+                        die zu Ihrer Anfrage passen.
+                    </p>
+
+                    <!-- Booking Summary -->
+                    <div class="w-full bg-gray-50 rounded-lg p-6 mb-8">
+                        <h3 class="font-semibold mb-4" style="color: var(--royal-blue);">Ihre Anfrage:</h3>
+                        <div class="space-y-2 text-left">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Seminar:</span>
+                                <span class="font-semibold" id="seminarName"></span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Teilnehmer:</span>
+                                <span class="font-semibold" id="participants"></span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Gewünschter Zeitraum:</span>
+                                <span class="font-semibold" id="selectedDate"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alternative Options -->
+                    <div class="alert mb-6" style="background-color: #f0f5ff; border-color: var(--royal-blue);">
+                        <i data-lucide="lightbulb" style="color: var(--royal-blue); width: 24px; height: 24px;"></i>
+                        <div class="text-left">
+                            <h4 class="font-bold mb-2" style="color: var(--royal-blue);">Was Sie jetzt tun können:</h4>
+                            <ul class="text-sm space-y-1 text-gray-600">
+                                <li>• Kontaktieren Sie uns über unser Formular für eine individuelle Anfrage</li>
+                                <li>• Wir prüfen, ob wir einen zusätzlichen Kurs für Sie anbieten können</li>
+                                <li>• Oder wählen Sie einen anderen Termin</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="card-actions flex-col sm:flex-row w-full gap-4 mt-6">
+                        <button id="backToDate" class="btn btn-outline flex-1" style="border-color: var(--royal-blue); color: var(--royal-blue);">
+                            <i data-lucide="calendar" style="width: 20px; height: 20px;"></i>
+                            Anderen Termin wählen
+                        </button>
+                        <a href="contact-form.html" id="contactFormLink" class="btn flex-1" style="background-color: var(--royal-blue); color: white;">
+                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                            Individuelle Anfrage senden
+                        </a>
+                    </div>
+
+                    <!-- Back to Start -->
+                    <div class="mt-6">
+                        <a href="landingpage.html" class="text-sm" style="color: var(--royal-blue);">
+                            ← Zurück zur Startseite
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Get booking data from sessionStorage
+        const bookingData = JSON.parse(sessionStorage.getItem('bookingData') || '{}');
+        
+        if (!bookingData.seminar || !bookingData.participants) {
+            window.location.href = 'booking-participants.html';
+        }
+
+        // Seminar names mapping
+        const seminarNames = {
+            'arbeitsgestaltung': 'Arbeitsgestaltung',
+            'mitarbeitermotivation': 'Mitarbeitermotivation',
+            'mitarbeiterfuehrung': 'Mitarbeiterführung'
+        };
+
+        // Update page content
+        document.getElementById('seminarName').textContent = seminarNames[bookingData.seminar] || 'Nicht angegeben';
+        document.getElementById('participants').textContent = `${bookingData.participants} Personen`;
+        
+        // Format date
+        if (bookingData.selectedDate) {
+            const date = new Date(bookingData.selectedDate);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('selectedDate').textContent = date.toLocaleDateString('de-DE', options);
+        } else {
+            document.getElementById('selectedDate').textContent = 'Nicht angegeben';
+        }
+
+        // Back to date selection
+        document.getElementById('backToDate').addEventListener('click', () => {
+            // Clear selected date to allow choosing a new one
+            delete bookingData.selectedDate;
+            sessionStorage.setItem('bookingData', JSON.stringify(bookingData));
+            window.location.href = 'booking-date.html';
+        });
+
+        // Add booking data to contact form link
+        const contactLink = document.getElementById('contactFormLink');
+        const urlParams = new URLSearchParams({
+            seminar: bookingData.seminar,
+            participants: bookingData.participants,
+            date: bookingData.selectedDate || ''
+        });
+        contactLink.href = `contact-form.html?${urlParams.toString()}`;
+    </script>
+
+</body>
+</html>
