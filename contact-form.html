@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vital Works - Kontaktformular">
+    <title>Vital Works - Individuelle Anfrage</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --royal-blue: #4169E1;
+            --royal-blue-dark: #3457b8;
+        }
+        .form-field {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <!-- Header / Navbar -->
+    <header class="navbar bg-white shadow-sm sticky top-0 z-50 px-4 lg:px-8">
+        <div class="navbar-start">
+            <a href="landingpage.html" class="text-2xl font-bold" style="color: var(--royal-blue);">
+                Vital Works
+            </a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal gap-2">
+                <li>
+                    <a href="landingpage.html" class="font-medium hover:text-white" 
+                       style="color: var(--royal-blue);"
+                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                        Landingpage
+                    </a>
+                </li>
+                <li>
+                    <a href="onboarding.html" class="font-medium hover:text-white"
+                       style="color: var(--royal-blue);"
+                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                        Onboarding
+                    </a>
+                </li>
+                <li>
+                    <a href="infopage.html" class="font-medium hover:text-white"
+                       style="color: var(--royal-blue);"
+                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                        Kursinfo
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-end lg:hidden">
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </div>
+                <ul tabindex="0" class="menu menu-sm dropdown-content bg-white rounded-box z-10 mt-3 w-52 p-2 shadow">
+                    <li><a href="landingpage.html" style="color: var(--royal-blue);">Landingpage</a></li>
+                    <li><a href="onboarding.html" style="color: var(--royal-blue);">Onboarding</a></li>
+                    <li><a href="infopage.html" style="color: var(--royal-blue);">Kursinfo</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-12 px-4">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6" 
+                     style="background-color: #f0f5ff;">
+                    <i data-lucide="mail" style="color: var(--royal-blue); width: 36px; height: 36px;"></i>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold mb-4" style="color: var(--royal-blue);">
+                    Individuelle Anfrage
+                </h1>
+                <p class="text-gray-600 text-lg">
+                    Füllen Sie das Formular aus und wir melden uns schnellstmöglich bei Ihnen.
+                </p>
+            </div>
+
+            <!-- Info Box -->
+            <div class="alert mb-8" style="background-color: #f0f5ff; border-color: var(--royal-blue);">
+                <i data-lucide="info" style="color: var(--royal-blue); width: 32px; height: 32px;"></i>
+                <div>
+                    <p class="text-sm" style="color: var(--royal-blue);">
+                        Wir prüfen Ihre Anfrage und melden uns innerhalb von <strong>2 Werktagen</strong> bei Ihnen, 
+                        um eine individuelle Lösung zu finden.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <form id="contactForm" class="space-y-10">
+                        <!-- Seminar Request Details -->
+                        <section>
+                            <h3 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--royal-blue);">
+                                <i data-lucide="clipboard-list" style="width: 24px; height: 24px;"></i>
+                                Ihre Anfrage
+                            </h3>
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div class="form-field">
+                                    <label class="form-label">Seminar/Kursart <span class="text-red-500">*</span></label>
+                                    <select 
+                                        name="seminar" 
+                                        id="seminarSelect"
+                                        class="select select-bordered form-select" 
+                                        style="border-color: var(--royal-blue);"
+                                        required
+                                    >
+                                        <option value="">Bitte wählen</option>
+                                        <option value="mitarbeitermotivation">Mitarbeitermotivation</option>
+                                        <option value="arbeitsgestaltung">Arbeitsgestaltung</option>
+                                        <option value="mitarbeiterfuehrung">Mitarbeiterführung</option>
+                                    </select>
+                                </div>
+                                <div class="form-field">
+                                    <label class="form-label">Teilnehmeranzahl <span class="text-red-500">*</span></label>
+                                    <input 
+                                        type="number" 
+                                        name="participants" 
+                                        id="participantsInput"
+                                        placeholder="z.B. 10" 
+                                        min="1"
+                                        max="50"
+                                        class="input input-bordered form-input" 
+                                        style="border-color: var(--royal-blue);"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-field mb-6">
+                                <label class="form-label">Gewünschter Zeitraum <span class="text-red-500">*</span></label>
+                                <input 
+                                    type="text" 
+                                    name="timeframe" 
+                                    id="timeframeInput"
+                                    placeholder="z.B. Anfang März 2026" 
+                                    class="input input-bordered form-input" 
+                                    style="border-color: var(--royal-blue);"
+                                    required
+                                />
+                            </div>
+                            <div class="form-field">
+                                <label class="form-label">Zusätzliche Details (Optional)</label>
+                                <textarea 
+                                    name="details" 
+                                    placeholder="Teilen Sie uns weitere Details zu Ihrer Anfrage mit, z.B. besondere Anforderungen, bevorzugte Zeiten, etc." 
+                                    class="textarea textarea-bordered form-textarea h-32" 
+                                    style="border-color: var(--royal-blue);"
+                                ></textarea>
+                            </div>
+                        </section>
+                        <!-- Company Information -->
+                        <section>
+                            <h3 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--royal-blue);">
+                                <i data-lucide="building-2" style="width: 24px; height: 24px;"></i>
+                                Unternehmensdaten
+                            </h3>
+                            <div class="form-field">
+                                <label class="form-label">Firma <span class="text-red-500">*</span></label>
+                                <input 
+                                    type="text" 
+                                    name="company" 
+                                    placeholder="Firmenname" 
+                                    class="input input-bordered form-input" 
+                                    style="border-color: var(--royal-blue);"
+                                    required
+                                />
+                            </div>
+                        </section>
+                        <!-- Personal Information -->
+                        <section>
+                            <h3 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--royal-blue);">
+                                <i data-lucide="user" style="width: 24px; height: 24px;"></i>
+                                Kontaktperson
+                            </h3>
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div class="form-field">
+                                    <label class="form-label">Anrede <span class="text-red-500">*</span></label>
+                                    <select 
+                                        name="salutation" 
+                                        class="select select-bordered form-select" 
+                                        style="border-color: var(--royal-blue);"
+                                        required
+                                    >
+                                        <option value="">Bitte wählen</option>
+                                        <option value="Herr">Herr</option>
+                                        <option value="Frau">Frau</option>
+                                        <option value="Divers">Divers</option>
+                                    </select>
+                                </div>
+                                <div class="form-field">
+                                    <label class="form-label">Titel</label>
+                                    <input 
+                                        type="text" 
+                                        name="title" 
+                                        placeholder="z.B. Dr., Prof." 
+                                        class="input input-bordered form-input" 
+                                        style="border-color: var(--royal-blue);"
+                                    />
+                                </div>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="form-field">
+                                    <label class="form-label">Vorname <span class="text-red-500">*</span></label>
+                                    <input 
+                                        type="text" 
+                                        name="firstName" 
+                                        placeholder="Vorname" 
+                                        class="input input-bordered form-input" 
+                                        style="border-color: var(--royal-blue);"
+                                        pattern="[A-Za-zÄÖÜäöüß\s\-]+"
+                                        title="Bitte nur Buchstaben eingeben"
+                                        required
+                                    />
+                                </div>
+                                <div class="form-field">
+                                    <label class="form-label">Nachname <span class="text-red-500">*</span></label>
+                                    <input 
+                                        type="text" 
+                                        name="lastName" 
+                                        placeholder="Nachname" 
+                                        class="input input-bordered form-input" 
+                                        style="border-color: var(--royal-blue);"
+                                        pattern="[A-Za-zÄÖÜäöüß\s\-]+"
+                                        title="Bitte nur Buchstaben eingeben"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </section>
+                        <!-- Contact Information -->
+                        <section>
+                            <h3 class="text-xl font-semibold mb-6 flex items-center gap-2" style="color: var(--royal-blue);">
+                                <i data-lucide="phone" style="width: 24px; height: 24px;"></i>
+                                Kontaktinformationen
+                            </h3>
+                            <div class="form-field mb-6">
+                                <label class="form-label">E-Mail <span class="text-red-500">*</span></label>
+                                <input 
+                                    type="email" 
+                                    name="email" 
+                                    id="email"
+                                    placeholder="ihre.email@firma.de" 
+                                    class="input input-bordered form-input" 
+                                    style="border-color: var(--royal-blue);"
+                                    required
+                                />
+                            </div>
+                            <div class="form-field mb-6">
+                                <label class="form-label">E-Mail-Adresse bestätigen <span class="text-red-500">*</span></label>
+                                <input 
+                                    type="email" 
+                                    name="emailConfirm" 
+                                    id="emailConfirm"
+                                    placeholder="ihre.email@firma.de" 
+                                    class="input input-bordered form-input" 
+                                    style="border-color: var(--royal-blue);"
+                                    required
+                                />
+                            </div>
+                            <div class="form-field mb-6">
+                                <label class="form-label">Telefon <span class="text-red-500">*</span></label>
+                                <input 
+                                    type="tel" 
+                                    name="phone" 
+                                    placeholder="+49 123 456789" 
+                                    class="input input-bordered form-input" 
+                                    style="border-color: var(--royal-blue);"
+                                    pattern="[0-9\+\/\s\-]+"
+                                    title="Bitte nur Ziffern, +, / oder - eingeben"
+                                    required
+                                />
+                            </div>
+                        </section>
+
+                        <!-- Privacy Checkbox -->
+                        <div class="form-control">
+                            <label class="label cursor-pointer justify-start gap-3">
+                                <input 
+                                    type="checkbox" 
+                                    name="privacy" 
+                                    class="checkbox" 
+                                    style="border-color: var(--royal-blue);"
+                                    required
+                                />
+                                <span class="label-text">
+                                    Ich habe die <a href="#" class="link" style="color: var(--royal-blue);">Datenschutzerklärung</a> gelesen und akzeptiere diese. <span class="text-red-500">*</span>
+                                </span>
+                            </label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="flex flex-col sm:flex-row gap-4 justify-end">
+                            <a href="landingpage.html" class="btn btn-outline" style="border-color: var(--royal-blue); color: var(--royal-blue);">
+                                <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+                                Abbrechen
+                            </a>
+                            <button type="submit" class="btn" style="background-color: var(--royal-blue); color: white;">
+                                <i data-lucide="send" style="width: 20px; height: 20px;"></i>
+                                Anfrage absenden
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <dialog id="successModal" class="modal">
+        <div class="modal-box max-w-md" style="border: 2px solid var(--royal-blue);">
+            <div class="flex flex-col items-center text-center py-6">
+                <div class="w-20 h-20 rounded-full flex items-center justify-center mb-4" 
+                     style="background-color: white;">
+                    <i data-lucide="check-circle" style="color: #43a842; width: 60px; height: 60px;"></i>
+                </div>
+                <h3 class="font-bold text-2xl mb-4" style="color: var(--royal-blue);">Anfrage gesendet!</h3>
+                <p class="text-gray-600 mb-6">
+                    Vielen Dank für Ihre Anfrage. Wir haben Ihre Nachricht erhalten und 
+                    werden uns innerhalb von <strong>2 Werktagen</strong> bei Ihnen melden.
+                </p>
+                <div class="modal-action justify-center">
+                    <a href="landingpage.html" class="btn" style="background-color: var(--royal-blue); color: white;">
+                        Zur Startseite
+                    </a>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Check if we came from booking process with pre-filled data
+        const urlParams = new URLSearchParams(window.location.search);
+        const prefilledSeminar = urlParams.get('seminar');
+        const prefilledParticipants = urlParams.get('participants');
+        const prefilledDate = urlParams.get('date');
+
+        // Pre-fill form if data is available
+        if (prefilledSeminar) {
+            document.getElementById('seminarSelect').value = prefilledSeminar;
+        }
+        if (prefilledParticipants) {
+            document.getElementById('participantsInput').value = prefilledParticipants;
+        }
+        if (prefilledDate) {
+            // Date is already formatted from booking-date.html
+            document.getElementById('timeframeInput').value = prefilledDate;
+        }
+
+        // Email confirmation validation
+        const emailInput = document.getElementById('email');
+        const emailConfirmInput = document.getElementById('emailConfirm');
+        
+        function validateEmailConfirm() {
+            if (emailConfirmInput.value === '') {
+                emailConfirmInput.setCustomValidity('');
+            } else if (emailInput.value !== emailConfirmInput.value) {
+                emailConfirmInput.setCustomValidity('Die E-Mail-Adressen stimmen nicht überein.');
+            } else {
+                emailConfirmInput.setCustomValidity('');
+            }
+        }
+        
+        emailInput.addEventListener('input', validateEmailConfirm);
+        emailConfirmInput.addEventListener('input', validateEmailConfirm);
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Validate email confirmation
+            validateEmailConfirm();
+            
+            // Check if form is valid
+            const form = e.target;
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            
+            const formData = new FormData(e.target);
+            
+            // In a real application, this would send the data to a server
+            console.log('Contact form submitted with data:', Object.fromEntries(formData));
+            
+            // Show success modal
+            document.getElementById('successModal').showModal();
+            
+            // Re-initialize icons after modal is shown
+            setTimeout(() => {
+                lucide.createIcons();
+            }, 100);
+        });
+    </script>
+
+</body>
+</html>

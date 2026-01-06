@@ -70,10 +70,42 @@
     </header>
 
     <!-- Main Content -->
-    <main class="min-h-[70vh] flex items-center justify-center">
-        <!-- Onboarding Content wird hier hinzugefügt -->
+    <main>
 
     </main>
+
+    <script>
+      
+        // Mock-Daten für verfügbare Kurse
+        const availableCourses = {
+            'mitarbeitermotivation': [
+                
+            ],
+            'arbeitsgestaltung': [
+                { date: '2026-01-18', slots: 18, price: 890 },
+                { date: '2026-01-25', slots: 22, price: 890 },
+                { date: '2026-02-08', slots: 20, price: 890 },
+                { date: '2026-02-15', slots: 12, price: 890 },
+            ],
+            'mitarbeiterfuehrung': [
+                { date: '2026-01-20', slots: 16, price: 830 },
+                { date: '2026-01-27', slots: 20, price: 830 },
+                { date: '2026-02-10', slots: 15, price: 830 },
+                { date: '2026-02-17', slots: 18, price: 830 },
+            ]
+        };
+
+        // URL-Parameter auslesen für Deep-Linking von Landingpage
+        const urlParams = new URLSearchParams(window.location.search);
+        const seminarParam = urlParams.get('seminar');
+        if (seminarParam) {
+            bookingData.seminar = seminarParam;
+        } else {
+            // Wenn kein Seminar ausgewählt wurde, zur Landingpage weiterleiten
+            window.location.href = 'landingpage.html#pakete';
+        }
+
+    </script>
 
     <!-- Footer -->
     <footer class="footer sm:footer-horizontal p-10 text-white" style="background-color: var(--royal-blue);">

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vital Works - Buchungsbestätigung">
+    <title>Vital Works - Buchung erfolgreich</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --royal-blue: #4169E1;
+            --royal-blue-dark: #3457b8;
+        }
+
+        @keyframes checkmark {
+            0% {
+                stroke-dashoffset: 100;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .checkmark-circle {
+            animation: checkmark 0.6s ease-in-out;
+            stroke-dasharray: 100;
+            stroke-dashoffset: 0;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <!-- Header / Navbar -->
+    <header class="navbar bg-white shadow-sm sticky top-0 z-50 px-4 lg:px-8">
+        <div class="navbar-start">
+            <a href="landingpage.html" class="text-2xl font-bold" style="color: var(--royal-blue);">
+                Vital Works
+            </a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal gap-2">
+                <li>
+                    <a href="landingpage.html" class="font-medium hover:text-white" 
+                       style="color: var(--royal-blue);"
+                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                        Landingpage
+                    </a>
+                </li>
+                <li>
+                    <a href="onboarding.html" class="font-medium hover:text-white"
+                       style="color: var(--royal-blue);"
+                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                        Onboarding
+                    </a>
+                </li>
+                <li>
+                    <a href="infopage.html" class="font-medium hover:text-white"
+                       style="color: var(--royal-blue);"
+                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                        Kursinfo
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-end lg:hidden">
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </div>
+                <ul tabindex="0" class="menu menu-sm dropdown-content bg-white rounded-box z-10 mt-3 w-52 p-2 shadow">
+                    <li><a href="landingpage.html" style="color: var(--royal-blue);">Landingpage</a></li>
+                    <li><a href="onboarding.html" style="color: var(--royal-blue);">Onboarding</a></li>
+                    <li><a href="infopage.html" style="color: var(--royal-blue);">Kursinfo</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-12 px-4 min-h-[80vh]">
+        <div class="max-w-4xl mx-auto">
+            <!-- Success Message -->
+            <div class="card bg-base-100 shadow-xl mb-8">
+                <div class="card-body items-center text-center py-12">
+                    <!-- Success Icon -->
+                    <div class="w-32 h-32 rounded-full flex items-center justify-center mb-6" 
+                         style="background-color: white;">
+                        <svg class="checkmark-circle" width="80" height="80" viewBox="0 0 52 52">
+                            <circle cx="26" cy="26" r="25" fill="none" stroke="#43a842" stroke-width="2"/>
+                            <path fill="none" stroke="#43a842" stroke-width="3" stroke-linecap="round" 
+                                  d="M14 27l7 7 16-16" stroke-dasharray="48" stroke-dashoffset="48">
+                                <animate attributeName="stroke-dashoffset" from="48" to="0" dur="0.5s" begin="0.2s" fill="freeze"/>
+                            </path>
+                        </svg>
+                    </div>
+
+                    <!-- Title -->
+                    <h1 class="text-3xl md:text-4xl font-bold mb-4" style="color: var(--royal-blue);">
+                        Vielen Dank für Ihre Buchung!
+                    </h1>
+
+                    <!-- Subtitle -->
+                    <p class="text-gray-600 text-lg mb-2">
+                        Ihre Seminarbuchung wurde erfolgreich abgeschlossen.
+                    </p>
+                    <p class="text-gray-500 mb-8">
+                        Buchungsnummer: <strong class="font-mono" id="bookingNumber"></strong>
+                    </p>
+
+                   
+                </div>
+            </div>
+
+            <!-- Booking Details -->
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <!-- Left Column - Seminar Details -->
+                <div class="card bg-base-100 shadow-lg">
+                    <div class="card-body">
+                        <h2 class="text-xl font-bold mb-4 flex items-center gap-2" style="color: var(--royal-blue);">
+                            <i data-lucide="book-open" style="width: 24px; height: 24px;"></i>
+                            Seminardetails
+                        </h2>
+                        
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Seminar:</span>
+                                <span class="font-semibold" id="detailSeminar"></span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Datum:</span>
+                                <span class="font-semibold" id="detailDate"></span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Uhrzeit:</span>
+                                <span class="font-semibold" id="detailTime"></span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Ort:</span>
+                                <span class="font-semibold" id="detailLocation"></span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Trainer:</span>
+                                <span class="font-semibold" id="detailTrainer"></span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Teilnehmer:</span>
+                                <span class="font-semibold" id="detailParticipants"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Contact & Payment -->
+                <div class="card bg-base-100 shadow-lg">
+                    <div class="card-body">
+                        <h2 class="text-xl font-bold mb-4 flex items-center gap-2" style="color: var(--royal-blue);">
+                            <i data-lucide="user" style="width: 24px; height: 24px;"></i>
+                            Kontakt & Zahlung
+                        </h2>
+                        
+                        <div class="space-y-3">
+                            <div>
+                                <p class="text-sm text-gray-600">Firma</p>
+                                <p class="font-semibold" id="detailCompany"></p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600">Ansprechpartner</p>
+                                <p class="font-semibold" id="detailContact"></p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600">E-Mail</p>
+                                <p class="font-semibold" id="detailEmail"></p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600">Telefon</p>
+                                <p class="font-semibold" id="detailPhone"></p>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Zahlungsmethode:</span>
+                                <span class="font-semibold" id="detailPayment"></span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-semibold" style="color: var(--royal-blue);">Gesamtbetrag:</span>
+                                <span class="text-2xl font-bold" style="color: var(--royal-blue);" id="detailTotal"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="card bg-base-100 shadow-lg mb-8">
+                <div class="card-body">
+                    <h2 class="text-xl font-bold mb-4 flex items-center gap-2" style="color: var(--royal-blue);">
+                        <i data-lucide="clipboard-list" style="width: 24px; height: 24px;"></i>
+                        Wie geht es weiter?
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center" 
+                                     style="background-color: var(--royal-blue); color: white; font-weight: bold;">
+                                    1
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold mb-1">Bestätigungs-E-Mail</h3>
+                                <p class="text-gray-600 text-sm">
+                                    Sie erhalten in Kürze eine E-Mail mit allen Buchungsdetails und 
+                                    Ihrer Rechnung (bei Überweisung) bzw. Zahlungsbestätigung.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center" 
+                                     style="background-color: var(--royal-blue); color: white; font-weight: bold;">
+                                    2
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold mb-1">Seminarunterlagen</h3>
+                                <p class="text-gray-600 text-sm">
+                                    Ca. 14 Tage vor Seminarbeginn erhalten Sie die Seminarunterlagen 
+                                    und weitere wichtige Informationen per E-Mail.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center" 
+                                     style="background-color: var(--royal-blue); color: white; font-weight: bold;">
+                                    3
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold mb-1">Erinnerung</h3>
+                                <p class="text-gray-600 text-sm">
+                                    3 Tage vor dem Seminar erhalten Sie eine Erinnerungs-E-Mail mit 
+                                    allen wichtigen Details und Anfahrtsinformationen.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Box -->
+            <div class="alert mb-8" style="background-color: #f0f5ff; border-color: var(--royal-blue);">
+                <i data-lucide="info" style="color: var(--royal-blue); width: 24px; height: 24px;"></i>
+                <div>
+                    <p class="text-sm" style="color: var(--royal-blue);">
+                        <strong>Haben Sie Fragen?</strong> Unser Team steht Ihnen gerne zur Verfügung. 
+                        Kontaktieren Sie uns unter <strong>info@vitalworks.de</strong> oder 
+                        <strong>+49 123 456789</strong>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="landingpage.html" class="btn btn-outline" style="border-color: var(--royal-blue); color: var(--royal-blue);">
+                    <i data-lucide="home" style="width: 20px; height: 20px;"></i>
+                    Zur Startseite
+                </a>
+                <button onclick="window.print()" class="btn" style="background-color: var(--royal-blue); color: white;">
+                    <i data-lucide="printer" style="width: 20px; height: 20px;"></i>
+                    Bestätigung drucken
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Get booking data from sessionStorage
+        const bookingData = JSON.parse(sessionStorage.getItem('bookingData') || '{}');
+        
+        if (!bookingData.selectedCourse || !bookingData.contactData) {
+            window.location.href = 'booking-participants.html';
+        }
+
+        // Generate booking number
+        const bookingNumber = 'VW-' + Date.now().toString().slice(-8);
+        document.getElementById('bookingNumber').textContent = bookingNumber;
+
+        // Seminar names mapping
+        const seminarNames = {
+            'arbeitsgestaltung': 'Arbeitsgestaltung',
+            'mitarbeitermotivation': 'Mitarbeitermotivation',
+            'mitarbeiterfuehrung': 'Mitarbeiterführung'
+        };
+
+        // Payment method names
+        const paymentMethodNames = {
+            'credit-card': 'Kreditkarte',
+            'bank-transfer': 'Überweisung',
+            'paypal': 'PayPal',
+            'sepa': 'SEPA-Lastschrift'
+        };
+
+        // Format date
+        const formatDate = (dateStr) => {
+            const date = new Date(dateStr);
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('de-DE', options);
+        };
+
+        // Update details
+        const course = bookingData.selectedCourse;
+        const contact = bookingData.contactData;
+        const participants = parseInt(bookingData.participants);
+
+        document.getElementById('detailSeminar').textContent = seminarNames[bookingData.seminar];
+        document.getElementById('detailDate').textContent = formatDate(course.date);
+        document.getElementById('detailTime').textContent = course.time;
+        document.getElementById('detailLocation').textContent = course.location;
+        document.getElementById('detailTrainer').textContent = course.trainer;
+        document.getElementById('detailParticipants').textContent = `${participants} Person${participants > 1 ? 'en' : ''}`;
+
+        document.getElementById('detailCompany').textContent = contact.company;
+        document.getElementById('detailContact').textContent = 
+            `${contact.salutation} ${contact.title ? contact.title + ' ' : ''}${contact.firstName} ${contact.lastName}`;
+        document.getElementById('detailEmail').textContent = contact.email;
+        document.getElementById('detailPhone').textContent = contact.phone;
+        document.getElementById('detailPayment').textContent = paymentMethodNames[bookingData.paymentMethod] || 'N/A';
+        document.getElementById('detailTotal').textContent = `€${bookingData.totalPrice.toLocaleString('de-DE')}`;
+
+        // Clear booking data after showing confirmation
+        // sessionStorage.removeItem('bookingData');
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vital Works - Seminarbuchung">
+    <title>Vital Works - Teilnehmeranzahl</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --royal-blue: #4169E1;
+            --royal-blue-dark: #3457b8;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <!-- Header / Navbar -->
+    <header class="navbar bg-white shadow-sm sticky top-0 z-50 px-4 lg:px-8">
+        <div class="navbar-start">
+            <a href="landingpage.html" class="text-2xl font-bold" style="color: var(--royal-blue);">
+                Vital Works
+            </a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal gap-2">
+                <li>
+                    <a href="landingpage.html" class="font-medium hover:text-white" 
+                       style="color: var(--royal-blue);"
+                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                        Landingpage
+                    </a>
+                </li>
+                <li>
+                    <a href="onboarding.html" class="font-medium hover:text-white"
+                       style="color: var(--royal-blue);"
+                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                        Onboarding
+                    </a>
+                </li>
+                <li>
+                    <a href="infopage.html" class="font-medium hover:text-white"
+                       style="color: var(--royal-blue);"
+                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
+                        Kursinfo
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-end lg:hidden">
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </div>
+                <ul tabindex="0" class="menu menu-sm dropdown-content bg-white rounded-box z-10 mt-3 w-52 p-2 shadow">
+                    <li><a href="landingpage.html" style="color: var(--royal-blue);">Landingpage</a></li>
+                    <li><a href="onboarding.html" style="color: var(--royal-blue);">Onboarding</a></li>
+                    <li><a href="infopage.html" style="color: var(--royal-blue);">Kursinfo</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="w-full bg-gray-100 py-6 px-4">
+        <div class="max-w-4xl mx-auto">
+            <ul class="steps steps-horizontal w-full">
+                <li class="step step-primary" style="--step-color: var(--royal-blue);">
+                    <span class="hidden sm:inline">Teilnehmer</span>
+                </li>
+                <li class="step">
+                    <span class="hidden sm:inline">Termin</span>
+                </li>
+                <li class="step">
+                    <span class="hidden sm:inline">Kursauswahl</span>
+                </li>
+                <li class="step">
+                    <span class="hidden sm:inline">Kontakt</span>
+                </li>
+                <li class="step">
+                    <span class="hidden sm:inline">Zahlung</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="py-12 px-4">
+        <div class="max-w-2xl mx-auto">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold mb-4" style="color: var(--royal-blue);">
+                    Wie viele Teilnehmer?
+                </h1>
+                <p class="text-gray-600 text-lg">
+                    Geben Sie die Anzahl der Personen an, die am Seminar teilnehmen möchten.
+                </p>
+            </div>
+
+            <!-- Seminar Info Card -->
+            <div class="card bg-base-100 shadow-lg mb-8 border-2" style="border-color: var(--royal-blue);">
+                <div class="card-body">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background-color: var(--royal-blue);">
+                            <i data-lucide="users" class="text-white" style="width: 24px; height: 24px;"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold" style="color: var(--royal-blue);" id="seminarTitle">Seminar</h2>
+                            <p class="text-gray-500 text-sm">Ausgewähltes Seminar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alert Modal for Max Participants -->
+            <dialog id="maxParticipantsModal" class="modal">
+                <div class="modal-box" style="border-top: 4px solid var(--royal-blue);">
+                    <div class="flex items-start gap-3">
+                        <i data-lucide="alert-circle" style="color: #f5cb42; width: 28px; height: 28px; min-width: 28px;"></i>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2" style="color: var(--royal-blue);">Maximale Teilnehmerzahl erreicht</h3>
+                            <p class="text-sm mb-4">
+                                Für den Kurs <strong id="modalSeminarName"></strong> beträgt die maximale Anzahl grundsätzlich 
+                                <strong id="modalMaxParticipants"></strong> Teilnehmer.
+                            </p>
+                            <p class="text-sm mb-4">
+                                Sie können jedoch gerne über unser Kontaktformular eine individuelle Terminanfrage stellen. Wir prüfen anschließend, ob wir für Sie einen zusätzlichen Termin anbieten können.
+                            </p>
+                            <div class="modal-action">
+                                <form method="dialog" class="flex gap-2">
+                                    <button class="btn btn-outline" style="border-color: var(--royal-blue); color: var(--royal-blue);">Schließen</button>
+                                    <a id="contactFormLink" href="#" class="btn" style="background-color: var(--royal-blue); color: white;">
+                                        Zum Kontaktformular
+                                        <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form method="dialog" class="modal-backdrop">
+                    <button>close</button>
+                </form>
+            </dialog>
+
+            <!-- Participant Selection -->
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <label class="form-control w-full">
+                        <div class="label flex justify-center mb-10 mt-4">
+                            <span class="label-text text-3xl font-bold text-center w-full" style="color: var(--royal-blue);">
+                                Anzahl der Teilnehmer
+                            </span>
+                        </div>
+                        <div class="flex gap-4 items-center justify-center">
+                            <button id="decreaseBtn" class="btn btn-circle" style="background-color: var(--royal-blue); color: white;">
+                                <i data-lucide="minus" style="width: 20px; height: 20px;"></i>
+                            </button>
+                            <input 
+                                type="number" 
+                                id="participantCount" 
+                                min="1" 
+                                max="50" 
+                                value="1"
+                                class="input input-bordered w-32 text-center text-2xl font-bold" 
+                                style="border-color: var(--royal-blue);"
+                            />
+                            <button id="increaseBtn" class="btn btn-circle" style="background-color: var(--royal-blue); color: white;">
+                                <i data-lucide="plus" style="width: 20px; height: 20px;"></i>
+                            </button>
+                        </div>
+                        <div class="label flex justify-center mt-10">
+                            <span class="label-text-alt text-gray-500 text-center w-full">
+                                Minimum: 1 Teilnehmer | Maximum: <span id="maxParticipantsText">50</span> Teilnehmer
+                            </span>
+                        </div>
+                    </label>
+
+                    <!-- Price Estimation -->
+                    <div class="alert mt-6" style="background-color: #f0f5ff; border-color: var(--royal-blue);">
+                        <i data-lucide="info" style="color: var(--royal-blue); width: 24px; height: 24px;"></i>
+                        <div>
+                            <h3 class="font-bold" style="color: var(--royal-blue);">Geschätzter Preis</h3>
+                            <div class="text-sm">
+                                <span id="estimatedPrice" class="text-lg font-bold" style="color: var(--royal-blue);">€0</span>
+                                <span class="text-gray-600"> für <span id="priceParticipants">1</span> Teilnehmer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="card-actions justify-between mt-8">
+                        <a href="landingpage.html#pakete" class="btn btn-outline" style="border-color: var(--royal-blue); color: var(--royal-blue);">
+                            <i data-lucide="arrow-left" style="width: 20px; height: 20px;"></i>
+                            Zurück
+                        </a>
+                        <button id="continueBtn" class="btn" style="background-color: var(--royal-blue); color: white;">
+                            Weiter zur Terminwahl
+                            <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mock data for seminars
+        const seminars = {
+            'arbeitsgestaltung': {
+                name: 'Arbeitsgestaltung',
+                price: 890,
+                maxParticipants: 15
+            },
+            'mitarbeitermotivation': {
+                name: 'Mitarbeitermotivation',
+                price: 745,
+                maxParticipants: 12
+            },
+            'mitarbeiterfuehrung': {
+                name: 'Mitarbeiterführung',
+                price: 830,
+                maxParticipants: 10
+            }
+        };
+
+        // Get seminar from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const seminarType = urlParams.get('seminar') || 'mitarbeitermotivation';
+        const seminar = seminars[seminarType];
+
+        // Update UI with seminar info
+        document.getElementById('seminarTitle').textContent = seminar.name;
+        document.querySelector('#participantCount').max = seminar.maxParticipants;
+        document.getElementById('maxParticipantsText').textContent = seminar.maxParticipants;
+        
+        // Update modal content
+        document.getElementById('modalSeminarName').textContent = seminar.name;
+        document.getElementById('modalMaxParticipants').textContent = seminar.maxParticipants;
+        
+        // Set contact form link with pre-filled data
+        const contactLink = document.getElementById('contactFormLink');
+        contactLink.href = `contact-form.html?seminar=${seminarType}&participants=mehr-als-${seminar.maxParticipants}`;
+
+        // Get elements
+        const participantInput = document.getElementById('participantCount');
+        const decreaseBtn = document.getElementById('decreaseBtn');
+        const increaseBtn = document.getElementById('increaseBtn');
+        const continueBtn = document.getElementById('continueBtn');
+        const quickSelectBtns = document.querySelectorAll('.quick-select');
+
+        // Update price display
+        function updatePrice() {
+            const count = parseInt(participantInput.value) || 1;
+            const totalPrice = count * seminar.price;
+            document.getElementById('estimatedPrice').textContent = '€' + totalPrice.toLocaleString('de-DE');
+            document.getElementById('priceParticipants').textContent = count;
+        }
+
+        // Increase/Decrease buttons
+        decreaseBtn.addEventListener('click', () => {
+            const current = parseInt(participantInput.value);
+            if (current > 1) {
+                participantInput.value = current - 1;
+                updatePrice();
+            }
+        });
+
+        increaseBtn.addEventListener('click', () => {
+            const current = parseInt(participantInput.value);
+            if (current < seminar.maxParticipants) {
+                participantInput.value = current + 1;
+                updatePrice();
+            } else {
+                // Show alert modal when at maximum
+                const modal = document.getElementById('maxParticipantsModal');
+                modal.showModal();
+                // Re-initialize icons after modal is shown
+                setTimeout(() => lucide.createIcons(), 100);
+            }
+        });
+
+        // Input change
+        participantInput.addEventListener('input', () => {
+            let value = parseInt(participantInput.value);
+            if (value < 1) {
+                participantInput.value = 1;
+            }
+            if (value > seminar.maxParticipants) {
+                // Show alert modal
+                const modal = document.getElementById('maxParticipantsModal');
+                modal.showModal();
+                // Re-initialize icons after modal is shown
+                setTimeout(() => lucide.createIcons(), 100);
+                // Reset to max value
+                participantInput.value = seminar.maxParticipants;
+            }
+            updatePrice();
+        });
+
+        // Quick select buttons
+        quickSelectBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const count = parseInt(btn.dataset.count);
+                if (count <= seminar.maxParticipants) {
+                    participantInput.value = count;
+                    updatePrice();
+                } else {
+                    // Show alert modal
+                    const modal = document.getElementById('maxParticipantsModal');
+                    modal.showModal();
+                    // Re-initialize icons after modal is shown
+                    setTimeout(() => lucide.createIcons(), 100);
+                }
+            });
+        });
+
+        // Continue button
+        continueBtn.addEventListener('click', () => {
+            const participants = participantInput.value;
+            // Save to sessionStorage
+            sessionStorage.setItem('bookingData', JSON.stringify({
+                seminar: seminarType,
+                participants: participants,
+                price: seminar.price
+            }));
+            // Navigate to date selection
+            window.location.href = 'booking-date.html';
+        });
+
+        // Initialize price
+        updatePrice();
+    </script>
+
+</body>
+</html>
