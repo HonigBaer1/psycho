@@ -95,6 +95,32 @@
         text-align: center;
         padding: 0.5rem;
       }
+
+      /* Multi-day course styles */
+      .calendar-day.multi-day-start {
+        border-radius: 0.5rem 0 0 0.5rem;
+        border: 3px solid var(--royal-blue-dark);
+        border-right: none;
+      }
+
+      .calendar-day.multi-day-middle {
+        border-radius: 0;
+        border: 3px solid var(--royal-blue-dark);
+        border-left: none;
+        border-right: none;
+      }
+
+      .calendar-day.multi-day-end {
+        border-radius: 0 0.5rem 0.5rem 0;
+        border: 3px solid var(--royal-blue-dark);
+        border-left: none;
+      }
+
+      .calendar-day.multi-day-start.selected,
+      .calendar-day.multi-day-middle.selected,
+      .calendar-day.multi-day-end.selected {
+        border-color: #059669;
+      }
     </style>
   </head>
 
@@ -399,43 +425,88 @@
         infoBoxContactLink.href = `contact-form.html?${params.toString()}`;
       }
 
-      // Mock data for available courses
-      const availableCourses = {
-        arbeitsgestaltung: [
-          { date: "2026-01-18", slots: 18 },
-          { date: "2026-01-25", slots: 22 },
-          { date: "2026-02-08", slots: 20 },
-          { date: "2026-02-15", slots: 12 },
-          { date: "2026-03-01", slots: 16 },
-          { date: "2026-03-15", slots: 25 },
-        ],
-        mitarbeitermotivation: [
-          { date: "2026-01-15", slots: 20 },
-          { date: "2026-01-22", slots: 15 },
-          { date: "2026-02-05", slots: 25 },
-          { date: "2026-02-12", slots: 10 },
-          { date: "2026-02-19", slots: 18 },
-          { date: "2026-03-05", slots: 20 },
-        ],
-        mitarbeiterfuehrung: [
-          { date: "2026-01-20", slots: 16 },
-          { date: "2026-01-27", slots: 20 },
-          { date: "2026-02-10", slots: 15 },
-          { date: "2026-02-17", slots: 18 },
-          { date: "2026-03-03", slots: 12 },
-          { date: "2026-03-17", slots: 20 },
-        ],
+      // Seminar duration in days
+      const seminarDuration = {
+        'arbeitsgestaltung': 1,
+        'mitarbeitermotivation': 2,
+        'mitarbeiterfuehrung': 3
       };
+
+      // Mock-Daten für verfügbare Kurse (date = Startdatum)
+      const availableCourses = {
+          'arbeitsgestaltung': [
+              { date: '2026-01-19', slots: 15, price: 890 },
+              { date: '2026-01-26', slots: 15, price: 890 },
+              { date: '2026-02-09', slots: 15, price: 890 },
+              { date: '2026-02-16', slots: 15, price: 890 },
+          ],
+          'mitarbeitermotivation': [
+              { date: '2026-01-15', slots: 12, price: 745 },
+              { date: '2026-01-22', slots: 12, price: 745 },
+              { date: '2026-02-05', slots: 12, price: 745 },
+              { date: '2026-02-12', slots: 12, price: 745 },
+          ],
+        
+          'mitarbeiterfuehrung': [
+              { date: '2026-01-20', slots: 10, price: 830 },
+              { date: '2026-01-27', slots: 10, price: 830 },
+              { date: '2026-02-10', slots: 10, price: 830 },
+              { date: '2026-02-17', slots: 10, price: 830 },
+          ]
+      };
+
+      // Helper: Get all dates for a course (including multi-day)
+      function getCourseDates(startDate, duration) {
+        const dates = [];
+        const start = new Date(startDate);
+        for (let i = 0; i < duration; i++) {
+          const d = new Date(start);
+          d.setDate(start.getDate() + i);
+          dates.push(d.toISOString().split('T')[0]);
+        }
+        return dates;
+      }
+
+      // Helper: Find course by any of its dates
+      function findCourseByDate(dateStr) {
+        const duration = seminarDuration[bookingData.seminar] || 1;
+        for (const course of courses) {
+          if (course.slots >= parseInt(bookingData.participants)) {
+            const courseDates = getCourseDates(course.date, duration);
+            if (courseDates.includes(dateStr)) {
+              return { course, courseDates, position: courseDates.indexOf(dateStr) };
+            }
+          }
+        }
+        return null;
+      }
 
       // Get available dates for this seminar and participant count
       const courses = availableCourses[bookingData.seminar] || [];
-      const availableDates = courses
+      const duration = seminarDuration[bookingData.seminar] || 1;
+      
+      // Build a map of all available dates with their course info
+      const availableDatesMap = {}; // dateStr -> { startDate, position: 'start'|'middle'|'end'|'single' }
+      courses
         .filter((course) => course.slots >= parseInt(bookingData.participants))
-        .map((course) => course.date);
+        .forEach((course) => {
+          const courseDates = getCourseDates(course.date, duration);
+          courseDates.forEach((dateStr, idx) => {
+            let position = 'single';
+            if (duration > 1) {
+              if (idx === 0) position = 'start';
+              else if (idx === duration - 1) position = 'end';
+              else position = 'middle';
+            }
+            availableDatesMap[dateStr] = { startDate: course.date, position };
+          });
+        });
+      
+      const availableDates = Object.keys(availableDatesMap);
 
       // Calendar state
       let currentDate = new Date();
-      let selectedDate = null;
+      let selectedStartDate = null; // Always stores the start date of the selected course
 
       // Calendar functions
       function renderCalendar() {
@@ -482,6 +553,12 @@
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 
+        // Calculate selected course dates
+        let selectedCourseDates = [];
+        if (selectedStartDate) {
+          selectedCourseDates = getCourseDates(selectedStartDate, duration);
+        }
+
         for (let day = 1; day <= daysInMonth; day++) {
           const dayElement = document.createElement("div");
           dayElement.className = "calendar-day";
@@ -504,6 +581,19 @@
             dayElement.classList.add("past");
           } else if (availableDates.includes(currentDateStr)) {
             dayElement.classList.add("available");
+            
+            // Add multi-day position class
+            const dateInfo = availableDatesMap[currentDateStr];
+            if (dateInfo && duration > 1) {
+              if (dateInfo.position === 'start') {
+                dayElement.classList.add('multi-day-start');
+              } else if (dateInfo.position === 'middle') {
+                dayElement.classList.add('multi-day-middle');
+              } else if (dateInfo.position === 'end') {
+                dayElement.classList.add('multi-day-end');
+              }
+            }
+            
             dayElement.addEventListener("click", () =>
               selectDate(currentDateStr)
             );
@@ -514,8 +604,8 @@
             );
           }
 
-          // Mark selected date (this should override other styles)
-          if (selectedDate === currentDateStr) {
+          // Mark selected dates (all days of the selected course)
+          if (selectedCourseDates.includes(currentDateStr)) {
             dayElement.classList.remove("available");
             dayElement.classList.add("selected");
           }
@@ -527,12 +617,18 @@
       }
 
       function selectDate(dateStr) {
-        // Toggle: if clicking on already selected date, deselect it
-        if (selectedDate === dateStr) {
-          selectedDate = null;
+        // Find the course this date belongs to
+        const courseInfo = findCourseByDate(dateStr);
+        if (!courseInfo) return;
+        
+        const courseStartDate = courseInfo.course.date;
+        
+        // Toggle: if clicking on any day of an already selected course, deselect it
+        if (selectedStartDate === courseStartDate) {
+          selectedStartDate = null;
           document.getElementById("continueBtn").disabled = true;
         } else {
-          selectedDate = dateStr;
+          selectedStartDate = courseStartDate;
           document.getElementById("continueBtn").disabled = false;
         }
         renderCalendar();
@@ -591,23 +687,23 @@
 
       // Continue button
       document.getElementById("continueBtn").addEventListener("click", () => {
-        if (selectedDate) {
-          // Check if there are available courses for this date
+        if (selectedStartDate) {
+          // Check if there are available courses for this start date
           const matchingCourses = courses.filter(
             (c) =>
-              c.date === selectedDate &&
+              c.date === selectedStartDate &&
               c.slots >= parseInt(bookingData.participants)
           );
 
           if (matchingCourses.length > 0) {
-            // Save selected date
-            bookingData.selectedDate = selectedDate;
+            // Save selected start date (the course start date)
+            bookingData.selectedDate = selectedStartDate;
             sessionStorage.setItem("bookingData", JSON.stringify(bookingData));
             // Navigate to course selection
             window.location.href = "booking-select-course.html";
           } else {
             // No available courses - redirect to no availability page
-            bookingData.selectedDate = selectedDate;
+            bookingData.selectedDate = selectedStartDate;
             sessionStorage.setItem("bookingData", JSON.stringify(bookingData));
             window.location.href = "booking-no-availability.html";
           }
