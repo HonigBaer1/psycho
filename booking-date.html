@@ -1,500 +1,621 @@
 <!DOCTYPE html>
 <html lang="de">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Vital Works - Terminwahl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Vital Works - Terminwahl" />
     <title>Vital Works - Termin wählen</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        :root {
-            --royal-blue: #4169E1;
-            --royal-blue-dark: #3457b8;
-        }
+      :root {
+        --royal-blue: #0635c3;
+        --royal-blue-dark: #3457b8;
+        --success-green: #32a852;
+        --warning-yellow: #ffd700;
+      }
+      .vw-title {
+        color: var(--royal-blue);
+      }
 
-        .calendar {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 0.5rem;
-        }
+      .calendar {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.5rem;
+      }
 
-        .calendar-day {
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: 2px solid transparent;
-            font-weight: 500;
-            color: #1f2937;
-            font-size: 1.125rem;
-        }
+      .calendar-day {
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: 2px solid transparent;
+        font-weight: 500;
+        color: #1f2937;
+        font-size: 1.125rem;
+      }
 
-        .calendar-day.available {
-            background-color: #4169E1;
-            border-color: #3457b8;
-            color: white;
-            font-weight: 600;
-        }
+      .calendar-day.available {
+        background-color: var(--royal-blue);
+        border-color: var(--royal-blue-dark);
+        color: white;
+        font-weight: 600;
+      }
 
-        .calendar-day.available:hover {
-            background-color: #3457b8;
-            color: white;
-            transform: scale(1.05);
-        }
+      .calendar-day.available:hover {
+        background-color: var(--royal-blue-dark);
+        color: white;
+        transform: scale(1.05);
+      }
 
-        .calendar-day.unavailable {
-            background-color: #f3f4f6;
-            color: #9ca3af;
-            cursor: not-allowed;
-            font-weight: 400;
-        }
+      .calendar-day.unavailable {
+        background-color: #f3f4f6;
+        color: #9ca3af;
+        cursor: not-allowed;
+        font-weight: 400;
+      }
 
-        .calendar-day.past {
-            background-color: #f9fafb;
-            color: #d1d5db;
-            cursor: not-allowed;
-            font-weight: 400;
-        }
+      .calendar-day.past {
+        background-color: #d1d5db;
+        color: #6b7280;
+        cursor: not-allowed;
+        font-weight: 400;
+      }
 
-        .calendar-day.selected {
-            background-color: #10b981;
-            color: white;
-            border-color: #059669;
-            font-weight: 700;
-        }
+      .calendar-day.selected {
+        background-color: var(--success-green);
+        color: white;
+        border-color: #059669;
+        font-weight: 700;
+      }
 
-        .calendar-day.today {
-            background-color: #dbeafe;
-            border-color: #93c5fd;
-            color: #1f2937;
-            font-weight: 600;
-        }
+      .calendar-day.today {
+        background-color: #f3f4f6;
+        border: 3px solid #000;
+        color: #9ca3af;
+        font-weight: 400;
+      }
 
-        .calendar-day.today:hover {
-            background-color: #bfdbfe;
-            transform: scale(1.05);
-        }
+      .calendar-day.today:hover {
+        background-color: #f3f4f6;
+        transform: scale(1.05);
+      }
 
-        .calendar-header {
-            font-weight: 600;
-            color: var(--royal-blue);
-            text-align: center;
-            padding: 0.5rem;
-        }
+      .calendar-header {
+        font-weight: 600;
+        color: var(--royal-blue);
+        text-align: center;
+        padding: 0.5rem;
+      }
     </style>
-</head>
+  </head>
 
-<body class="bg-white">
-
-    <!-- Header / Navbar -->
-    <header class="navbar bg-white shadow-sm sticky top-0 z-50 px-4 lg:px-8">
-        <div class="navbar-start">
-            <a href="landingpage.html" class="text-2xl font-bold" style="color: var(--royal-blue);">
-                Vital Works
-            </a>
-        </div>
-        <div class="navbar-center hidden lg:flex">
-            <ul class="menu menu-horizontal gap-2">
-                <li>
-                    <a href="landingpage.html" class="font-medium hover:text-white" 
-                       style="color: var(--royal-blue);"
-                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
-                        Landingpage
-                    </a>
-                </li>
-                <li>
-                    <a href="onboarding.html" class="font-medium hover:text-white"
-                       style="color: var(--royal-blue);"
-                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
-                        Onboarding
-                    </a>
-                </li>
-                <li>
-                    <a href="infopage.html" class="font-medium hover:text-white"
-                       style="color: var(--royal-blue);"
-                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
-                        Kursinfo
-                    </a>
-                </li>
+  <body class="bg-white">
+    <!-- HEADER -->
+    <header class="border-b border-base-200 bg-white sticky top-0 z-50">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="navbar px-0">
+          <div class="navbar-start">
+            <a class="text-lg font-bold vw-title" href="landingpage.html"
+              >Vital Works</a
+            >
+          </div>
+          <div class="navbar-end">
+            <ul class="menu menu-horizontal px-1 text-sm">
+              <li><a href="landingpage.html">Landingpage</a></li>
+              <li><a href="landingpage.html#pakete">Kurs buchen</a></li>
+              <li><a href="plustraining.html">Kursinfo</a></li>
             </ul>
+          </div>
         </div>
-        <div class="navbar-end lg:hidden">
-            <div class="dropdown dropdown-end">
-                <div tabindex="0" role="button" class="btn btn-ghost">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </div>
-                <ul tabindex="0" class="menu menu-sm dropdown-content bg-white rounded-box z-10 mt-3 w-52 p-2 shadow">
-                    <li><a href="landingpage.html" style="color: var(--royal-blue);">Landingpage</a></li>
-                    <li><a href="onboarding.html" style="color: var(--royal-blue);">Onboarding</a></li>
-                    <li><a href="infopage.html" style="color: var(--royal-blue);">Kursinfo</a></li>
-                </ul>
-            </div>
-        </div>
+      </div>
     </header>
 
     <!-- Progress Bar -->
     <div class="w-full bg-gray-100 py-6 px-4">
-        <div class="max-w-4xl mx-auto">
-            <ul class="steps steps-horizontal w-full">
-                <li class="step step-primary" style="--step-color: var(--royal-blue);">
-                    <span class="hidden sm:inline">Teilnehmer</span>
-                </li>
-                <li class="step step-primary" style="--step-color: var(--royal-blue);">
-                    <span class="hidden sm:inline">Termin</span>
-                </li>
-                <li class="step">
-                    <span class="hidden sm:inline">Kursauswahl</span>
-                </li>
-                <li class="step">
-                    <span class="hidden sm:inline">Kontakt</span>
-                </li>
-                <li class="step">
-                    <span class="hidden sm:inline">Zahlung</span>
-                </li>
-            </ul>
-        </div>
+      <div class="max-w-4xl mx-auto">
+        <ul class="steps steps-horizontal w-full">
+          <li class="step step-primary" style="--step-color: var(--royal-blue)">
+            <span class="hidden sm:inline">Teilnehmer</span>
+          </li>
+          <li class="step step-primary" style="--step-color: var(--royal-blue)">
+            <span class="hidden sm:inline">Termin</span>
+          </li>
+          <li class="step">
+            <span class="hidden sm:inline">Kursauswahl</span>
+          </li>
+          <li class="step">
+            <span class="hidden sm:inline">Kontakt</span>
+          </li>
+          <li class="step">
+            <span class="hidden sm:inline">Zahlung</span>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <!-- Main Content -->
     <main class="py-12 px-4">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-8">
-                <h1 class="text-3xl md:text-4xl font-bold mb-4" style="color: var(--royal-blue);">
-                    Wählen Sie Ihren Wunschtermin
-                </h1>
-                <p class="text-gray-600 text-lg">
-                    Verfügbare Termine sind farblich markiert. Klicken Sie auf einen Tag, um fortzufahren.
-                </p>
-            </div>
-
-            <!-- Booking Info -->
-            <div class="alert mb-8" style="background-color: #f0f5ff; border-color: var(--royal-blue);">
-                <i data-lucide="clipboard-list" style="color: var(--royal-blue); width: 24px; height: 24px;"></i>
-                <div>
-                    <div class="font-semibold" style="color: var(--royal-blue);" id="bookingInfo"></div>
-                </div>
-            </div>
-
-            <!-- Calendar -->
-            <div class="card bg-base-100 shadow-xl mb-6">
-                <div class="card-body">
-                    <!-- Calendar Header -->
-                    <div class="flex justify-between items-center mb-6">
-                        <button id="prevMonth" class="btn btn-circle btn-outline" style="border-color: var(--royal-blue); color: var(--royal-blue);">
-                            <i data-lucide="chevron-left" style="width: 20px; height: 20px;"></i>
-                        </button>
-                        <h2 class="text-2xl font-bold" style="color: var(--royal-blue);" id="currentMonth"></h2>
-                        <button id="nextMonth" class="btn btn-circle btn-outline" style="border-color: var(--royal-blue); color: var(--royal-blue);">
-                            <i data-lucide="chevron-right" style="width: 20px; height: 20px;"></i>
-                        </button>
-                    </div>
-
-                    <!-- Weekday Headers -->
-                    <div class="calendar mb-2">
-                        <div class="calendar-header">Mo</div>
-                        <div class="calendar-header">Di</div>
-                        <div class="calendar-header">Mi</div>
-                        <div class="calendar-header">Do</div>
-                        <div class="calendar-header">Fr</div>
-                        <div class="calendar-header">Sa</div>
-                        <div class="calendar-header">So</div>
-                    </div>
-
-                    <!-- Calendar Days -->
-                    <div class="calendar" id="calendarDays"></div>
-
-                    <!-- Legend -->
-                    <div class="flex flex-wrap gap-4 mt-6 justify-center">
-                        <div class="flex items-center gap-2">
-                            <div class="w-6 h-6 rounded" style="background-color: #4169E1; border: 2px solid #3457b8;"></div>
-                            <span class="text-sm text-gray-600">Verfügbar</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <div class="w-6 h-6 rounded" style="background-color: #10b981; border: 2px solid #059669;"></div>
-                            <span class="text-sm text-gray-600">Ausgewählt</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <div class="w-6 h-6 rounded bg-gray-200"></div>
-                            <span class="text-sm text-gray-600">Nicht verfügbar</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Info Box -->
-            <div class="alert mb-8" style="background-color: #f0f5ff; border-color: var(--royal-blue);">
-                <i data-lucide="info" style="color: var(--royal-blue); width: 24px; height: 24px;"></i>
-                <div>
-                    <p class="text-sm" style="color: var(--royal-blue);">
-                        Kein passender Zeitraum dabei? Nehmen Sie gerne über unser 
-                        <a href="contact-form.html" id="infoBoxContactLink" class="font-bold underline">Formular</a> 
-                        Kontakt zu uns auf. Wir prüfen anschließend Ihre Anfrage und checken, ob wir für Sie einen zusätzlichen Termin anbieten können.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="flex justify-between">
-                <button id="backBtn" class="btn btn-outline" style="border-color: var(--royal-blue); color: var(--royal-blue);">
-                    <i data-lucide="arrow-left" style="width: 20px; height: 20px;"></i>
-                    Zurück
-                </button>
-                <button id="continueBtn" class="btn disabled:opacity-50 disabled:cursor-not-allowed" style="background-color: var(--royal-blue); color: white;" disabled>
-                    Weiter zur Kursauswahl
-                    <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i>
-                </button>
-            </div>
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-8">
+          <h1
+            class="text-3xl md:text-4xl font-bold mb-4"
+            style="color: var(--royal-blue)"
+          >
+            Wählen Sie Ihren gewünschten Starttermin
+          </h1>
+          <p class="text-gray-600 text-lg">
+            Verfügbare Termine sind farblich markiert. Klicken Sie auf einen
+            Tag, um fortzufahren.
+          </p>
         </div>
+
+        <!-- Booking Info -->
+        <div
+          class="alert mb-8"
+          style="background-color: #f0f5ff; border-color: var(--royal-blue)"
+        >
+          <i
+            data-lucide="clipboard-list"
+            style="color: var(--royal-blue); width: 24px; height: 24px"
+          ></i>
+          <div>
+            <div
+              class="font-semibold"
+              style="color: var(--royal-blue)"
+              id="bookingInfo"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Calendar -->
+        <div class="card bg-base-100 shadow-xl mb-6">
+          <div class="card-body">
+            <!-- Calendar Header -->
+            <div class="flex justify-between items-center mb-6">
+              <button
+                id="prevMonth"
+                class="btn btn-circle btn-outline"
+                style="
+                  border-color: var(--royal-blue);
+                  color: var(--royal-blue);
+                "
+              >
+                <i
+                  data-lucide="chevron-left"
+                  style="width: 20px; height: 20px"
+                ></i>
+              </button>
+              <h2
+                class="text-2xl font-bold"
+                style="color: var(--royal-blue)"
+                id="currentMonth"
+              ></h2>
+              <button
+                id="nextMonth"
+                class="btn btn-circle btn-outline"
+                style="
+                  border-color: var(--royal-blue);
+                  color: var(--royal-blue);
+                "
+              >
+                <i
+                  data-lucide="chevron-right"
+                  style="width: 20px; height: 20px"
+                ></i>
+              </button>
+            </div>
+
+            <!-- Weekday Headers -->
+            <div class="calendar mb-2">
+              <div class="calendar-header">Mo</div>
+              <div class="calendar-header">Di</div>
+              <div class="calendar-header">Mi</div>
+              <div class="calendar-header">Do</div>
+              <div class="calendar-header">Fr</div>
+              <div class="calendar-header">Sa</div>
+              <div class="calendar-header">So</div>
+            </div>
+
+            <!-- Calendar Days -->
+            <div class="calendar" id="calendarDays"></div>
+
+            <!-- Legend -->
+            <div class="flex flex-wrap gap-4 mt-6 justify-center">
+              <div class="flex items-center gap-2">
+                <div
+                  class="w-6 h-6 rounded"
+                  style="
+                    background-color: var(--royal-blue);
+                    border: 2px solid var(--royal-blue-dark);
+                  "
+                ></div>
+                <span class="text-sm text-gray-600">Verfügbar</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div
+                  class="w-6 h-6 rounded"
+                  style="
+                    background-color: var(--success-green);
+                    border: 2px solid #059669;
+                  "
+                ></div>
+                <span class="text-sm text-gray-600">Ausgewählt</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded bg-gray-200"></div>
+                <span class="text-sm text-gray-600">Nicht verfügbar</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info Box -->
+        <div
+          class="alert mb-8"
+          style="background-color: #f0f5ff; border-color: var(--royal-blue)"
+        >
+          <i
+            data-lucide="info"
+            style="color: var(--royal-blue); width: 24px; height: 24px"
+          ></i>
+          <div>
+            <p class="text-sm" style="color: var(--royal-blue)">
+              Kein passender Zeitraum dabei? Nehmen Sie gerne über unser
+              <a
+                href="contact-form.html"
+                id="infoBoxContactLink"
+                class="font-bold underline"
+                >Formular</a
+              >
+              Kontakt zu uns auf. Wir prüfen anschließend Ihre Anfrage und
+              checken, ob wir für Sie einen zusätzlichen Termin anbieten können.
+            </p>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex justify-between">
+          <button
+            id="backBtn"
+            class="btn btn-outline"
+            style="border-color: var(--royal-blue); color: var(--royal-blue)"
+          >
+            <i data-lucide="arrow-left" style="width: 20px; height: 20px"></i>
+            Zurück
+          </button>
+          <button
+            id="continueBtn"
+            class="btn disabled:opacity-50 disabled:cursor-not-allowed"
+            style="background-color: var(--royal-blue); color: white"
+            disabled
+          >
+            Weiter zur Kursauswahl
+            <i data-lucide="arrow-right" style="width: 20px; height: 20px"></i>
+          </button>
+        </div>
+      </div>
     </main>
 
     <!-- Unavailable Date Alert Modal -->
     <dialog id="unavailableModal" class="modal">
-        <div class="modal-box" style="border-top: 4px solid var(--royal-blue);">
-            <div class="flex items-start gap-3">
-                <i data-lucide="info" style="color: #f5cb42; width: 28px; height: 28px; min-width: 28px;"></i>
-                <div>
-                    <h3 class="font-bold text-lg mb-2" style="color: var(--royal-blue);">Termin nicht verfügbar</h3>
-                    <p class="text-sm mb-4">
-                        Leider ist an diesem Tag kein Kurs mehr verfügbar. Bitte wählen Sie einen anderen Termin oder kontaktieren uns <a href="#" id="contactLink" class="font-bold underline" style="color: var(--royal-blue);">hier</a>, um ein individuelles Angebot anzufragen.
-                    </p>
-                    <div class="modal-action">
-                        <form method="dialog">
-                            <button class="btn" style="background-color: var(--royal-blue); color: white;">OK</button>
-                        </form>
-                    </div>
-                </div>
+      <div
+        class="modal-box"
+        style="border-top: 4px solid var(--warning-yellow)"
+      >
+        <div class="flex items-start gap-3">
+          <i
+            data-lucide="alert-circle"
+            style="
+              color: var(--warning-yellow);
+              width: 28px;
+              height: 28px;
+              min-width: 28px;
+            "
+          ></i>
+          <div>
+            <h3 class="font-bold text-lg mb-2" style="color: #000">
+              Termin nicht verfügbar
+            </h3>
+            <p class="text-sm mb-4">
+              Leider ist an diesem Tag kein Kurs mehr verfügbar. Bitte wählen
+              Sie einen anderen Termin oder kontaktieren uns
+              <a
+                href="#"
+                id="contactLink"
+                class="font-bold underline"
+                style="color: var(--royal-blue)"
+                >hier</a
+              >, um ein individuelles Angebot anzufragen.
+            </p>
+            <div class="modal-action">
+              <form method="dialog" class="flex gap-2">
+                <button
+                  class="btn btn-outline"
+                  style="border-color: var(--warning-yellow); color: #000"
+                >
+                  Schließen
+                </button>
+                <a
+                  href="#"
+                  id="contactLinkButton"
+                  class="btn"
+                  style="background-color: var(--warning-yellow); color: #000"
+                >
+                  Zum Kontaktformular
+                  <i
+                    data-lucide="arrow-right"
+                    style="width: 18px; height: 18px"
+                  ></i>
+                </a>
+              </form>
             </div>
+          </div>
         </div>
-        <form method="dialog" class="modal-backdrop">
-            <button>close</button>
-        </form>
+      </div>
+      <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+      </form>
     </dialog>
 
     <script>
-        // Initialize Lucide icons
+      // Initialize Lucide icons
+      lucide.createIcons();
+
+      // Get booking data from sessionStorage
+      const bookingData = JSON.parse(
+        sessionStorage.getItem("bookingData") || "{}"
+      );
+
+      if (!bookingData.seminar || !bookingData.participants) {
+        window.location.href = "booking-participants.html";
+      }
+
+      // Update booking info
+      const seminarNames = {
+        arbeitsgestaltung: "Arbeitsgestaltung",
+        mitarbeitermotivation: "Mitarbeitermotivation",
+        mitarbeiterfuehrung: "Mitarbeiterführung",
+      };
+      document.getElementById("bookingInfo").textContent = `${
+        seminarNames[bookingData.seminar]
+      } - ${bookingData.participants} Teilnehmer`;
+
+      // Update info box contact link with booking data
+      const infoBoxContactLink = document.getElementById("infoBoxContactLink");
+      if (infoBoxContactLink) {
+        const params = new URLSearchParams();
+        if (bookingData.seminar) params.append("seminar", bookingData.seminar);
+        if (bookingData.participants)
+          params.append("participants", bookingData.participants);
+        infoBoxContactLink.href = `contact-form.html?${params.toString()}`;
+      }
+
+      // Mock data for available courses
+      const availableCourses = {
+        arbeitsgestaltung: [
+          { date: "2026-01-18", slots: 18 },
+          { date: "2026-01-25", slots: 22 },
+          { date: "2026-02-08", slots: 20 },
+          { date: "2026-02-15", slots: 12 },
+          { date: "2026-03-01", slots: 16 },
+          { date: "2026-03-15", slots: 25 },
+        ],
+        mitarbeitermotivation: [
+          { date: "2026-01-15", slots: 20 },
+          { date: "2026-01-22", slots: 15 },
+          { date: "2026-02-05", slots: 25 },
+          { date: "2026-02-12", slots: 10 },
+          { date: "2026-02-19", slots: 18 },
+          { date: "2026-03-05", slots: 20 },
+        ],
+        mitarbeiterfuehrung: [
+          { date: "2026-01-20", slots: 16 },
+          { date: "2026-01-27", slots: 20 },
+          { date: "2026-02-10", slots: 15 },
+          { date: "2026-02-17", slots: 18 },
+          { date: "2026-03-03", slots: 12 },
+          { date: "2026-03-17", slots: 20 },
+        ],
+      };
+
+      // Get available dates for this seminar and participant count
+      const courses = availableCourses[bookingData.seminar] || [];
+      const availableDates = courses
+        .filter((course) => course.slots >= parseInt(bookingData.participants))
+        .map((course) => course.date);
+
+      // Calendar state
+      let currentDate = new Date();
+      let selectedDate = null;
+
+      // Calendar functions
+      function renderCalendar() {
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+
+        // Update month display
+        const monthNames = [
+          "Januar",
+          "Februar",
+          "März",
+          "April",
+          "Mai",
+          "Juni",
+          "Juli",
+          "August",
+          "September",
+          "Oktober",
+          "November",
+          "Dezember",
+        ];
+        document.getElementById(
+          "currentMonth"
+        ).textContent = `${monthNames[month]} ${year}`;
+
+        // Get first day of month and number of days
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+        const daysInMonth = lastDay.getDate();
+        const startingDayOfWeek =
+          firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1; // Convert Sunday=0 to Monday=0
+
+        // Clear calendar
+        const calendarDays = document.getElementById("calendarDays");
+        calendarDays.innerHTML = "";
+
+        // Add empty cells for days before month starts
+        for (let i = 0; i < startingDayOfWeek; i++) {
+          const emptyDay = document.createElement("div");
+          calendarDays.appendChild(emptyDay);
+        }
+
+        // Add days of month
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        for (let day = 1; day <= daysInMonth; day++) {
+          const dayElement = document.createElement("div");
+          dayElement.className = "calendar-day";
+          dayElement.textContent = day;
+
+          const currentDateStr = `${year}-${String(month + 1).padStart(
+            2,
+            "0"
+          )}-${String(day).padStart(2, "0")}`;
+          const dayDate = new Date(year, month, day);
+          dayDate.setHours(0, 0, 0, 0);
+
+          // Mark today first
+          if (dayDate.getTime() === today.getTime()) {
+            dayElement.classList.add("today");
+          }
+
+          // Check if date is in the past
+          if (dayDate < today) {
+            dayElement.classList.add("past");
+          } else if (availableDates.includes(currentDateStr)) {
+            dayElement.classList.add("available");
+            dayElement.addEventListener("click", () =>
+              selectDate(currentDateStr)
+            );
+          } else {
+            dayElement.classList.add("unavailable");
+            dayElement.addEventListener("click", () =>
+              showUnavailableModal(currentDateStr)
+            );
+          }
+
+          // Mark selected date (this should override other styles)
+          if (selectedDate === currentDateStr) {
+            dayElement.classList.remove("available");
+            dayElement.classList.add("selected");
+          }
+
+          calendarDays.appendChild(dayElement);
+        }
+
         lucide.createIcons();
+      }
+
+      function selectDate(dateStr) {
+        // Toggle: if clicking on already selected date, deselect it
+        if (selectedDate === dateStr) {
+          selectedDate = null;
+          document.getElementById("continueBtn").disabled = true;
+        } else {
+          selectedDate = dateStr;
+          document.getElementById("continueBtn").disabled = false;
+        }
+        renderCalendar();
+      }
+
+      function showUnavailableModal(clickedDate) {
+        const modal = document.getElementById("unavailableModal");
+        const contactLink = document.getElementById("contactLink");
+        const contactLinkButton = document.getElementById("contactLinkButton");
 
         // Get booking data from sessionStorage
-        const bookingData = JSON.parse(sessionStorage.getItem('bookingData') || '{}');
-        
-        if (!bookingData.seminar || !bookingData.participants) {
-            window.location.href = 'booking-participants.html';
-        }
+        const bookingData = JSON.parse(
+          sessionStorage.getItem("bookingData") || "{}"
+        );
+        const seminar = bookingData.seminar || "";
+        const participants = bookingData.participants || "";
 
-        // Update booking info
-        const seminarNames = {
-            'arbeitsgestaltung': 'Arbeitsgestaltung',
-            'mitarbeitermotivation': 'Mitarbeitermotivation',
-            'mitarbeiterfuehrung': 'Mitarbeiterführung'
-        };
-        document.getElementById('bookingInfo').textContent = 
-            `${seminarNames[bookingData.seminar]} - ${bookingData.participants} Teilnehmer`;
-
-        // Update info box contact link with booking data
-        const infoBoxContactLink = document.getElementById('infoBoxContactLink');
-        if (infoBoxContactLink) {
-            const params = new URLSearchParams();
-            if (bookingData.seminar) params.append('seminar', bookingData.seminar);
-            if (bookingData.participants) params.append('participants', bookingData.participants);
-            infoBoxContactLink.href = `contact-form.html?${params.toString()}`;
-        }
-
-        // Mock data for available courses
-        const availableCourses = {
-            'mitarbeitermotivation': [
-                { date: '2026-01-15', slots: 20 },
-                { date: '2026-01-22', slots: 15 },
-                { date: '2026-02-05', slots: 25 },
-                { date: '2026-02-12', slots: 10 },
-                { date: '2026-02-19', slots: 18 },
-                { date: '2026-03-05', slots: 20 },
-            ],
-            'arbeitsgestaltung': [
-                { date: '2026-01-18', slots: 18 },
-                { date: '2026-01-25', slots: 22 },
-                { date: '2026-02-08', slots: 20 },
-                { date: '2026-02-15', slots: 12 },
-                { date: '2026-03-01', slots: 16 },
-                { date: '2026-03-15', slots: 25 },
-            ],
-            'mitarbeiterfuehrung': [
-                { date: '2026-01-20', slots: 16 },
-                { date: '2026-01-27', slots: 20 },
-                { date: '2026-02-10', slots: 15 },
-                { date: '2026-02-17', slots: 18 },
-                { date: '2026-03-03', slots: 12 },
-                { date: '2026-03-17', slots: 20 },
-            ]
-        };
-
-        // Get available dates for this seminar and participant count
-        const courses = availableCourses[bookingData.seminar] || [];
-        const availableDates = courses
-            .filter(course => course.slots >= parseInt(bookingData.participants))
-            .map(course => course.date);
-
-        // Calendar state
-        let currentDate = new Date();
-        let selectedDate = null;
-
-        // Calendar functions
-        function renderCalendar() {
-            const year = currentDate.getFullYear();
-            const month = currentDate.getMonth();
-            
-            // Update month display
-            const monthNames = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 
-                                'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
-            document.getElementById('currentMonth').textContent = `${monthNames[month]} ${year}`;
-
-            // Get first day of month and number of days
-            const firstDay = new Date(year, month, 1);
-            const lastDay = new Date(year, month + 1, 0);
-            const daysInMonth = lastDay.getDate();
-            const startingDayOfWeek = firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1; // Convert Sunday=0 to Monday=0
-
-            // Clear calendar
-            const calendarDays = document.getElementById('calendarDays');
-            calendarDays.innerHTML = '';
-
-            // Add empty cells for days before month starts
-            for (let i = 0; i < startingDayOfWeek; i++) {
-                const emptyDay = document.createElement('div');
-                calendarDays.appendChild(emptyDay);
-            }
-
-            // Add days of month
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-
-            for (let day = 1; day <= daysInMonth; day++) {
-                const dayElement = document.createElement('div');
-                dayElement.className = 'calendar-day';
-                dayElement.textContent = day;
-
-                const currentDateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                const dayDate = new Date(year, month, day);
-                dayDate.setHours(0, 0, 0, 0);
-
-                // Mark today first
-                if (dayDate.getTime() === today.getTime()) {
-                    dayElement.classList.add('today');
-                }
-
-                // Check if date is in the past
-                if (dayDate < today) {
-                    dayElement.classList.add('past');
-                } else if (availableDates.includes(currentDateStr)) {
-                    dayElement.classList.add('available');
-                    dayElement.addEventListener('click', () => selectDate(currentDateStr));
-                } else {
-                    dayElement.classList.add('unavailable');
-                    dayElement.addEventListener('click', () => showUnavailableModal(currentDateStr));
-                }
-
-                // Mark selected date (this should override other styles)
-                if (selectedDate === currentDateStr) {
-                    dayElement.classList.remove('available');
-                    dayElement.classList.add('selected');
-                }
-
-                calendarDays.appendChild(dayElement);
-            }
-
-            lucide.createIcons();
-        }
-
-        function selectDate(dateStr) {
-            // Toggle: if clicking on already selected date, deselect it
-            if (selectedDate === dateStr) {
-                selectedDate = null;
-                document.getElementById('continueBtn').disabled = true;
-            } else {
-                selectedDate = dateStr;
-                document.getElementById('continueBtn').disabled = false;
-            }
-            renderCalendar();
-        }
-
-        function showUnavailableModal(clickedDate) {
-            const modal = document.getElementById('unavailableModal');
-            const contactLink = document.getElementById('contactLink');
-            
-            // Get booking data from sessionStorage
-            const bookingData = JSON.parse(sessionStorage.getItem('bookingData') || '{}');
-            const seminar = bookingData.seminar || '';
-            const participants = bookingData.participants || '';
-            
-            // Format date for display (e.g., "15. Januar 2026")
-            const dateObj = new Date(clickedDate);
-            const formattedDate = dateObj.toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' });
-            
-            // Create URL with pre-filled data
-            const params = new URLSearchParams();
-            if (seminar) params.append('seminar', seminar);
-            if (participants) params.append('participants', participants);
-            if (clickedDate) params.append('date', formattedDate);
-            
-            contactLink.href = `contact-form.html?${params.toString()}`;
-            
-            modal.showModal();
-            lucide.createIcons();
-        }
-
-        // Month navigation
-        document.getElementById('prevMonth').addEventListener('click', () => {
-            currentDate.setMonth(currentDate.getMonth() - 1);
-            renderCalendar();
+        // Format date for display (e.g., "15. Januar 2026")
+        const dateObj = new Date(clickedDate);
+        const formattedDate = dateObj.toLocaleDateString("de-DE", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
         });
 
-        document.getElementById('nextMonth').addEventListener('click', () => {
-            currentDate.setMonth(currentDate.getMonth() + 1);
-            renderCalendar();
-        });
+        // Create URL with pre-filled data
+        const params = new URLSearchParams();
+        if (seminar) params.append("seminar", seminar);
+        if (participants) params.append("participants", participants);
+        if (clickedDate) params.append("date", formattedDate);
 
-        // Back button
-        document.getElementById('backBtn').addEventListener('click', () => {
-            window.location.href = 'booking-participants.html?seminar=' + bookingData.seminar;
-        });
+        const contactUrl = `contact-form.html?${params.toString()}`;
+        contactLink.href = contactUrl;
+        contactLinkButton.href = contactUrl;
 
-        // Continue button
-        document.getElementById('continueBtn').addEventListener('click', () => {
-            if (selectedDate) {
-                // Check if there are available courses for this date
-                const matchingCourses = courses.filter(c => 
-                    c.date === selectedDate && 
-                    c.slots >= parseInt(bookingData.participants)
-                );
+        modal.showModal();
+        lucide.createIcons();
+      }
 
-                if (matchingCourses.length > 0) {
-                    // Save selected date
-                    bookingData.selectedDate = selectedDate;
-                    sessionStorage.setItem('bookingData', JSON.stringify(bookingData));
-                    // Navigate to course selection
-                    window.location.href = 'booking-select-course.html';
-                } else {
-                    // No available courses - redirect to no availability page
-                    bookingData.selectedDate = selectedDate;
-                    sessionStorage.setItem('bookingData', JSON.stringify(bookingData));
-                    window.location.href = 'booking-no-availability.html';
-                }
-            }
-        });
-
-        // Initial render
+      // Month navigation
+      document.getElementById("prevMonth").addEventListener("click", () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
         renderCalendar();
-    </script>
+      });
 
-</body>
+      document.getElementById("nextMonth").addEventListener("click", () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar();
+      });
+
+      // Back button
+      document.getElementById("backBtn").addEventListener("click", () => {
+        window.location.href =
+          "booking-participants.html?seminar=" + bookingData.seminar;
+      });
+
+      // Continue button
+      document.getElementById("continueBtn").addEventListener("click", () => {
+        if (selectedDate) {
+          // Check if there are available courses for this date
+          const matchingCourses = courses.filter(
+            (c) =>
+              c.date === selectedDate &&
+              c.slots >= parseInt(bookingData.participants)
+          );
+
+          if (matchingCourses.length > 0) {
+            // Save selected date
+            bookingData.selectedDate = selectedDate;
+            sessionStorage.setItem("bookingData", JSON.stringify(bookingData));
+            // Navigate to course selection
+            window.location.href = "booking-select-course.html";
+          } else {
+            // No available courses - redirect to no availability page
+            bookingData.selectedDate = selectedDate;
+            sessionStorage.setItem("bookingData", JSON.stringify(bookingData));
+            window.location.href = "booking-no-availability.html";
+          }
+        }
+      });
+
+      // Initial render
+      renderCalendar();
+    </script>
+  </body>
 </html>

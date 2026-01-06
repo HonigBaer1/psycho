@@ -11,76 +11,189 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --royal-blue: #4169E1;
+            --royal-blue: #0635c3;
             --royal-blue-dark: #3457b8;
+            --success-green: #32a852;
+        }
+        .vw-title { color: var(--royal-blue); }
+
+        /* Success Checkmark Animation */
+        .success-checkmark {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
         }
 
-        @keyframes checkmark {
+        .check-icon {
+            width: 80px;
+            height: 80px;
+            position: relative;
+            border-radius: 50%;
+            box-sizing: content-box;
+            border: 4px solid var(--success-green);
+        }
+
+        .check-icon::before {
+            top: 3px;
+            left: -2px;
+            width: 30px;
+            transform-origin: 100% 50%;
+            border-radius: 100px 0 0 100px;
+            content: '';
+            height: 100px;
+            position: absolute;
+            background: #FFFFFF;
+            transform: rotate(-45deg);
+            z-index: 2;
+        }
+
+        .check-icon::after {
+            top: 0;
+            left: 30px;
+            width: 60px;
+            transform-origin: 0 50%;
+            border-radius: 0 100px 100px 0;
+            animation: rotate-circle 4.25s ease-in;
+            content: '';
+            height: 100px;
+            position: absolute;
+            background: #FFFFFF;
+            transform: rotate(-45deg);
+            z-index: 2;
+        }
+
+        .icon-line {
+            height: 5px;
+            background-color: var(--success-green);
+            display: block;
+            border-radius: 2px;
+            position: absolute;
+            z-index: 10;
+        }
+
+        .icon-line.line-tip {
+            top: 46px;
+            left: 14px;
+            width: 25px;
+            transform: rotate(45deg);
+            animation: icon-line-tip 0.75s;
+        }
+
+        .icon-line.line-long {
+            top: 38px;
+            right: 8px;
+            width: 47px;
+            transform: rotate(-45deg);
+            animation: icon-line-long 0.75s;
+        }
+
+        .icon-circle {
+            top: -4px;
+            left: -4px;
+            z-index: 10;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            position: absolute;
+            box-sizing: content-box;
+            border: 4px solid rgba(50, 168, 82, 0.5);
+        }
+
+        .icon-fix {
+            top: 8px;
+            width: 5px;
+            left: 26px;
+            z-index: 1;
+            height: 85px;
+            position: absolute;
+            transform: rotate(-45deg);
+            background-color: #FFFFFF;
+        }
+
+        @keyframes rotate-circle {
             0% {
-                stroke-dashoffset: 100;
+                transform: rotate(-45deg);
+            }
+            5% {
+                transform: rotate(-45deg);
+            }
+            12% {
+                transform: rotate(-405deg);
             }
             100% {
-                stroke-dashoffset: 0;
+                transform: rotate(-405deg);
             }
         }
 
-        .checkmark-circle {
-            animation: checkmark 0.6s ease-in-out;
-            stroke-dasharray: 100;
-            stroke-dashoffset: 0;
+        @keyframes icon-line-tip {
+            0% {
+                width: 0;
+                left: 1px;
+                top: 19px;
+            }
+            54% {
+                width: 0;
+                left: 1px;
+                top: 19px;
+            }
+            70% {
+                width: 50px;
+                left: -8px;
+                top: 37px;
+            }
+            84% {
+                width: 17px;
+                left: 21px;
+                top: 48px;
+            }
+            100% {
+                width: 25px;
+                left: 14px;
+                top: 45px;
+            }
+        }
+
+        @keyframes icon-line-long {
+            0% {
+                width: 0;
+                right: 46px;
+                top: 54px;
+            }
+            65% {
+                width: 0;
+                right: 46px;
+                top: 54px;
+            }
+            84% {
+                width: 55px;
+                right: 0px;
+                top: 35px;
+            }
+            100% {
+                width: 47px;
+                right: 8px;
+                top: 38px;
+            }
         }
     </style>
 </head>
 
 <body class="bg-white">
 
-    <!-- Header / Navbar -->
-    <header class="navbar bg-white shadow-sm sticky top-0 z-50 px-4 lg:px-8">
-        <div class="navbar-start">
-            <a href="landingpage.html" class="text-2xl font-bold" style="color: var(--royal-blue);">
-                Vital Works
-            </a>
-        </div>
-        <div class="navbar-center hidden lg:flex">
-            <ul class="menu menu-horizontal gap-2">
-                <li>
-                    <a href="landingpage.html" class="font-medium hover:text-white" 
-                       style="color: var(--royal-blue);"
-                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
-                        Landingpage
-                    </a>
-                </li>
-                <li>
-                    <a href="onboarding.html" class="font-medium hover:text-white"
-                       style="color: var(--royal-blue);"
-                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
-                        Onboarding
-                    </a>
-                </li>
-                <li>
-                    <a href="infopage.html" class="font-medium hover:text-white"
-                       style="color: var(--royal-blue);"
-                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
-                        Kursinfo
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="navbar-end lg:hidden">
-            <div class="dropdown dropdown-end">
-                <div tabindex="0" role="button" class="btn btn-ghost">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
+    <!-- HEADER -->
+    <header class="border-b border-base-200 bg-white sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="navbar px-0">
+                <div class="navbar-start">
+                    <a class="text-lg font-bold vw-title" href="landingpage.html">Vital Works</a>
                 </div>
-                <ul tabindex="0" class="menu menu-sm dropdown-content bg-white rounded-box z-10 mt-3 w-52 p-2 shadow">
-                    <li><a href="landingpage.html" style="color: var(--royal-blue);">Landingpage</a></li>
-                    <li><a href="onboarding.html" style="color: var(--royal-blue);">Onboarding</a></li>
-                    <li><a href="infopage.html" style="color: var(--royal-blue);">Kursinfo</a></li>
-                </ul>
+                <div class="navbar-end">
+                    <ul class="menu menu-horizontal px-1 text-sm">
+                        <li><a href="landingpage.html">Landingpage</a></li>
+                        <li><a href="landingpage.html#pakete">Kurs buchen</a></li>
+                        <li><a href="plustraining.html">Kursinfo</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </header>
@@ -92,15 +205,13 @@
             <div class="card bg-base-100 shadow-xl mb-8">
                 <div class="card-body items-center text-center py-12">
                     <!-- Success Icon -->
-                    <div class="w-32 h-32 rounded-full flex items-center justify-center mb-6" 
-                         style="background-color: white;">
-                        <svg class="checkmark-circle" width="80" height="80" viewBox="0 0 52 52">
-                            <circle cx="26" cy="26" r="25" fill="none" stroke="#43a842" stroke-width="2"/>
-                            <path fill="none" stroke="#43a842" stroke-width="3" stroke-linecap="round" 
-                                  d="M14 27l7 7 16-16" stroke-dasharray="48" stroke-dashoffset="48">
-                                <animate attributeName="stroke-dashoffset" from="48" to="0" dur="0.5s" begin="0.2s" fill="freeze"/>
-                            </path>
-                        </svg>
+                    <div class="success-checkmark">
+                        <div class="check-icon">
+                            <span class="icon-line line-tip"></span>
+                            <span class="icon-line line-long"></span>
+                            <div class="icon-circle"></div>
+                            <div class="icon-fix"></div>
+                        </div>
                     </div>
 
                     <!-- Title -->

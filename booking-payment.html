@@ -11,9 +11,11 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --royal-blue: #4169E1;
+            --royal-blue: #0635c3;
             --royal-blue-dark: #3457b8;
+            --success-green: #32a852;
         }
+        .vw-title { color: var(--royal-blue); }
 
         .payment-option {
             transition: all 0.3s;
@@ -33,53 +35,20 @@
 
 <body class="bg-white">
 
-    <!-- Header / Navbar -->
-    <header class="navbar bg-white shadow-sm sticky top-0 z-50 px-4 lg:px-8">
-        <div class="navbar-start">
-            <a href="landingpage.html" class="text-2xl font-bold" style="color: var(--royal-blue);">
-                Vital Works
-            </a>
-        </div>
-        <div class="navbar-center hidden lg:flex">
-            <ul class="menu menu-horizontal gap-2">
-                <li>
-                    <a href="landingpage.html" class="font-medium hover:text-white" 
-                       style="color: var(--royal-blue);"
-                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
-                        Landingpage
-                    </a>
-                </li>
-                <li>
-                    <a href="onboarding.html" class="font-medium hover:text-white"
-                       style="color: var(--royal-blue);"
-                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
-                        Onboarding
-                    </a>
-                </li>
-                <li>
-                    <a href="infopage.html" class="font-medium hover:text-white"
-                       style="color: var(--royal-blue);"
-                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
-                        Kursinfo
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="navbar-end lg:hidden">
-            <div class="dropdown dropdown-end">
-                <div tabindex="0" role="button" class="btn btn-ghost">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
+    <!-- HEADER -->
+    <header class="border-b border-base-200 bg-white sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="navbar px-0">
+                <div class="navbar-start">
+                    <a class="text-lg font-bold vw-title" href="landingpage.html">Vital Works</a>
                 </div>
-                <ul tabindex="0" class="menu menu-sm dropdown-content bg-white rounded-box z-10 mt-3 w-52 p-2 shadow">
-                    <li><a href="landingpage.html" style="color: var(--royal-blue);">Landingpage</a></li>
-                    <li><a href="onboarding.html" style="color: var(--royal-blue);">Onboarding</a></li>
-                    <li><a href="infopage.html" style="color: var(--royal-blue);">Kursinfo</a></li>
-                </ul>
+                <div class="navbar-end">
+                    <ul class="menu menu-horizontal px-1 text-sm">
+                        <li><a href="landingpage.html">Landingpage</a></li>
+                        <li><a href="landingpage.html#pakete">Kurs buchen</a></li>
+                        <li><a href="plustraining.html">Kursinfo</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </header>
@@ -418,9 +387,9 @@
 
     <!-- Confirmation Modal -->
     <dialog id="confirmationModal" class="modal">
-        <div class="modal-box">
-            <h3 class="font-bold text-lg" style="color: var(--royal-blue);">
-                <i data-lucide="alert-circle" style="width: 24px; height: 24px; display: inline-block; vertical-align: middle; margin-right: 8px;"></i>
+        <div class="modal-box" style="border-top: 4px solid var(--success-green);">
+            <h3 class="font-bold text-lg" style="color: #000;">
+                <i data-lucide="check-circle" style="width: 24px; height: 24px; display: inline-block; vertical-align: middle; margin-right: 8px; color: var(--success-green);"></i>
                 Buchung bestätigen
             </h3>
             <p class="py-4">Möchten Sie diesen Kurs wirklich zahlungspflichtig buchen?</p>
@@ -428,12 +397,12 @@
                 <p class="text-sm"><strong>Seminar:</strong> <span id="modalSeminarTitle"></span></p>
                 <p class="text-sm"><strong>Termin:</strong> <span id="modalDate"></span></p>
                 <p class="text-sm"><strong>Teilnehmer:</strong> <span id="modalParticipants"></span></p>
-                <p class="text-lg font-bold mt-2" style="color: var(--royal-blue);"><strong>Gesamtpreis:</strong> <span id="modalTotal"></span></p>
+                <p class="text-lg font-bold mt-2" style="color: #000;"><strong>Gesamtpreis:</strong> <span id="modalTotal"></span></p>
             </div>
             <div class="modal-action">
                 <form method="dialog">
-                    <button class="btn btn-outline" style="border-color: var(--royal-blue); color: var(--royal-blue); margin-right: 8px;">Abbrechen</button>
-                    <button id="confirmBookingBtn" class="btn" style="background-color: var(--royal-blue); color: white;">Bestätigen und buchen</button>
+                    <button class="btn btn-outline" style="border-color: var(--success-green); color: var(--success-green); margin-right: 8px;">Abbrechen</button>
+                    <button id="confirmBookingBtn" class="btn" style="background-color: var(--success-green); color: white;">Bestätigen und buchen</button>
                 </form>
             </div>
         </div>
@@ -527,41 +496,139 @@
         // Credit card formatting and validation
         const cardNumberInput = document.getElementById('cardNumber');
         const expiryDateInput = document.getElementById('expiryDate');
+        const cvvInput = document.getElementById('cvv');
+        const cardHolderInput = document.getElementById('cardHolder');
         const ibanInput = document.getElementById('iban');
         const bicInput = document.getElementById('bic');
+        const accountHolderInput = document.getElementById('accountHolder');
+
+        // Helper function to show browser-native feedback
+        function showInvalidFeedback(input, message) {
+            input.setCustomValidity(message);
+            input.reportValidity();
+            setTimeout(() => input.setCustomValidity(''), 100);
+        }
+
+        // Card holder - only letters, spaces, hyphens, umlauts
+        if (cardHolderInput) {
+            cardHolderInput.addEventListener('keypress', function(e) {
+                const char = e.key;
+                if (!/^[A-Za-zÄÖÜäöüß\s\-]$/.test(char) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(char)) {
+                    e.preventDefault();
+                    showInvalidFeedback(this, 'Nur Buchstaben, Leerzeichen und Bindestriche erlaubt');
+                }
+            });
+            cardHolderInput.addEventListener('input', function(e) {
+                const filtered = e.target.value.replace(/[^A-Za-zÄÖÜäöüß\s\-]/g, '');
+                if (filtered !== e.target.value) {
+                    e.target.value = filtered;
+                }
+            });
+        }
+
+        // Account holder - only letters, spaces, hyphens, umlauts
+        if (accountHolderInput) {
+            accountHolderInput.addEventListener('keypress', function(e) {
+                const char = e.key;
+                if (!/^[A-Za-zÄÖÜäöüß\s\-]$/.test(char) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(char)) {
+                    e.preventDefault();
+                    showInvalidFeedback(this, 'Nur Buchstaben, Leerzeichen und Bindestriche erlaubt');
+                }
+            });
+            accountHolderInput.addEventListener('input', function(e) {
+                const filtered = e.target.value.replace(/[^A-Za-zÄÖÜäöüß\s\-]/g, '');
+                if (filtered !== e.target.value) {
+                    e.target.value = filtered;
+                }
+            });
+        }
         
-        // Format card number with spaces
+        // Format card number with spaces - only digits allowed
         if (cardNumberInput) {
+            cardNumberInput.addEventListener('keypress', function(e) {
+                const char = e.key;
+                if (!/^[0-9]$/.test(char) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(char)) {
+                    e.preventDefault();
+                    showInvalidFeedback(this, 'Nur Ziffern erlaubt');
+                }
+            });
             cardNumberInput.addEventListener('input', function(e) {
-                let value = e.target.value.replace(/\s/g, '');
+                let value = e.target.value.replace(/[^0-9]/g, '');
                 let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
                 e.target.value = formattedValue;
             });
         }
         
-        // Format expiry date with slash
+        // Format expiry date with slash - only digits allowed
         if (expiryDateInput) {
+            expiryDateInput.addEventListener('keypress', function(e) {
+                const char = e.key;
+                if (!/^[0-9]$/.test(char) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(char)) {
+                    e.preventDefault();
+                    showInvalidFeedback(this, 'Nur Ziffern erlaubt (Format: MM/JJ)');
+                }
+            });
             expiryDateInput.addEventListener('input', function(e) {
-                let value = e.target.value.replace(/\D/g, '');
+                let value = e.target.value.replace(/[^0-9]/g, '');
                 if (value.length >= 2) {
                     value = value.slice(0, 2) + '/' + value.slice(2, 4);
                 }
                 e.target.value = value;
             });
         }
-        
-        // Format IBAN - remove spaces and convert to uppercase
-        if (ibanInput) {
-            ibanInput.addEventListener('input', function(e) {
-                let value = e.target.value.replace(/\s/g, '').toUpperCase();
-                e.target.value = value;
+
+        // CVV - only digits allowed
+        if (cvvInput) {
+            cvvInput.addEventListener('keypress', function(e) {
+                const char = e.key;
+                if (!/^[0-9]$/.test(char) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(char)) {
+                    e.preventDefault();
+                    showInvalidFeedback(this, 'Nur Ziffern erlaubt');
+                }
+            });
+            cvvInput.addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/[^0-9]/g, '');
             });
         }
         
-        // Format BIC - convert to uppercase
+        // Format IBAN - only letters (first 2) and digits, convert to uppercase
+        if (ibanInput) {
+            ibanInput.addEventListener('keypress', function(e) {
+                const char = e.key;
+                const currentLength = e.target.value.length;
+                // First 2 characters must be letters, rest must be digits
+                if (currentLength < 2) {
+                    if (!/^[A-Za-z]$/.test(char) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(char)) {
+                        e.preventDefault();
+                        showInvalidFeedback(this, 'IBAN muss mit 2 Buchstaben beginnen (z.B. DE)');
+                    }
+                } else {
+                    if (!/^[0-9]$/.test(char) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(char)) {
+                        e.preventDefault();
+                        showInvalidFeedback(this, 'Nach den Länderbuchstaben nur Ziffern erlaubt');
+                    }
+                }
+            });
+            ibanInput.addEventListener('input', function(e) {
+                let value = e.target.value.toUpperCase();
+                // Keep first 2 chars as letters, rest as digits
+                let letters = value.slice(0, 2).replace(/[^A-Z]/g, '');
+                let digits = value.slice(2).replace(/[^0-9]/g, '');
+                e.target.value = letters + digits;
+            });
+        }
+        
+        // Format BIC - only letters and digits, convert to uppercase
         if (bicInput) {
+            bicInput.addEventListener('keypress', function(e) {
+                const char = e.key;
+                if (!/^[A-Za-z0-9]$/.test(char) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(char)) {
+                    e.preventDefault();
+                    showInvalidFeedback(this, 'Nur Buchstaben und Ziffern erlaubt');
+                }
+            });
             bicInput.addEventListener('input', function(e) {
-                e.target.value = e.target.value.toUpperCase();
+                e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
             });
         }
         

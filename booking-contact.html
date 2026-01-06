@@ -9,11 +9,14 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css" />
     <style>
         :root {
-            --royal-blue: #4169E1;
+            --royal-blue: #0635c3;
             --royal-blue-dark: #3457b8;
+            --success-green: #32a852;
         }
+        .vw-title { color: var(--royal-blue); }
         .form-field {
     display: flex;
     flex-direction: column;
@@ -29,58 +32,92 @@
   .form-textarea {
     width: 100%;
   }
+
+  .phone-input-wrapper {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .country-code-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    position: relative;
+    flex: 1;
+  }
+
+  .country-code-selector:hover {
+    border-color: var(--royal-blue);
+  }
+
+  .phone-number-input {
+    flex: 3;
+  }
+
+  .country-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 280px;
+    margin-top: 0.25rem;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 50;
+    display: none;
+  }
+
+  .country-dropdown.show {
+    display: block;
+  }
+
+  .country-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+  }
+
+  .country-option .fi {
+    font-size: 1.5rem;
+    width: 32px;
+    height: 24px;
+  }
+
+  .country-option:hover {
+    background-color: #f3f4f6;
+  }
+
+  .input.input-error,
+  .select.input-error,
+  .textarea.input-error {
+    border-color: #ef4444 !important;
+    border-width: 2px;
+  }
     </style>
 </head>
 
 <body class="bg-white">
 
-    <!-- Header / Navbar -->
-    <header class="navbar bg-white shadow-sm sticky top-0 z-50 px-4 lg:px-8">
-        <div class="navbar-start">
-            <a href="landingpage.html" class="text-2xl font-bold" style="color: var(--royal-blue);">
-                Vital Works
-            </a>
-        </div>
-        <div class="navbar-center hidden lg:flex">
-            <ul class="menu menu-horizontal gap-2">
-                <li>
-                    <a href="landingpage.html" class="font-medium hover:text-white" 
-                       style="color: var(--royal-blue);"
-                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
-                        Landingpage
-                    </a>
-                </li>
-                <li>
-                    <a href="onboarding.html" class="font-medium hover:text-white"
-                       style="color: var(--royal-blue);"
-                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
-                        Onboarding
-                    </a>
-                </li>
-                <li>
-                    <a href="infopage.html" class="font-medium hover:text-white"
-                       style="color: var(--royal-blue);"
-                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
-                        Kursinfo
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="navbar-end lg:hidden">
-            <div class="dropdown dropdown-end">
-                <div tabindex="0" role="button" class="btn btn-ghost">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
+    <!-- HEADER -->
+    <header class="border-b border-base-200 bg-white sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="navbar px-0">
+                <div class="navbar-start">
+                    <a class="text-lg font-bold vw-title" href="landingpage.html">Vital Works</a>
                 </div>
-                <ul tabindex="0" class="menu menu-sm dropdown-content bg-white rounded-box z-10 mt-3 w-52 p-2 shadow">
-                    <li><a href="landingpage.html" style="color: var(--royal-blue);">Landingpage</a></li>
-                    <li><a href="onboarding.html" style="color: var(--royal-blue);">Onboarding</a></li>
-                    <li><a href="infopage.html" style="color: var(--royal-blue);">Kursinfo</a></li>
-                </ul>
+                <div class="navbar-end">
+                    <ul class="menu menu-horizontal px-1 text-sm">
+                        <li><a href="landingpage.html">Landingpage</a></li>
+                        <li><a href="landingpage.html#pakete">Kurs buchen</a></li>
+                        <li><a href="plustraining.html">Kursinfo</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </header>
@@ -122,6 +159,9 @@
             
             <div class="card bg-base-100 shadow-xl">
             <div class="card-body">
+                <div class="text-right mb-4 text-sm text-gray-600">
+                    Mit * markierte Felder sind Pflichtfelder
+                </div>
                 <form id="contactForm" class="space-y-10">
 
                 <!-- Unternehmensdaten -->
@@ -245,14 +285,81 @@
                         <label class="form-label">
                         Telefon <span class="text-red-500">*</span>
                         </label>
-                        <input
-                        type="tel"
-                        name="phone"
-                        class="input input-bordered form-input"
-                        pattern="[0-9\+\/\s\-]+"
-                        title="Bitte nur Ziffern, +, / oder - eingeben"
-                        required
-                        />
+                        <div class="phone-input-wrapper">
+                            <div class="input input-bordered country-code-selector" id="countrySelector">
+                                <span class="fi fi-de"></span>
+                                <span id="selectedCode">+49</span>
+                                <i data-lucide="chevron-down" style="width: 16px; height: 16px;"></i>
+                                <div class="country-dropdown" id="countryDropdown">
+                                    <div class="country-option" data-code="+49" data-flag="de">
+                                        <span class="fi fi-de"></span>
+                                        <span>Deutschland</span>
+                                        <span class="ml-auto text-gray-500">+49</span>
+                                    </div>
+                                    <div class="country-option" data-code="+43" data-flag="at">
+                                        <span class="fi fi-at"></span>
+                                        <span>Österreich</span>
+                                        <span class="ml-auto text-gray-500">+43</span>
+                                    </div>
+                                    <div class="country-option" data-code="+41" data-flag="ch">
+                                        <span class="fi fi-ch"></span>
+                                        <span>Schweiz</span>
+                                        <span class="ml-auto text-gray-500">+41</span>
+                                    </div>
+                                    <div class="country-option" data-code="+44" data-flag="gb">
+                                        <span class="fi fi-gb"></span>
+                                        <span>Vereinigtes Königreich</span>
+                                        <span class="ml-auto text-gray-500">+44</span>
+                                    </div>
+                                    <div class="country-option" data-code="+33" data-flag="fr">
+                                        <span class="fi fi-fr"></span>
+                                        <span>Frankreich</span>
+                                        <span class="ml-auto text-gray-500">+33</span>
+                                    </div>
+                                    <div class="country-option" data-code="+39" data-flag="it">
+                                        <span class="fi fi-it"></span>
+                                        <span>Italien</span>
+                                        <span class="ml-auto text-gray-500">+39</span>
+                                    </div>
+                                    <div class="country-option" data-code="+34" data-flag="es">
+                                        <span class="fi fi-es"></span>
+                                        <span>Spanien</span>
+                                        <span class="ml-auto text-gray-500">+34</span>
+                                    </div>
+                                    <div class="country-option" data-code="+31" data-flag="nl">
+                                        <span class="fi fi-nl"></span>
+                                        <span>Niederlande</span>
+                                        <span class="ml-auto text-gray-500">+31</span>
+                                    </div>
+                                    <div class="country-option" data-code="+32" data-flag="be">
+                                        <span class="fi fi-be"></span>
+                                        <span>Belgien</span>
+                                        <span class="ml-auto text-gray-500">+32</span>
+                                    </div>
+                                    <div class="country-option" data-code="+48" data-flag="pl">
+                                        <span class="fi fi-pl"></span>
+                                        <span>Polen</span>
+                                        <span class="ml-auto text-gray-500">+48</span>
+                                    </div>
+                                    <div class="country-option" data-code="+1" data-flag="us">
+                                        <span class="fi fi-us"></span>
+                                        <span>Vereinigte Staaten</span>
+                                        <span class="ml-auto text-gray-500">+1</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <input
+                                type="tel"
+                                name="phone"
+                                id="phoneNumber"
+                                placeholder="123 456789"
+                                class="input input-bordered phone-number-input"
+                                pattern="[0-9\s\-]+"
+                                title="Bitte nur Ziffern, Leerzeichen oder - eingeben"
+                                required
+                            />
+                        </div>
+                        <input type="hidden" name="countryCode" id="countryCodeHidden" value="+49" />
                     </div>
                     </div>
                 </section>
@@ -325,8 +432,8 @@
                 </section>
 
                 <!-- Datenschutz -->
-                <div class="flex items-start gap-3">
-                    <input type="checkbox" required class="checkbox mt-1" />
+                <div class="flex items-center gap-3">
+                    <input type="checkbox" required class="checkbox" />
                     <span>
                     Ich akzeptiere die
                     <a href="#" class="link" style="color: var(--royal-blue);">Datenschutzerklärung</a>
@@ -355,6 +462,138 @@
     <script>
         // Initialize Lucide icons
         lucide.createIcons();
+
+        // Country code selector functionality
+        const countrySelector = document.getElementById('countrySelector');
+        const countryDropdown = document.getElementById('countryDropdown');
+        const selectedCodeSpan = document.getElementById('selectedCode');
+        const countryCodeHidden = document.getElementById('countryCodeHidden');
+        const countryOptions = document.querySelectorAll('.country-option');
+
+        countrySelector.addEventListener('click', (e) => {
+            e.stopPropagation();
+            countryDropdown.classList.toggle('show');
+        });
+
+        countryOptions.forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const code = option.dataset.code;
+                const flag = option.dataset.flag;
+                
+                // Update selected display
+                selectedCodeSpan.textContent = code;
+                countryCodeHidden.value = code;
+                
+                // Update flag
+                const flagSpan = countrySelector.querySelector('.fi');
+                flagSpan.className = `fi fi-${flag}`;
+                
+                // Close dropdown
+                countryDropdown.classList.remove('show');
+                
+                // Re-initialize icons
+                lucide.createIcons();
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', () => {
+            countryDropdown.classList.remove('show');
+        });
+
+        // Helper function to show browser-native feedback
+        function showInvalidFeedback(input, message) {
+            input.setCustomValidity(message);
+            input.reportValidity();
+            setTimeout(() => input.setCustomValidity(''), 100);
+        }
+
+        // Get form inputs for validation
+        const firstNameInput = document.querySelector('input[name="firstName"]');
+        const lastNameInput = document.querySelector('input[name="lastName"]');
+        const cityInput = document.querySelector('input[name="city"]');
+        const zipCodeInput = document.querySelector('input[name="zipCode"]');
+
+        // First name - only letters, spaces, hyphens, umlauts
+        if (firstNameInput) {
+            firstNameInput.addEventListener('keypress', function(e) {
+                const char = e.key;
+                if (!/^[A-Za-zÄÖÜäöüß\s\-]$/.test(char) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(char)) {
+                    e.preventDefault();
+                    showInvalidFeedback(this, 'Nur Buchstaben, Leerzeichen und Bindestriche erlaubt');
+                }
+            });
+            firstNameInput.addEventListener('input', function(e) {
+                const filtered = e.target.value.replace(/[^A-Za-zÄÖÜäöüß\s\-]/g, '');
+                if (filtered !== e.target.value) {
+                    e.target.value = filtered;
+                }
+            });
+        }
+
+        // Last name - only letters, spaces, hyphens, umlauts
+        if (lastNameInput) {
+            lastNameInput.addEventListener('keypress', function(e) {
+                const char = e.key;
+                if (!/^[A-Za-zÄÖÜäöüß\s\-]$/.test(char) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(char)) {
+                    e.preventDefault();
+                    showInvalidFeedback(this, 'Nur Buchstaben, Leerzeichen und Bindestriche erlaubt');
+                }
+            });
+            lastNameInput.addEventListener('input', function(e) {
+                const filtered = e.target.value.replace(/[^A-Za-zÄÖÜäöüß\s\-]/g, '');
+                if (filtered !== e.target.value) {
+                    e.target.value = filtered;
+                }
+            });
+        }
+
+        // City - only letters, spaces, hyphens, umlauts
+        if (cityInput) {
+            cityInput.addEventListener('keypress', function(e) {
+                const char = e.key;
+                if (!/^[A-Za-zÄÖÜäöüß\s\-]$/.test(char) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(char)) {
+                    e.preventDefault();
+                    showInvalidFeedback(this, 'Nur Buchstaben, Leerzeichen und Bindestriche erlaubt');
+                }
+            });
+            cityInput.addEventListener('input', function(e) {
+                const filtered = e.target.value.replace(/[^A-Za-zÄÖÜäöüß\s\-]/g, '');
+                if (filtered !== e.target.value) {
+                    e.target.value = filtered;
+                }
+            });
+        }
+
+        // ZIP code - only digits
+        if (zipCodeInput) {
+            zipCodeInput.addEventListener('keypress', function(e) {
+                const char = e.key;
+                if (!/^[0-9]$/.test(char) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(char)) {
+                    e.preventDefault();
+                    showInvalidFeedback(this, 'Nur Ziffern erlaubt');
+                }
+            });
+            zipCodeInput.addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/[^0-9]/g, '');
+            });
+        }
+
+        // Phone number input - allow only digits, spaces, and hyphens
+        const phoneNumberInput = document.getElementById('phoneNumber');
+        phoneNumberInput.addEventListener('input', (e) => {
+            // Remove any character that is not a digit, space, or hyphen
+            e.target.value = e.target.value.replace(/[^0-9\s\-]/g, '');
+        });
+
+        phoneNumberInput.addEventListener('keypress', (e) => {
+            // Allow only digits (0-9), space, hyphen, backspace, delete, arrow keys
+            const char = e.key;
+            if (!/[0-9\s\-]/.test(char) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(e.key)) {
+                e.preventDefault();
+            }
+        });
 
         // Get booking data from sessionStorage
         const bookingData = JSON.parse(sessionStorage.getItem('bookingData') || '{}');
@@ -391,8 +630,18 @@
             // Validate email confirmation
             validateEmailConfirm();
             
+            // Remove previous error styling
+            const allInputs = form.querySelectorAll('.input, .select, .textarea');
+            allInputs.forEach(input => input.classList.remove('input-error'));
+            
             // Check if form is valid (including custom validation)
             if (!form.checkValidity()) {
+                // Add red border to invalid fields
+                allInputs.forEach(input => {
+                    if (!input.checkValidity()) {
+                        input.classList.add('input-error');
+                    }
+                });
                 form.reportValidity();
                 return;
             }
@@ -405,7 +654,7 @@
                 firstName: formData.get('firstName'),
                 lastName: formData.get('lastName'),
                 email: formData.get('email'),
-                phone: formData.get('phone'),
+                phone: formData.get('countryCode') + ' ' + formData.get('phone'),
                 street: formData.get('street'),
                 zipCode: formData.get('zipCode'),
                 city: formData.get('city'),

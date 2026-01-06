@@ -11,61 +11,30 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --royal-blue: #4169E1;
+            --royal-blue: #0635c3;
             --royal-blue-dark: #3457b8;
+            --success-green: #32a852;
         }
+        .vw-title { color: var(--royal-blue); }
     </style>
 </head>
 
 <body class="bg-white">
 
-    <!-- Header / Navbar -->
-    <header class="navbar bg-white shadow-sm sticky top-0 z-50 px-4 lg:px-8">
-        <div class="navbar-start">
-            <a href="landingpage.html" class="text-2xl font-bold" style="color: var(--royal-blue);">
-                Vital Works
-            </a>
-        </div>
-        <div class="navbar-center hidden lg:flex">
-            <ul class="menu menu-horizontal gap-2">
-                <li>
-                    <a href="landingpage.html" class="font-medium hover:text-white" 
-                       style="color: var(--royal-blue);"
-                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
-                        Landingpage
-                    </a>
-                </li>
-                <li>
-                    <a href="onboarding.html" class="font-medium hover:text-white"
-                       style="color: var(--royal-blue);"
-                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
-                        Onboarding
-                    </a>
-                </li>
-                <li>
-                    <a href="infopage.html" class="font-medium hover:text-white"
-                       style="color: var(--royal-blue);"
-                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
-                        Kursinfo
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="navbar-end lg:hidden">
-            <div class="dropdown dropdown-end">
-                <div tabindex="0" role="button" class="btn btn-ghost">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
+    <!-- HEADER -->
+    <header class="border-b border-base-200 bg-white sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="navbar px-0">
+                <div class="navbar-start">
+                    <a class="text-lg font-bold vw-title" href="landingpage.html">Vital Works</a>
                 </div>
-                <ul tabindex="0" class="menu menu-sm dropdown-content bg-white rounded-box z-10 mt-3 w-52 p-2 shadow">
-                    <li><a href="landingpage.html" style="color: var(--royal-blue);">Landingpage</a></li>
-                    <li><a href="onboarding.html" style="color: var(--royal-blue);">Onboarding</a></li>
-                    <li><a href="infopage.html" style="color: var(--royal-blue);">Kursinfo</a></li>
-                </ul>
+                <div class="navbar-end">
+                    <ul class="menu menu-horizontal px-1 text-sm">
+                        <li><a href="landingpage.html">Landingpage</a></li>
+                        <li><a href="landingpage.html#pakete">Kurs buchen</a></li>
+                        <li><a href="plustraining.html">Kursinfo</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </header>

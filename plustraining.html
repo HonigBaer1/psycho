@@ -16,9 +16,12 @@
 
   <style>
     :root{
-      --vw-blue: #0b3bbf;
-      --vw-blue-dark: #0830a0;
-      --vw-blue-soft: rgba(11,59,191,.16);
+      --royal-blue: #0635c3;
+      --royal-blue-dark: #3457b8;
+      --success-green: #32a852;
+      --vw-blue: #0635c3;
+      --vw-blue-dark: #3457b8;
+      --vw-blue-soft: rgba(6,53,195,.16);
       --soft-gray: #f6f7f9;
       --text-gray: #5f6b7a;
     }
@@ -26,7 +29,7 @@
     .btn-vw-primary{ background: var(--vw-blue); border-color: var(--vw-blue); color: #fff; }
     .btn-vw-primary:hover{ background: var(--vw-blue-dark); border-color: var(--vw-blue-dark); }
     .btn-vw-outline{ border-color: var(--vw-blue); color: var(--vw-blue); }
-    .btn-vw-outline:hover{ background: rgba(11, 59, 191, .08); border-color: var(--vw-blue); }
+    .btn-vw-outline:hover{ background: rgba(6, 53, 195, .08); border-color: var(--vw-blue); }
 
     .vw-title{ color: var(--vw-blue); }
     .vw-muted{ color: var(--text-gray); }
@@ -54,7 +57,7 @@
     .vw-step-badge{
       position: relative; z-index: 2; width: 32px; height: 32px; border-radius: 999px;
       background: var(--vw-blue); color: #fff; font-weight: 700; display:grid; place-items:center;
-      margin-top: 2px; box-shadow: 0 10px 18px rgba(11,59,191,.18);
+      margin-top: 2px; box-shadow: 0 10px 18px rgba(6,53,195,.18);
     }
     .vw-step-content{ flex: 1; padding-left: 4px; }
 
@@ -98,13 +101,13 @@
     <div class="max-w-6xl mx-auto px-4">
       <div class="navbar px-0">
         <div class="navbar-start">
-          <a class="text-lg font-bold vw-title" href="#">Vital Works</a>
+          <a class="text-lg font-bold vw-title" href="landingpage.html">Vital Works</a>
         </div>
         <div class="navbar-end">
           <ul class="menu menu-horizontal px-1 text-sm">
-            <li><a href="#">Landingpage</a></li>
-            <li><a href="#">Onboarding</a></li>
-            <li><a class="font-semibold vw-title" href="#">Kursinfo</a></li>
+            <li><a href="landingpage.html">Landingpage</a></li>
+            <li><a href="landingpage.html#pakete">Kurs buchen</a></li>
+            <li><a class="font-semibold vw-title" href="plustraining.html">Kursinfo</a></li>
           </ul>
         </div>
       </div>
@@ -120,7 +123,7 @@
         Ein praxisnahes Training für Führungskräfte: Klar führen, Motivation erhöhen, Leistung stabilisieren.
       </p>
 
-      <div class="mt-4 inline-flex items-center gap-3 px-4 py-2 rounded-full" style="background: rgba(11,59,191,.06);">
+      <div class="mt-4 inline-flex items-center gap-3 px-4 py-2 rounded-full" style="background: rgba(6,53,195,.06);">
         <div class="flex items-center gap-2">
           <div class="rating vw-rating-sm">
             <input type="radio" class="mask mask-star-2 bg-orange-400" checked />
@@ -143,7 +146,7 @@
         <div class="vw-card p-6">
           <div class="flex items-start justify-between gap-4">
             <h2 class="font-semibold vw-section-title">Worum geht’s?</h2>
-            <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+            <span class="badge vw-badge-title" style="background: rgba(6,53,195,.10); color: var(--vw-blue); border: none;">
               Praxisfokus
             </span>
           </div>
@@ -233,7 +236,7 @@
             </div>
           </div>
 
-          <div class="mt-5 rounded-xl p-4" style="background: rgba(11,59,191,.06);">
+          <div class="mt-5 rounded-xl p-4" style="background: rgba(6,53,195,.06);">
             <div class="flex items-start gap-2">
               <i data-lucide="package" class="mt-0.5"></i>
               <div>
@@ -341,7 +344,7 @@
                 <div class="grid md:grid-cols-2 gap-4">
                   <div class="vw-card p-5 vw-review-card">
                     <div class="flex items-start justify-between gap-3">
-                      <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+                      <span class="badge vw-badge-title" style="background: rgba(6,53,195,.10); color: var(--vw-blue); border: none;">
                         Prof. Dr. • Arbeitspsychologie
                       </span>
                       <div class="text-right">
@@ -367,7 +370,7 @@
 
                   <div class="vw-card p-5 vw-review-card">
                     <div class="flex items-start justify-between gap-3">
-                      <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+                      <span class="badge vw-badge-title" style="background: rgba(6,53,195,.10); color: var(--vw-blue); border: none;">
                         Dr. • Organisationsentwicklung
                       </span>
                       <div class="text-right">
@@ -398,7 +401,7 @@
                 <div class="grid md:grid-cols-2 gap-4">
                   <div class="vw-card p-5 vw-review-card">
                     <div class="flex items-start justify-between gap-3">
-                      <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+                      <span class="badge vw-badge-title" style="background: rgba(6,53,195,.10); color: var(--vw-blue); border: none;">
                         Prof. • Leadership & Change
                       </span>
                       <div class="text-right">
@@ -424,7 +427,7 @@
 
                   <div class="vw-card p-5 vw-review-card">
                     <div class="flex items-start justify-between gap-3">
-                      <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+                      <span class="badge vw-badge-title" style="background: rgba(6,53,195,.10); color: var(--vw-blue); border: none;">
                         Dr. • Wirtschaftspsychologie
                       </span>
                       <div class="text-right">
@@ -455,7 +458,7 @@
                 <div class="grid md:grid-cols-2 gap-4">
                   <div class="vw-card p-5 vw-review-card">
                     <div class="flex items-start justify-between gap-3">
-                      <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+                      <span class="badge vw-badge-title" style="background: rgba(6,53,195,.10); color: var(--vw-blue); border: none;">
                         Prof. Dr. • Management
                       </span>
                       <div class="text-right">
@@ -481,7 +484,7 @@
 
                   <div class="vw-card p-5 vw-review-card">
                     <div class="flex items-start justify-between gap-3">
-                      <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+                      <span class="badge vw-badge-title" style="background: rgba(6,53,195,.10); color: var(--vw-blue); border: none;">
                         Dr. • Leadership Coaching
                       </span>
                       <div class="text-right">
@@ -512,7 +515,7 @@
                 <div class="grid md:grid-cols-2 gap-4">
                   <div class="vw-card p-5 vw-review-card">
                     <div class="flex items-start justify-between gap-3">
-                      <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+                      <span class="badge vw-badge-title" style="background: rgba(6,53,195,.10); color: var(--vw-blue); border: none;">
                         Prof. • Organisationspsychologie
                       </span>
                       <div class="text-right">
@@ -538,7 +541,7 @@
 
                   <div class="vw-card p-5 vw-review-card">
                     <div class="flex items-start justify-between gap-3">
-                      <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+                      <span class="badge vw-badge-title" style="background: rgba(6,53,195,.10); color: var(--vw-blue); border: none;">
                         Dr. • Change Management
                       </span>
                       <div class="text-right">
@@ -583,7 +586,7 @@
             <div class="vw-card p-6 vw-training-card">
               <div class="vw-training-content">
                 <div class="mb-2">
-                  <span class="badge opacity-0 vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+                  <span class="badge opacity-0 vw-badge-title" style="background: rgba(6,53,195,.10); color: var(--vw-blue); border: none;">
                     Empfohlen
                   </span>
                 </div>
@@ -609,9 +612,8 @@
                 </ul>
               </div>
 
-              <div class="mt-6 flex flex-col sm:flex-row gap-3">
-                <a class="btn btn-vw-outline flex-1" href="#"><i data-lucide="info" class="mr-1"></i>Kurzinfo</a>
-                <a class="btn btn-vw-primary flex-1" href="#"><i data-lucide="arrow-right" class="mr-1"></i>Auswählen</a>
+              <div class="mt-6">
+                <a class="btn btn-vw-primary w-full" href="booking-participants.html?seminar=arbeitsgestaltung">Buchen</a>
               </div>
             </div>
 
@@ -619,7 +621,7 @@
             <div class="vw-card p-6 vw-training-card">
               <div class="vw-training-content">
                 <div class="mb-2">
-                  <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+                  <span class="badge vw-badge-title" style="background: rgba(6,53,195,.10); color: var(--vw-blue); border: none;">
                     Empfohlen
                   </span>
                 </div>
@@ -645,9 +647,8 @@
                 </ul>
               </div>
 
-              <div class="mt-6 flex flex-col sm:flex-row gap-3">
-                <a class="btn btn-vw-outline flex-1" href="#"><i data-lucide="info" class="mr-1"></i>Kurzinfo</a>
-                <a class="btn btn-vw-primary flex-1" href="#"><i data-lucide="arrow-right" class="mr-1"></i>Auswählen</a>
+              <div class="mt-6">
+                <a class="btn btn-vw-primary w-full" href="booking-participants.html?seminar=mitarbeitermotivation">Buchen</a>
               </div>
             </div>
           </div>
@@ -658,7 +659,7 @@
       <aside class="lg:col-span-1">
         <div class="vw-card p-6 sticky top-24">
           <div class="text-center mb-3">
-            <span class="badge vw-badge-title" style="background: rgba(11,59,191,.10); color: var(--vw-blue); border: none;">
+            <span class="badge vw-badge-title" style="background: rgba(6,53,195,.10); color: var(--vw-blue); border: none;">
               Empfohlen
             </span>
           </div>
@@ -696,13 +697,8 @@
             <li class="flex gap-2 items-start"><i data-lucide="check" class="mt-0.5"></i> Individuelle Betreuung</li>
           </ul>
 
-          <div class="mt-6 space-y-3">
-            <button class="btn w-full btn-vw-primary">Kontaktieren</button>
-            <button class="btn w-full btn-vw-outline">Rückruf anfordern</button>
-
-            <p class="text-xs vw-muted text-center mt-2">
-              Antwort in der Regel innerhalb von 24h
-            </p>
+          <div class="mt-6">
+            <a class="btn w-full btn-vw-primary" href="booking-participants.html?seminar=mitarbeiterfuehrung">Buchen</a>
           </div>
         </div>
       </aside>

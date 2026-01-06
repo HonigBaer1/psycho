@@ -11,61 +11,31 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --royal-blue: #4169E1;
+            --royal-blue: #0635c3;
             --royal-blue-dark: #3457b8;
+            --success-green: #32a852;
+            --warning-yellow: #ffd700;
         }
+        .vw-title { color: var(--royal-blue); }
     </style>
 </head>
 
 <body class="bg-white">
 
-    <!-- Header / Navbar -->
-    <header class="navbar bg-white shadow-sm sticky top-0 z-50 px-4 lg:px-8">
-        <div class="navbar-start">
-            <a href="landingpage.html" class="text-2xl font-bold" style="color: var(--royal-blue);">
-                Vital Works
-            </a>
-        </div>
-        <div class="navbar-center hidden lg:flex">
-            <ul class="menu menu-horizontal gap-2">
-                <li>
-                    <a href="landingpage.html" class="font-medium hover:text-white" 
-                       style="color: var(--royal-blue);"
-                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
-                        Landingpage
-                    </a>
-                </li>
-                <li>
-                    <a href="onboarding.html" class="font-medium hover:text-white"
-                       style="color: var(--royal-blue);"
-                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
-                        Onboarding
-                    </a>
-                </li>
-                <li>
-                    <a href="infopage.html" class="font-medium hover:text-white"
-                       style="color: var(--royal-blue);"
-                       onmouseover="this.style.backgroundColor='var(--royal-blue)'"
-                       onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--royal-blue)'">
-                        Kursinfo
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="navbar-end lg:hidden">
-            <div class="dropdown dropdown-end">
-                <div tabindex="0" role="button" class="btn btn-ghost">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
+    <!-- HEADER -->
+    <header class="border-b border-base-200 bg-white sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="navbar px-0">
+                <div class="navbar-start">
+                    <a class="text-lg font-bold vw-title" href="landingpage.html">Vital Works</a>
                 </div>
-                <ul tabindex="0" class="menu menu-sm dropdown-content bg-white rounded-box z-10 mt-3 w-52 p-2 shadow">
-                    <li><a href="landingpage.html" style="color: var(--royal-blue);">Landingpage</a></li>
-                    <li><a href="onboarding.html" style="color: var(--royal-blue);">Onboarding</a></li>
-                    <li><a href="infopage.html" style="color: var(--royal-blue);">Kursinfo</a></li>
-                </ul>
+                <div class="navbar-end">
+                    <ul class="menu menu-horizontal px-1 text-sm">
+                        <li><a href="landingpage.html">Landingpage</a></li>
+                        <li><a href="landingpage.html#pakete">Kurs buchen</a></li>
+                        <li><a href="plustraining.html">Kursinfo</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </header>
@@ -122,11 +92,11 @@
 
             <!-- Alert Modal for Max Participants -->
             <dialog id="maxParticipantsModal" class="modal">
-                <div class="modal-box" style="border-top: 4px solid var(--royal-blue);">
+                <div class="modal-box" style="border-top: 4px solid var(--warning-yellow);">
                     <div class="flex items-start gap-3">
-                        <i data-lucide="alert-circle" style="color: #f5cb42; width: 28px; height: 28px; min-width: 28px;"></i>
+                        <i data-lucide="alert-circle" style="color: var(--warning-yellow); width: 28px; height: 28px; min-width: 28px;"></i>
                         <div>
-                            <h3 class="font-bold text-lg mb-2" style="color: var(--royal-blue);">Maximale Teilnehmerzahl erreicht</h3>
+                            <h3 class="font-bold text-lg mb-2" style="color: #000;">Maximale Teilnehmerzahl erreicht</h3>
                             <p class="text-sm mb-4">
                                 Für den Kurs <strong id="modalSeminarName"></strong> beträgt die maximale Anzahl grundsätzlich 
                                 <strong id="modalMaxParticipants"></strong> Teilnehmer.
@@ -136,8 +106,8 @@
                             </p>
                             <div class="modal-action">
                                 <form method="dialog" class="flex gap-2">
-                                    <button class="btn btn-outline" style="border-color: var(--royal-blue); color: var(--royal-blue);">Schließen</button>
-                                    <a id="contactFormLink" href="#" class="btn" style="background-color: var(--royal-blue); color: white;">
+                                    <button class="btn btn-outline" style="border-color: var(--warning-yellow); color: #000;">Schließen</button>
+                                    <a id="contactFormLink" href="#" class="btn" style="background-color: var(--warning-yellow); color: #000;">
                                         Zum Kontaktformular
                                         <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
                                     </a>
@@ -220,17 +190,17 @@
         const seminars = {
             'arbeitsgestaltung': {
                 name: 'Arbeitsgestaltung',
-                price: 890,
+                price: 550,
                 maxParticipants: 15
             },
             'mitarbeitermotivation': {
                 name: 'Mitarbeitermotivation',
-                price: 745,
+                price: 900,
                 maxParticipants: 12
             },
             'mitarbeiterfuehrung': {
                 name: 'Mitarbeiterführung',
-                price: 830,
+                price: 1100,
                 maxParticipants: 10
             }
         };
