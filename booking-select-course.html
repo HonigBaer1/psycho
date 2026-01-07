@@ -145,35 +145,20 @@
             'mitarbeiterfuehrung': 'Mitarbeiterführung'
         };
 
+        // Seminar duration in days
+        const seminarDuration = {
+            'arbeitsgestaltung': 1,
+            'mitarbeitermotivation': 2,
+            'mitarbeiterfuehrung': 3
+        };
+
         // Mock course data
         const allCourses = {
-            'mitarbeitermotivation': [
+              'arbeitsgestaltung': [
                 { 
                     id: 1, 
-                    date: '2026-01-15', 
-                    slots: 20, 
-                    price: 900,
-                    time: '09:00 - 17:00',
-                    location: 'München, Trainingsraum A',
-                    trainer: 'Dr. Schmidt',
-                    features: ['2 Tage Intensivtraining', '4 Wochen Follow-up', 'Seminarunterlagen', 'Zertifikat']
-                },
-                { 
-                    id: 2, 
-                    date: '2026-01-22', 
+                    date: '2026-01-19', 
                     slots: 15, 
-                    price: 900,
-                    time: '09:00 - 17:00',
-                    location: 'Berlin, Konferenzraum B',
-                    trainer: 'Prof. Müller',
-                    features: ['2 Tage Intensivtraining', '4 Wochen Follow-up', 'Seminarunterlagen', 'Zertifikat']
-                },
-            ],
-            'arbeitsgestaltung': [
-                { 
-                    id: 3, 
-                    date: '2026-01-18', 
-                    slots: 18, 
                     price: 550,
                     time: '09:00 - 17:00',
                     location: 'Frankfurt, Schulungsraum C',
@@ -181,35 +166,119 @@
                     features: ['1 Tag Workshop', 'Seminarunterlagen', 'Praktische Übungen']
                 },
                 { 
-                    id: 4, 
-                    date: '2026-01-25', 
-                    slots: 22, 
+                    id: 2, 
+                    date: '2026-01-26', 
+                    slots: 15, 
                     price: 550,
                     time: '09:00 - 17:00',
                     location: 'Hamburg, Trainingsraum D',
                     trainer: 'M.A. Fischer',
                     features: ['1 Tag Workshop', 'Seminarunterlagen', 'Praktische Übungen']
                 },
+                { 
+                    id: 3, 
+                    date: '2026-02-09', 
+                    slots: 15, 
+                    price: 550,
+                    time: '09:00 - 17:00',
+                    location: 'Frankfurt, Schulungsraum C',
+                    trainer: 'M.A. Fischer',
+                    features: ['1 Tag Workshop', 'Seminarunterlagen', 'Praktische Übungen']
+                },
+                { 
+                    id: 4, 
+                    date: '2026-02-16', 
+                    slots: 15, 
+                    price: 550,
+                    time: '09:00 - 17:00',
+                    location: 'Hamburg, Trainingsraum D',
+                    trainer: 'Dr. Weber',
+                    features: ['1 Tag Workshop', 'Seminarunterlagen', 'Praktische Übungen']
+                },
             ],
-            'mitarbeiterfuehrung': [
+            'mitarbeitermotivation': [
                 { 
                     id: 5, 
-                    date: '2026-01-20', 
-                    slots: 16, 
-                    price: 1100,
+                    date: '2026-01-15', 
+                    slots: 12, 
+                    price: 900,
                     time: '09:00 - 17:00',
-                    location: 'Köln, Schulungszentrum E',
-                    trainer: 'Dr. Wagner',
-                    features: ['3 Tage Intensivtraining', '8 Wochen Follow-up', 'Coaching-Sessions', 'Zertifikat']
+                    location: 'München, Trainingsraum A',
+                    trainer: 'Dr. Schmidt',
+                    features: ['2 Tage Intensivtraining', '4 Wochen Follow-up', 'Seminarunterlagen', 'Zertifikat']
                 },
                 { 
                     id: 6, 
+                    date: '2026-01-22', 
+                    slots: 12, 
+                    price: 900,
+                    time: '09:00 - 17:00',
+                    location: 'Berlin, Konferenzraum B',
+                    trainer: 'Prof. Müller',
+                    features: ['2 Tage Intensivtraining', '4 Wochen Follow-up', 'Seminarunterlagen', 'Zertifikat']
+                },
+                { 
+                    id: 7, 
+                    date: '2026-02-05', 
+                    slots: 12, 
+                    price: 900,
+                    time: '09:00 - 17:00',
+                    location: 'München, Trainingsraum A',
+                    trainer: 'Dr. Schmidt',
+                    features: ['2 Tage Intensivtraining', '4 Wochen Follow-up', 'Seminarunterlagen', 'Zertifikat']
+                },
+                { 
+                    id: 8, 
+                    date: '2026-02-12', 
+                    slots: 12, 
+                    price: 900,
+                    time: '09:00 - 17:00',
+                    location: 'Berlin, Konferenzraum B',
+                    trainer: 'Dr. Weber',
+                    features: ['2 Tage Intensivtraining', '4 Wochen Follow-up', 'Seminarunterlagen', 'Zertifikat']
+                },
+                
+            ],
+          
+            'mitarbeiterfuehrung': [
+                { 
+                    id: 9, 
+                    date: '2026-01-20', 
+                    slots: 10, 
+                    price: 1100,
+                    time: '09:00 - 17:00',
+                    location: 'Köln, Schulungszentrum E',
+                    trainer: 'M.Sc. Wagner',
+                    features: ['3 Tage Intensivtraining', '8 Wochen Follow-up', 'Coaching-Sessions', 'Zertifikat']
+                },
+                { 
+                    id: 10, 
                     date: '2026-01-27', 
-                    slots: 20, 
+                    slots: 10, 
                     price: 1100,
                     time: '09:00 - 17:00',
                     location: 'Stuttgart, Trainingsraum F',
                     trainer: 'Prof. Becker',
+                    features: ['3 Tage Intensivtraining', '8 Wochen Follow-up', 'Coaching-Sessions', 'Zertifikat']
+                },
+                { 
+                    id: 11, 
+                    date: '2026-02-10', 
+                    slots: 10, 
+                    price: 1100,
+                    time: '09:00 - 17:00',
+                    location: 'Köln, Schulungszentrum E',
+                    trainer: 'M.Sc. Wagner',
+                    features: ['3 Tage Intensivtraining', '8 Wochen Follow-up', 'Coaching-Sessions', 'Zertifikat']
+                },
+                { 
+                    id: 12, 
+                    date: '2026-02-17', 
+                    slots: 10, 
+                    price: 1100,
+                    time: '09:00 - 17:00',
+                    location: 'Stuttgart, Trainingsraum F',
+                    trainer: 'Prof. Nolte',
                     features: ['3 Tage Intensivtraining', '8 Wochen Follow-up', 'Coaching-Sessions', 'Zertifikat']
                 },
             ]
@@ -223,16 +292,37 @@
                 course.slots >= participantCount
             );
 
-        // Format date
+        // Format date (single date)
         const formatDate = (dateStr) => {
             const date = new Date(dateStr);
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             return date.toLocaleDateString('de-DE', options);
         };
 
+        // Format date range (for multi-day courses)
+        const formatDateRange = (startDateStr, seminarType) => {
+            const duration = seminarDuration[seminarType] || 1;
+            const startDate = new Date(startDateStr);
+            
+            if (duration === 1) {
+                return formatDate(startDateStr);
+            }
+            
+            const endDate = new Date(startDate);
+            endDate.setDate(startDate.getDate() + duration - 1);
+            
+            const startDay = String(startDate.getDate()).padStart(2, '0');
+            const startMonth = String(startDate.getMonth() + 1).padStart(2, '0');
+            const endDay = String(endDate.getDate()).padStart(2, '0');
+            const endMonth = String(endDate.getMonth() + 1).padStart(2, '0');
+            const endYear = endDate.getFullYear();
+            
+            return `${startDay}.${startMonth} - ${endDay}.${endMonth}.${endYear}`;
+        };
+
         // Update booking summary
         document.getElementById('bookingSummary').textContent = 
-            `${seminarNames[bookingData.seminar]} - ${bookingData.participants} Teilnehmer - ${formatDate(bookingData.selectedDate)}`;
+            `${seminarNames[bookingData.seminar]} - ${bookingData.participants} Teilnehmer - ${formatDateRange(bookingData.selectedDate, bookingData.seminar)}`;
 
         // Render course cards
         const courseContainer = document.getElementById('courseContainer');
@@ -255,7 +345,7 @@
                     <div class="flex justify-between items-start mb-4">
                         <div>
                             <h3 class="text-2xl font-bold" style="color: var(--royal-blue);">
-                                ${formatDate(course.date)}
+                                ${formatDateRange(course.date, bookingData.seminar)}
                             </h3>
                             <p class="text-gray-500">${course.time}</p>
                         </div>

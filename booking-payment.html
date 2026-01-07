@@ -426,11 +426,39 @@
             'mitarbeiterfuehrung': 'Mitarbeiterführung'
         };
 
-        // Format date
+        // Seminar duration in days
+        const seminarDuration = {
+            'arbeitsgestaltung': 1,
+            'mitarbeitermotivation': 2,
+            'mitarbeiterfuehrung': 3
+        };
+
+        // Format date (single date)
         const formatDate = (dateStr) => {
             const date = new Date(dateStr);
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             return date.toLocaleDateString('de-DE', options);
+        };
+
+        // Format date range (for multi-day courses)
+        const formatDateRange = (startDateStr, seminarType) => {
+            const duration = seminarDuration[seminarType] || 1;
+            const startDate = new Date(startDateStr);
+            
+            if (duration === 1) {
+                return formatDate(startDateStr);
+            }
+            
+            const endDate = new Date(startDate);
+            endDate.setDate(startDate.getDate() + duration - 1);
+            
+            const startDay = String(startDate.getDate()).padStart(2, '0');
+            const startMonth = String(startDate.getMonth() + 1).padStart(2, '0');
+            const endDay = String(endDate.getDate()).padStart(2, '0');
+            const endMonth = String(endDate.getMonth() + 1).padStart(2, '0');
+            const endYear = endDate.getFullYear();
+            
+            return `${startDay}.${startMonth} - ${endDay}.${endMonth}.${endYear}`;
         };
 
         // Update booking summary
@@ -439,7 +467,7 @@
         const totalPrice = course.price * participants;
 
         document.getElementById('summaryTitle').textContent = seminarNames[bookingData.seminar];
-        document.getElementById('summaryDate').textContent = formatDate(course.date);
+        document.getElementById('summaryDate').textContent = formatDateRange(course.date, bookingData.seminar);
         document.getElementById('summaryLocation').textContent = course.location;
         document.getElementById('summaryParticipants').textContent = `${participants} Person${participants > 1 ? 'en' : ''}`;
         document.getElementById('summaryPricePerPerson').textContent = `€${course.price.toLocaleString('de-DE')}`;
@@ -659,7 +687,7 @@
                 
                 // Populate modal with booking details
                 document.getElementById('modalSeminarTitle').textContent = seminarNames[bookingData.seminar];
-                document.getElementById('modalDate').textContent = formatDate(course.date);
+                document.getElementById('modalDate').textContent = formatDateRange(course.date, bookingData.seminar);
                 document.getElementById('modalParticipants').textContent = `${participants} Person${participants > 1 ? 'en' : ''}`;
                 document.getElementById('modalTotal').textContent = `€${totalPrice.toLocaleString('de-DE')}`;
                 

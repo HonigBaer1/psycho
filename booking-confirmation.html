@@ -417,6 +417,13 @@
             'mitarbeiterfuehrung': 'Mitarbeiterführung'
         };
 
+        // Seminar duration in days
+        const seminarDuration = {
+            'arbeitsgestaltung': 1,
+            'mitarbeitermotivation': 2,
+            'mitarbeiterfuehrung': 3
+        };
+
         // Payment method names
         const paymentMethodNames = {
             'credit-card': 'Kreditkarte',
@@ -425,11 +432,32 @@
             'sepa': 'SEPA-Lastschrift'
         };
 
-        // Format date
+        // Format date (single date)
         const formatDate = (dateStr) => {
             const date = new Date(dateStr);
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             return date.toLocaleDateString('de-DE', options);
+        };
+
+        // Format date range (for multi-day courses)
+        const formatDateRange = (startDateStr, seminarType) => {
+            const duration = seminarDuration[seminarType] || 1;
+            const startDate = new Date(startDateStr);
+            
+            if (duration === 1) {
+                return formatDate(startDateStr);
+            }
+            
+            const endDate = new Date(startDate);
+            endDate.setDate(startDate.getDate() + duration - 1);
+            
+            const startDay = String(startDate.getDate()).padStart(2, '0');
+            const startMonth = String(startDate.getMonth() + 1).padStart(2, '0');
+            const endDay = String(endDate.getDate()).padStart(2, '0');
+            const endMonth = String(endDate.getMonth() + 1).padStart(2, '0');
+            const endYear = endDate.getFullYear();
+            
+            return `${startDay}.${startMonth} - ${endDay}.${endMonth}.${endYear}`;
         };
 
         // Update details
@@ -438,7 +466,7 @@
         const participants = parseInt(bookingData.participants);
 
         document.getElementById('detailSeminar').textContent = seminarNames[bookingData.seminar];
-        document.getElementById('detailDate').textContent = formatDate(course.date);
+        document.getElementById('detailDate').textContent = formatDateRange(course.date, bookingData.seminar);
         document.getElementById('detailTime').textContent = course.time;
         document.getElementById('detailLocation').textContent = course.location;
         document.getElementById('detailTrainer').textContent = course.trainer;
