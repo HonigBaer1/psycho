@@ -22,10 +22,19 @@
       --vw-blue: #0635c3;
       --vw-blue-dark: #3457b8;
       --vw-blue-soft: rgba(6,53,195,.16);
+      --vw-blue-verysoft: rgba(6,53,195,.07);
       --soft-gray: #f6f7f9;
       --text-gray: #5f6b7a;
+
+      --acc-blue:   #0635c3;
+      --acc-green:  #0f766e;
+      --acc-amber:  #b45309;
+      --acc-purple: #6d28d9;
+      --acc-red:    #be123c;
+      --acc-slate:  #475569;
     }
 
+    /* Buttons */
     .btn-vw-primary{ background: var(--vw-blue); border-color: var(--vw-blue); color: #fff; }
     .btn-vw-primary:hover{ background: var(--vw-blue-dark); border-color: var(--vw-blue-dark); }
     .btn-vw-outline{ border-color: var(--vw-blue); color: var(--vw-blue); }
@@ -34,12 +43,87 @@
     .vw-title{ color: var(--vw-blue); }
     .vw-muted{ color: var(--text-gray); }
 
+    /* Cards */
     .vw-card{
       border: 1px solid rgba(0,0,0,.06);
       box-shadow: 0 10px 25px rgba(0,0,0,.06);
       border-radius: 14px;
       background: #fff;
     }
+
+    /* Focus blocks */
+    .vw-focus-card{
+      border-left: 5px solid var(--vw-blue);
+      background: #fff;
+    }
+    .vw-focus-card:hover{ box-shadow: 0 14px 34px rgba(0,0,0,.08); }
+
+    /* Sticky section nav */
+    .vw-section-nav{
+      position: sticky; top: 0; z-index: 30;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: 999px;
+      box-shadow: 0 10px 25px rgba(0,0,0,.05);
+    }
+    .vw-nav-pill{
+      border-radius: 999px;
+      padding: .55rem .85rem;
+      transition: background .15s ease, color .15s ease, border-color .15s ease;
+      border: 1px solid rgba(0,0,0,.06);
+      background: rgba(255,255,255,.9);
+      color: var(--text-gray);
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-weight: 800;
+      font-size: .93rem;
+      white-space: nowrap;
+    }
+    .vw-nav-pill:hover{
+      background: rgba(6,53,195,.06);
+      border-color: rgba(6,53,195,.18);
+      color: var(--vw-blue);
+    }
+    .vw-nav-pill.is-active{
+      background: rgba(6,53,195,.12);
+      border-color: rgba(6,53,195,.25);
+      color: var(--vw-blue);
+    }
+
+    /* Icons */
+    .vw-icon{
+      width: 18px; height: 18px;
+      stroke-width: 2.1;
+      flex: 0 0 auto;
+    }
+    .vw-icon.blue{ color: var(--acc-blue); }
+    .vw-icon.green{ color: var(--acc-green); }
+    .vw-icon.amber{ color: var(--acc-amber); }
+    .vw-icon.purple{ color: var(--acc-purple); }
+    .vw-icon.red{ color: var(--acc-red); }
+    .vw-icon.slate{ color: var(--acc-slate); }
+    .vw-icon.white{ color: #fff; }
+
+    /* Titles */
+    .vw-page-title{ font-size: clamp(1.75rem, 2.6vw, 2.3rem); line-height: 1.15; }
+
+    .vw-block-head{
+      display:flex; align-items:center; justify-content:space-between; gap: 12px;
+      padding-bottom: .35rem;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      margin-bottom: .9rem;
+    }
+    .vw-block-title{
+      display:flex; align-items:center; gap: .6rem;
+      font-size: 1.42rem;
+      font-weight: 900;
+      letter-spacing: -0.015em;
+      color: #0f172a;
+    }
+    .vw-card-title{ font-size: 1.05rem; }
+    .vw-badge-title{ font-size: .75rem; }
 
     /* Weitere Trainings: gleiche Höhe + Buttons unten aligned */
     .vw-training-card{ display:flex; flex-direction:column; height:100%; }
@@ -52,14 +136,85 @@
       width: 46px; position: relative; display:flex; justify-content:center; flex: 0 0 46px;
     }
     .vw-step-line{
-      position:absolute; top: 0; bottom: 0; width: 6px; border-radius: 999px; background: var(--vw-blue-soft);
+      position:absolute; top: 0; bottom: 0; width: 6px; border-radius: 999px; background: rgba(6,53,195,.18);
     }
     .vw-step-badge{
       position: relative; z-index: 2; width: 32px; height: 32px; border-radius: 999px;
-      background: var(--vw-blue); color: #fff; font-weight: 700; display:grid; place-items:center;
+      background: var(--vw-blue); color: #fff; font-weight: 900; display:grid; place-items:center;
       margin-top: 2px; box-shadow: 0 10px 18px rgba(6,53,195,.18);
     }
     .vw-step-content{ flex: 1; padding-left: 4px; }
+
+    /* Anchor offset */
+    .vw-anchor{ scroll-margin-top: 90px; }
+
+    /* ===== TAKEAWAYS UI ===== */
+    .vw-takeaway{
+      background: rgba(6,53,195,.06);
+      border: 1px solid rgba(6,53,195,.14);
+      border-radius: 14px;
+      padding: 16px;
+      overflow: hidden;
+    }
+    .vw-take-grid{
+      display:grid;
+      gap: 12px;
+      grid-template-columns: 1fr;
+      width: 100%;
+      max-width: 100%;
+    }
+    @media(min-width: 640px){
+      .vw-take-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media(min-width: 1024px){
+      .vw-take-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    .vw-take-item{
+      min-width: 0;
+      background:#fff;
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 12px;
+      padding: 12px;
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      height: 100%;
+      box-shadow: 0 6px 16px rgba(0,0,0,.05);
+    }
+    .vw-take-item > div{ min-width: 0; }
+    .vw-take-item .label{
+      font-weight: 900;
+      color:#0f172a;
+      font-size:.88rem;
+      line-height: 1.15;
+      overflow-wrap: anywhere;
+    }
+    .vw-take-item .desc{
+      color: var(--text-gray);
+      font-size:.85rem;
+      margin-top: 5px;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+    .vw-bonus{
+      margin-top: 12px;
+      background: rgba(255,255,255,.9);
+      border: 1px dashed rgba(6,53,195,.25);
+      border-radius: 12px;
+      padding: 12px;
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      max-width: 100%;
+    }
+    .vw-bonus p{
+      margin: 0;
+      color: var(--text-gray);
+      font-size: .88rem;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+    .vw-bonus strong{ color:#0f172a; font-weight: 900; }
 
     /* Reviews slider */
     .vw-review-wrap{ position: relative; }
@@ -82,12 +237,6 @@
 
     .vw-review-card{ display:flex; flex-direction:column; height:100%; }
     .vw-quote{ line-height: 1.5; }
-
-    /* === SMALLER TITLES + STARS (requested) === */
-    .vw-page-title{ font-size: clamp(1.75rem, 2.6vw, 2.3rem); line-height: 1.15; }
-    .vw-section-title{ font-size: 1.1rem; } /* previously ~text-xl */
-    .vw-card-title{ font-size: 1.05rem; }
-    .vw-badge-title{ font-size: .75rem; }
 
     /* Smaller rating stars everywhere */
     .vw-rating-sm .mask-star-2{ width: 0.9rem; height: 0.9rem; }
@@ -142,8 +291,8 @@
     <div class="grid lg:grid-cols-3 gap-8">
       <!-- LEFT -->
       <section class="lg:col-span-2 space-y-6">
-        <!-- Worum geht’s? -->
-        <div class="vw-card p-6">
+        <!-- Worum geht's? -->
+        <div id="about" class="vw-card vw-focus-card p-6 vw-anchor">
           <div class="flex items-start justify-between gap-4">
             <h2 class="font-semibold vw-section-title">Worum geht’s?</h2>
             <span class="badge vw-badge-title" style="background: rgba(6,53,195,.10); color: var(--vw-blue); border: none;">
@@ -162,7 +311,7 @@
 
           <div class="grid md:grid-cols-2 gap-3 mt-5">
             <div class="flex gap-2 items-start">
-              <i data-lucide="target" class="mt-0.5"></i>
+              <i data-lucide="target" class="vw-icon blue mt-0.5"></i>
               <div>
                 <div class="font-semibold vw-card-title">Kernfokus</div>
                 <div class="vw-muted text-sm">Wirksame Führung in typischen Alltagssituationen.</div>
@@ -170,7 +319,7 @@
             </div>
 
             <div class="flex gap-2 items-start">
-              <i data-lucide="briefcase" class="mt-0.5"></i>
+              <i data-lucide="briefcase" class="vw-icon slate mt-0.5"></i>
               <div>
                 <div class="font-semibold vw-card-title">Ihr Kontext</div>
                 <div class="vw-muted text-sm">Leistungsschwankungen, Widerstand, Konflikte, fehlende Initiative.</div>
@@ -178,7 +327,7 @@
             </div>
 
             <div class="flex gap-2 items-start">
-              <i data-lucide="wrench" class="mt-0.5"></i>
+              <i data-lucide="wrench" class="vw-icon amber mt-0.5"></i>
               <div>
                 <div class="font-semibold vw-card-title">Konkrete Tools</div>
                 <div class="vw-muted text-sm">Leitfäden, Checklisten & Formulierungen für schwierige Gespräche.</div>
@@ -186,7 +335,7 @@
             </div>
 
             <div class="flex gap-2 items-start">
-              <i data-lucide="calendar-check" class="mt-0.5"></i>
+              <i data-lucide="calendar-check" class="vw-icon green mt-0.5"></i>
               <div>
                 <div class="font-semibold vw-card-title">Direkter Transfer</div>
                 <div class="vw-muted text-sm">Individueller Maßnahmenplan für die nächsten 30 Tage.</div>
@@ -195,16 +344,19 @@
           </div>
         </div>
 
-        <!-- Was Teilnehmende danach können -->
-        <div class="vw-card p-6">
-          <div class="flex items-start justify-between gap-4">
-            <h2 class="font-semibold vw-section-title">Was Teilnehmende danach können</h2>
+        <!-- Learnings -->
+        <div id="learnings" class="vw-card vw-focus-card p-6 vw-anchor">
+          <div class="vw-block-head">
+            <div class="vw-block-title">
+              <i data-lucide="graduation-cap" class="vw-icon purple"></i>
+              Learnings
+            </div>
             <span class="badge badge-ghost vw-badge-title">Sofort anwendbar</span>
           </div>
 
-          <div class="grid md:grid-cols-2 gap-3 mt-4">
+          <div class="grid md:grid-cols-2 gap-3">
             <div class="flex gap-2 items-start">
-              <i data-lucide="sparkles" class="mt-0.5"></i>
+              <i data-lucide="sparkles" class="vw-icon purple mt-0.5"></i>
               <div>
                 <div class="font-semibold vw-card-title">Motivation gezielt steigern</div>
                 <div class="vw-muted text-sm">Treiber identifizieren & Demotivationsfaktoren früh vermeiden.</div>
@@ -212,7 +364,7 @@
             </div>
 
             <div class="flex gap-2 items-start">
-              <i data-lucide="messages-square" class="mt-0.5"></i>
+              <i data-lucide="messages-square" class="vw-icon blue mt-0.5"></i>
               <div>
                 <div class="font-semibold vw-card-title">Feedback, das wirkt</div>
                 <div class="vw-muted text-sm">Struktur + Formulierungen für echte Verhaltensänderung.</div>
@@ -220,7 +372,7 @@
             </div>
 
             <div class="flex gap-2 items-start">
-              <i data-lucide="flag" class="mt-0.5"></i>
+              <i data-lucide="flag" class="vw-icon green mt-0.5"></i>
               <div>
                 <div class="font-semibold vw-card-title">Ownership statt Kontrolle</div>
                 <div class="vw-muted text-sm">Ziele so setzen, dass Eigeninitiative entsteht.</div>
@@ -228,7 +380,7 @@
             </div>
 
             <div class="flex gap-2 items-start">
-              <i data-lucide="shield" class="mt-0.5"></i>
+              <i data-lucide="shield" class="vw-icon red mt-0.5"></i>
               <div>
                 <div class="font-semibold vw-card-title">Widerstände konstruktiv lösen</div>
                 <div class="vw-muted text-sm">Früh erkennen und in Mitarbeit umwandeln.</div>
@@ -236,13 +388,46 @@
             </div>
           </div>
 
-          <div class="mt-5 rounded-xl p-4" style="background: rgba(6,53,195,.06);">
+          <!-- TAKEAWAYS -->
+          <div class="vw-takeaway mt-5">
             <div class="flex items-start gap-2">
-              <i data-lucide="package" class="mt-0.5"></i>
-              <div>
-                <div class="font-semibold vw-card-title">Konkrete Takeaways</div>
-                <div class="vw-muted text-sm">
-                  Feedback-Leitfaden • Zielsetzungs-Template • 30-Tage-Transferplan (3 Maßnahmen + Wenn-Dann-Plan)
+              <i data-lucide="package" class="vw-icon amber mt-0.5"></i>
+              <div class="w-full min-w-0">
+                <div class="font-extrabold" style="color:#0f172a; font-size:1.05rem;">Konkrete Takeaways</div>
+                <div class="vw-muted text-sm mt-1">Kompakt. Sofort einsetzbar. Für den nächsten Arbeitstag.</div>
+
+                <div class="vw-take-grid mt-4">
+                  <div class="vw-take-item">
+                    <i data-lucide="messages-square" class="vw-icon blue mt-0.5"></i>
+                    <div>
+                      <div class="label">Feedback-Leitfaden</div>
+                      <div class="desc">Klare Struktur + Formulierungen für schwierige Gespräche.</div>
+                    </div>
+                  </div>
+
+                  <div class="vw-take-item">
+                    <i data-lucide="target" class="vw-icon green mt-0.5"></i>
+                    <div>
+                      <div class="label">Zielsetzungs-Template</div>
+                      <div class="desc">So werden Ziele zu Ownership – statt zu Kontrolle.</div>
+                    </div>
+                  </div>
+
+                  <div class="vw-take-item">
+                    <i data-lucide="calendar-check" class="vw-icon purple mt-0.5"></i>
+                    <div>
+                      <div class="label">30-Tage-Transferplan</div>
+                      <div class="desc">3 Maßnahmen + Wenn-Dann-Plan zur sicheren Umsetzung.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="vw-bonus">
+                  <i data-lucide="bookmark-check" class="vw-icon blue mt-0.5"></i>
+                  <p>
+                    <strong>Bonus:</strong> Mini-Checkliste für Konflikt/Widerstand
+                    <span class="vw-muted">(schnell entscheiden: Gespräch, Ziel, Anerkennung oder Rahmen)</span>
+                  </p>
                 </div>
               </div>
             </div>
@@ -250,8 +435,16 @@
         </div>
 
         <!-- Ablauf -->
-        <div class="vw-card p-6">
-          <h2 class="font-semibold vw-section-title mb-5">Ablauf (3 Tage)</h2>
+        <div id="schedule" class="vw-card vw-focus-card p-6 vw-anchor">
+          <div class="vw-block-head">
+            <div class="vw-block-title">
+              <i data-lucide="route" class="vw-icon green"></i>
+              Ablauf (3 Tage)
+            </div>
+            <span class="badge vw-badge-title" style="background: rgba(15,118,110,.10); color: var(--acc-green); border: none;">
+              Transfer-Design
+            </span>
+          </div>
 
           <div class="vw-step">
             <div class="vw-step-rail">
@@ -708,6 +901,34 @@
   <script>
     lucide.createIcons();
 
+    // Active state for 3-step nav via IntersectionObserver
+    const navLinks = Array.from(document.querySelectorAll("[data-nav]"));
+    const sections = [
+      { id: "about", key: "about" },
+      { id: "learnings", key: "learnings" },
+      { id: "schedule", key: "schedule" },
+    ].map(s => ({ ...s, el: document.getElementById(s.id) }));
+
+    function setActive(key){
+      navLinks.forEach(a => a.classList.toggle("is-active", a.dataset.nav === key));
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter(e => e.isIntersecting)
+        .sort((a,b) => (b.intersectionRatio - a.intersectionRatio))[0];
+      if (!visible) return;
+      const match = sections.find(s => s.el === visible.target);
+      if (match) setActive(match.key);
+    }, {
+      root: null,
+      threshold: [0.25, 0.4, 0.6],
+      rootMargin: "-20% 0px -60% 0px"
+    });
+
+    sections.forEach(s => s.el && io.observe(s.el));
+
+    // Reviews arrows: scroll by one viewport width
     const track = document.getElementById("reviewsTrack");
     const prevBtn = document.getElementById("reviewsPrev");
     const nextBtn = document.getElementById("reviewsNext");
