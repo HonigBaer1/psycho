@@ -373,7 +373,7 @@
   <section class="py-16 px-4" style="background-color: #f8fafc">
     <div class="max-w-6xl mx-auto">
       <h2 class="text-2xl md:text-3xl font-bold text-center mb-3" style="color: var(--royal-blue)">
-        Vertrauen von führenden Unternehmen
+        Vertrauen von führenden Unternehmen weltweit
       </h2>
       <p class="text-gray-600 text-center max-w-2xl mx-auto mb-10 text-base">
         Diese und viele weitere Unternehmen setzen auf unsere Seminare
@@ -916,7 +916,7 @@
         text: "Das Seminar zur Mitarbeitermotivation hat unser Team komplett verändert. Die praktischen Methoden lassen sich sofort umsetzen und wir sehen bereits erste Erfolge.",
       },
       {
-        name: "Thomas Müller",
+        name: "Dr. Thomas Müller",
         title: "Geschäftsführer",
         rating: 4,
         text: "Sehr informativ und gut strukturiert. Der Trainer hatte viel Erfahrung und konnte auf unsere spezifischen Fragen eingehen. Wirklich empfehlenswert!",
@@ -928,8 +928,8 @@
         text: "Ausgezeichnete Schulung! Meine Führungskompetenzen haben sich deutlich verbessert. Das 12-Wochen-Coaching war besonders wertvoll für die Umsetzung.",
       },
       {
-        name: "Klaus Fischer",
-        title: "Prof. Dr.",
+        name: "Prof. Dr. Klaus Fischer",
+        title: "Dekan at Stanford Business School",
         rating: 5,
         text: "Die Arbeitsgestaltungs-Seminare haben unsere Produktivität um 30% gesteigert. Absolut professionell und praxisnah durchgeführt. Danke Vital Works!",
       },
@@ -966,6 +966,7 @@
     function createTestimonialCard(testimonial) {
       const initials = testimonial.name
         .split(" ")
+        .filter((word) => !word.startsWith("Prof") && !word.startsWith("Dr"))
         .map((n) => n[0])
         .join("");
       return `
